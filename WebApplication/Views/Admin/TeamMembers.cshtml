@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.CvPath)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "EditeTeamMembers", new { id=item.Id }) |
+            @Html.ActionLink("Details", "detailsTeamMember", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "deleteTeamMember", new { id=item.Id })
         </td>
     </tr>
 }

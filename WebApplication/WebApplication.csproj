@@ -486,6 +486,9 @@
     <Content Include="Views\Admin\ContactUs.cshtml" />
     <Content Include="Views\Admin\AddTeamMembers.cshtml" />
     <Content Include="Views\Admin\TeamMembers.cshtml" />
+    <Content Include="Views\Admin\EditeTeamMembers.cshtml" />
+    <Content Include="Views\Admin\detailsTeamMember.cshtml" />
+    <Content Include="Views\Admin\deleteTeamMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

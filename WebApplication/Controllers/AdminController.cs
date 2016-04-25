@@ -65,14 +65,154 @@ namespace WebApplication.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
                 // throw;
             }
-            return new HttpStatusCodeResult(HttpStatusCode.NoContent);
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-        //public ActionResult TeamMembers()
-        //{
+        public ActionResult TeamMembers()
+        {
+            using (TouchContext touch = new TouchContext())
+            {
+                return View(touch.TeamMembers.ToList());
+            }
 
-        //    return View();
 
-        //}
+        }
+
+        public ActionResult AddTeamMembers()
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddTeamMembers(TeamMember newmember)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.TeamMembers.Add(newmember);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Redirect("~/Admin/TeamMembers");
+        }
+
+        public ActionResult EditeTeamMembers(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var edited = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
+                    return View(edited);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult EditeTeamMembers(TeamMember member)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.Entry(member).State = EntityState.Modified;
+                    touch.SaveChanges();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Redirect("~/Admin/TeamMembers");
+        }
+
+
+        public ActionResult detailsTeamMember(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
+                    var details = touch.TeamMembers.Find(id);
+                    return View(details);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public ActionResult deleteTeamMember(int? id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
+                    var details = touch.TeamMembers.Find(id);
+                    return View(details);
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        [HttpPost]
+        public ActionResult deleteTeamMember(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var details = touch.TeamMembers.Find(id);
+                    touch.TeamMembers.Remove(details);
+                    touch.SaveChanges();
+                   
+                }
+                return Redirect("~/Admin/TeamMembers");
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
 
     }
 }
