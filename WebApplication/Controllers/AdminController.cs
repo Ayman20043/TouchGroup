@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication.Models;
@@ -42,7 +43,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult ContactUs(ContactUs input)
+        public HttpStatusCodeResult ContactUs(ContactUs input)
         {
             try
             {
@@ -61,46 +62,17 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
                 // throw;
             }
-            return View();
+            return new HttpStatusCodeResult(HttpStatusCode.NoContent);
         }
-        public ActionResult TeamMembers()
-        {
-            using (TouchContext touch=new TouchContext())
-            {
-                 return View(touch.TeamMembers.ToList());
-            }
-           
+        //public ActionResult TeamMembers()
+        //{
 
-        }
+        //    return View();
 
-        public ActionResult AddTeamMembers()
-        {
-
-            return View();
-
-        }
-        [HttpPost]
-        public ActionResult AddTeamMembers(TeamMember Newmember)
-        {
-            try
-            {
-                using (TouchContext touch=new TouchContext())
-                {
-                    touch.TeamMembers.Add(Newmember);
-                    touch.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                
-            }
-            return View(Newmember);
-
-        }
+        //}
 
     }
 }
