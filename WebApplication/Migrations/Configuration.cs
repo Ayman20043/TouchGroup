@@ -1,3 +1,5 @@
+using WebApplication.Models;
+
 namespace WebApplication.Migrations
 {
     using System;
@@ -26,6 +28,12 @@ namespace WebApplication.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.CompanyProfiles.AddOrUpdate(x => x.Id,
+              new CompanyProfile() { Id = 1, SectionName = "Introduction" },
+              new CompanyProfile() { Id = 2, SectionName = "Philosophy" },
+              new CompanyProfile() { Id = 3, SectionName = "Main Objectives" },
+              new CompanyProfile() { Id = 4, SectionName = "Portfolio of Services" }
+              );
         }
     }
 }
