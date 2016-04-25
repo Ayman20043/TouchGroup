@@ -480,6 +480,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_loginRegisterLayOut.cshtml" />
     <Content Include="Views\Admin\ContactUs.cshtml" />
+    <Content Include="Views\Admin\AddTeamMembers.cshtml" />
+    <Content Include="Views\Admin\TeamMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -510,7 +512,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>17107</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

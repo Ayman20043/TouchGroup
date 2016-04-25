@@ -66,13 +66,41 @@ namespace WebApplication.Controllers
             }
             return View();
         }
-        public ActionResult TeamMembers() {
+        public ActionResult TeamMembers()
+        {
+            using (TouchContext touch=new TouchContext())
+            {
+                 return View(touch.TeamMembers.ToList());
+            }
+           
+
+        }
+
+        public ActionResult AddTeamMembers()
+        {
 
             return View();
 
         }
+        [HttpPost]
+        public ActionResult AddTeamMembers(TeamMember Newmember)
+        {
+            try
+            {
+                using (TouchContext touch=new TouchContext())
+                {
+                    touch.TeamMembers.Add(Newmember);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
 
+                
+            }
+            return View(Newmember);
 
+        }
 
     }
 }
