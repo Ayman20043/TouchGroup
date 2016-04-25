@@ -212,6 +212,43 @@ namespace WebApplication.Controllers
         }
 
 
+        public ActionResult Introduction()
+        {
+            try
+            {
+                using (TouchContext db=new TouchContext())
+                {
+                    var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
+                    if (intro != null)
+                   return View(intro);
+                   return View(new CompanyProfile() {Id = 1, Content = "Introduction", SectionName = "Introduction"});
+                }
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Introduction(CompanyProfile input)
+        {
+            try
+            {
+                using (TouchContext db=new TouchContext())
+                {
+                    db.Entry(input).State=EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                // throw;
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
 
 
     }
