@@ -7,7 +7,7 @@
 <h2>TeamMembers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "AddTeamMembers")
+    @Html.ActionLink("Create New", "AddMember")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.CvPath)
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditeTeamMembers", new { id=item.Id }) |
-            @Html.ActionLink("Details", "detailsTeamMember", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "deleteTeamMember", new { id=item.Id })
+            @Html.ActionLink("Edit", "EditMember", new { id=item.Id }) |
+            @Html.ActionLink("Details", "MemberDetails", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteMember", new { id=item.Id })
         </td>
     </tr>
 }

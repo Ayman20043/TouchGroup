@@ -644,9 +644,9 @@
     <Content Include="Views\Admin\ContactUs.cshtml" />
     <Content Include="Views\Admin\AddTeamMembers.cshtml" />
     <Content Include="Views\Admin\TeamMembers.cshtml" />
-    <Content Include="Views\Admin\EditeTeamMembers.cshtml" />
-    <Content Include="Views\Admin\detailsTeamMember.cshtml" />
-    <Content Include="Views\Admin\deleteTeamMember.cshtml" />
+    <Content Include="Views\Admin\EditeMember.cshtml" />
+    <Content Include="Views\Admin\MemberDetails.cshtml" />
+    <Content Include="Views\Admin\DeleteMember.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />

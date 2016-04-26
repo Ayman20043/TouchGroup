@@ -77,7 +77,7 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult AddTeamMembers()
+        public ActionResult AddMember()
         {
             try
             {
@@ -91,7 +91,7 @@ namespace WebApplication.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddTeamMembers(TeamMember newmember)
+        public ActionResult AddMember(TeamMember newmember)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace WebApplication.Controllers
             return Redirect("~/Admin/TeamMembers");
         }
 
-        public ActionResult EditeTeamMembers(int id)
+        public ActionResult EditMember(int id)
         {
             try
             {
@@ -129,7 +129,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditeTeamMembers(TeamMember member)
+        public ActionResult EditMember(TeamMember member)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace WebApplication.Controllers
         }
 
 
-        public ActionResult detailsTeamMember(int id)
+        public ActionResult MemberDetails(int id)
         {
             try
             {
@@ -169,7 +169,7 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult deleteTeamMember(int? id)
+        public ActionResult DeleteMember(int? id)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace WebApplication.Controllers
 
         }
         [HttpPost]
-        public ActionResult deleteTeamMember(int id)
+        public ActionResult DeleteMember(int id)
         {
             try
             {
