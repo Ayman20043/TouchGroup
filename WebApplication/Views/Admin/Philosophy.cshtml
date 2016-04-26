@@ -1,0 +1,85 @@
+﻿@model WebApplication.Models.CompanyProfile
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Philosophy", "Admin", FormMethod.Post, new { id = "EditForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Philosophy</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.SectionName)
+        <div>
+            <div class="alert alert-success collapse" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success !</strong>Saved Successfully
+            </div>
+            <div class="alert alert-danger collapse" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error! </strong>Error Happened while saving
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", id = "mytextarea" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" id="btnsubmit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section head
+    {
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+    <script type="text/javascript">
+    tinymce.init({
+        selector: '#mytextarea',
+        height: 500,
+        theme: 'modern',
+        plugins: [
+          'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+          'searchreplace wordcount visualblocks visualchars code fullscreen',
+          'insertdatetime media nonbreaking save table contextmenu directionality',
+          'emoticons template paste textcolor colorpicker textpattern imagetools'
+        ],
+        toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar2: 'print preview media | forecolor backcolor emoticons | sizeselect | bold italic | fontselect |  fontsizeselect',
+        image_advtab: true,
+        templates: [
+          { title: 'Test template 1', content: 'Test 1' },
+          { title: 'Test template 2', content: 'Test 2' }
+        ],
+        content_css: [
+          '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+          '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+    $(document).ready(function () {
+        $("#btnsubmit").click(function (e) {
+            e.preventDefault();
+            tinyMCE.triggerSave();
+            alert($("#mytextarea").val());
+            //$("#mytextarea").val("asdasdasdasada");
+            $.post("/Admin/Introduction", $('#EditForm').serialize(), function (data, textStatus, jqxhr) {
+
+                if (textStatus === "success")
+                    $('.alert-success').show();
+                else
+                    $('.alert-danger').show();
+            });
+        });
+    });
+    </script>
+}

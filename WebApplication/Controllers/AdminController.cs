@@ -251,5 +251,125 @@ namespace WebApplication.Controllers
         }
 
 
+
+
+        public ActionResult Philosophy()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    var Philo = db.CompanyProfiles.FirstOrDefault(x => x.Id == 2);
+                    if (Philo != null)
+                        return View(Philo);
+                    return View(new CompanyProfile() { Id = 2, Content = "Philosophy", SectionName = "Philosophy" });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Philosophy(CompanyProfile input)
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    db.Entry(input).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                // throw;
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+
+        public ActionResult Objectives()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    var Objectives = db.CompanyProfiles.FirstOrDefault(x => x.Id == 3);
+                    if (Objectives != null)
+                        return View(Objectives);
+                    return View(new CompanyProfile() { Id = 3, Content = "Objectives", SectionName = "Main Objectives" });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Objectives(CompanyProfile input)
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    db.Entry(input).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                // throw;
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
+        public ActionResult Services()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    var Services = db.CompanyProfiles.FirstOrDefault(x => x.Id == 4);
+                    if (Services != null)
+                        return View(Services);
+                    return View(new CompanyProfile() { Id = 4, Content = "Services", SectionName = "Portfolio of Services" });
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Services(CompanyProfile input)
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    db.Entry(input).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                // throw;
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+
     }
 }
