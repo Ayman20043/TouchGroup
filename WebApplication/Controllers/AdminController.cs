@@ -370,6 +370,10 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
+        public ActionResult lool()
+        {
+            return View();
+        }
 
     }
 }
