@@ -192,6 +192,7 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TeamMember.cs" />
+    <Compile Include="Models\ViewModel\TeamMemberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -642,11 +643,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_loginRegisterLayOut.cshtml" />
     <Content Include="Views\Admin\ContactUs.cshtml" />
-    <Content Include="Views\Admin\AddTeamMembers.cshtml" />
-    <Content Include="Views\Admin\TeamMembers.cshtml" />
-    <Content Include="Views\Admin\EditeMember.cshtml" />
-    <Content Include="Views\Admin\MemberDetails.cshtml" />
-    <Content Include="Views\Admin\DeleteMember.cshtml" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
@@ -661,9 +657,12 @@
     <Content Include="Views\Admin\Philosophy.cshtml" />
     <Content Include="Views\Admin\Objectives.cshtml" />
     <Content Include="Views\Admin\Services.cshtml" />
+    <Content Include="Views\Admin\TeamMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="File\" />
+    <Folder Include="Images\Team\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "TeamMember";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/Content/Admin/css/icheck/flat/green.css" rel="stylesheet" />
+
+<div class="page-title">
+    <div class="title_left">
+        <h4>Team Member</h4>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <span>
+                    <button type="button" class="btn btn-success btn-sm add">Add Member</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+@*<button type="button" data-toggle="modal" data-target="DataModal" class="btn btn-success btn-sm">Add Member</button>*@
+<div id="DataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Member Dtails</h4>
+            </div>
+            <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                        Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
+                        Position <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Details <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Picture <span class="required">*</span>                        
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        <span><input  type="file" id="file" name="upload"/></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Cv <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        <span><input type="file" id="Cvfile" name="upload" /></span>
+                    </div>
+                </div>
+
+            </form>
+            <div class="modal-footer">
+
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" class="btn btn-primary">Cancel</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", ".add", function (e) {
+        $("#DataModal").modal("show");
+    });
+</script>

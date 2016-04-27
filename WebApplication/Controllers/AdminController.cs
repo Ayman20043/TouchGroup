@@ -66,151 +66,7 @@ namespace WebApplication.Controllers
                 // throw;
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-        public ActionResult TeamMembers()
-        {
-            using (TouchContext touch = new TouchContext())
-            {
-                return View(touch.TeamMembers.ToList());
-            }
-
-
-        }
-
-        public ActionResult AddMember()
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddMember(TeamMember newmember)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    touch.TeamMembers.Add(newmember);
-                    touch.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Redirect("~/Admin/TeamMembers");
-        }
-
-        public ActionResult EditMember(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    var edited = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    return View(edited);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        [HttpPost]
-        public ActionResult EditMember(TeamMember member)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    touch.Entry(member).State = EntityState.Modified;
-                    touch.SaveChanges();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Redirect("~/Admin/TeamMembers");
-        }
-
-
-        public ActionResult MemberDetails(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    var details = touch.TeamMembers.Find(id);
-                    return View(details);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        public ActionResult DeleteMember(int? id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    var details = touch.TeamMembers.Find(id);
-                    return View(details);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-        [HttpPost]
-        public ActionResult DeleteMember(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    var details = touch.TeamMembers.Find(id);
-                    touch.TeamMembers.Remove(details);
-                    touch.SaveChanges();
-                   
-                }
-                return Redirect("~/Admin/TeamMembers");
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
+        }       
 
         public ActionResult Introduction()
         {
@@ -251,8 +107,6 @@ namespace WebApplication.Controllers
         }
 
 
-
-
         public ActionResult Philosophy()
         {
             try
@@ -290,7 +144,6 @@ namespace WebApplication.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-
 
 
         public ActionResult Objectives()
@@ -370,9 +223,18 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        public ActionResult lool()
+        public ActionResult TeamMember()
         {
-            return View();
+            try
+            {
+              
+            }
+            catch (Exception ex)
+            {
+
+                
+            }
+            return View("");
         }
 
     }
