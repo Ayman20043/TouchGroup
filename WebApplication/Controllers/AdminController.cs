@@ -77,7 +77,7 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult AddMember()
+        public ActionResult AddTeamMembers()
         {
             try
             {
@@ -109,7 +109,7 @@ namespace WebApplication.Controllers
             return Redirect("~/Admin/TeamMembers");
         }
 
-        public ActionResult EditMember(int id)
+        public ActionResult EditeMember(int id)
         {
             try
             {
