@@ -128,16 +128,6 @@
     $(document).ready(function() {
         $("#btnsubmit").click(function (e) {
             e.preventDefault();
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Admin/ContactUs",
-            //    data: $('#signupform').serialize(),
-            //    dataType: "json",
-            //    success: function(data) {
-            //        alert(data);
-            //        $('.alert-success').show();
-            //    }
-            //});
             $.post("/Admin/ContactUs", $('#signupform').serialize(), function (data, textStatus, jqxhr) {
                
                 if (textStatus ==="success")
