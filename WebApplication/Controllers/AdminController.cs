@@ -375,5 +375,20 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        public ActionResult Projects()
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return View();
+        }
+
+
     }
 }

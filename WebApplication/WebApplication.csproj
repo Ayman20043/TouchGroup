@@ -661,6 +661,7 @@
     <Content Include="Views\Admin\Philosophy.cshtml" />
     <Content Include="Views\Admin\Objectives.cshtml" />
     <Content Include="Views\Admin\Services.cshtml" />
+    <Content Include="Views\Admin\Projects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
