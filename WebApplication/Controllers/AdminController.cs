@@ -66,23 +66,23 @@ namespace WebApplication.Controllers
                 // throw;
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }       
+        }
 
         public ActionResult Introduction()
         {
             try
             {
-                using (TouchContext db=new TouchContext())
+                using (TouchContext db = new TouchContext())
                 {
                     var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
                     if (intro != null)
-                   return View(intro);
-                   return View(new CompanyProfile() {Id = 1, Content = "Introduction", SectionName = "Introduction"});
+                        return View(intro);
+                    return View(new CompanyProfile() { Id = 1, Content = "Introduction", SectionName = "Introduction" });
                 }
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -92,9 +92,9 @@ namespace WebApplication.Controllers
         {
             try
             {
-                using (TouchContext db=new TouchContext())
+                using (TouchContext db = new TouchContext())
                 {
-                    db.Entry(input).State=EntityState.Modified;
+                    db.Entry(input).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -227,15 +227,68 @@ namespace WebApplication.Controllers
         {
             try
             {
-              
+
             }
             catch (Exception ex)
             {
 
-                
+
             }
-            return View("");
+            return View();
         }
 
+        public ActionResult Team()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View(touch.TeamMembers.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            return View();
+        }
+
+        public JsonResult GetMember(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var member = touch.TeamMembers.SingleOrDefault(A => A.Id == id);
+                    return Json(member, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public ActionResult CreatMember(TeamMember Input)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.TeamMembers.Add(Input);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+      
     }
 }
