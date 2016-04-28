@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using WebApplication.Models;
 
@@ -67,166 +68,22 @@ namespace WebApplication.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-        public ActionResult TeamMembers()
-        {
-            using (TouchContext touch = new TouchContext())
-            {
-                return View(touch.TeamMembers.ToList());
-            }
-
-
-        }
-
-        public ActionResult AddTeamMembers()
-        {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddMember(TeamMember newmember)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    touch.TeamMembers.Add(newmember);
-                    touch.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Redirect("~/Admin/TeamMembers");
-        }
-
-        public ActionResult EditeMember(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    var edited = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    return View(edited);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        [HttpPost]
-        public ActionResult EditMember(TeamMember member)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    touch.Entry(member).State = EntityState.Modified;
-                    touch.SaveChanges();
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Redirect("~/Admin/TeamMembers");
-        }
-
-
-        public ActionResult MemberDetails(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    var details = touch.TeamMembers.Find(id);
-                    return View(details);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-        public ActionResult DeleteMember(int? id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    //var details = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
-                    var details = touch.TeamMembers.Find(id);
-                    return View(details);
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-        [HttpPost]
-        public ActionResult DeleteMember(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    var details = touch.TeamMembers.Find(id);
-                    touch.TeamMembers.Remove(details);
-                    touch.SaveChanges();
-                   
-                }
-                return Redirect("~/Admin/TeamMembers");
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
 
         public ActionResult Introduction()
         {
             try
             {
-                using (TouchContext db=new TouchContext())
-                {
+                using (TouchContext db = new TouchContext())
+            {
                     var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
                     if (intro != null)
-                   return View(intro);
-                   return View(new CompanyProfile() {Id = 1, Content = "Introduction", SectionName = "Introduction"});
-                }
+                        return View(intro);
+                    return View(new CompanyProfile() { Id = 1, Content = "Introduction", SectionName = "Introduction" });
             }
+        }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -236,9 +93,9 @@ namespace WebApplication.Controllers
         {
             try
             {
-                using (TouchContext db=new TouchContext())
+                using (TouchContext db = new TouchContext())
                 {
-                    db.Entry(input).State=EntityState.Modified;
+                    db.Entry(input).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -249,8 +106,6 @@ namespace WebApplication.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-
-
 
 
         public ActionResult Philosophy()
@@ -292,7 +147,6 @@ namespace WebApplication.Controllers
         }
 
 
-
         public ActionResult Objectives()
         {
             try
@@ -307,7 +161,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-
+                
                 throw;
             }
         }
@@ -370,10 +224,81 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        public ActionResult lool()
+        public ActionResult TeamMember()
         {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+
+            }
             return View();
         }
+
+        public ActionResult Team()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View(touch.TeamMembers.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            return View();
+        }
+
+        public JsonResult GetMember(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var member = touch.TeamMembers.SingleOrDefault(A => A.Id == id);
+                    return Json(member, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public ActionResult CreatMember(TeamMember Input)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.TeamMembers.Add(Input);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false,JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetTeamPartial()
+        {
+            using (TouchContext db=new TouchContext())
+            {
+                return PartialView("_Partial",db.TeamMembers.ToList());
+            }
+           
+        }
+
 
         public ActionResult Projects()
         {
