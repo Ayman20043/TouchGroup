@@ -81,8 +81,9 @@
             <div class="modal-footer">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    <button type="submit" id="btncancel" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="btnsave" class="btn btn-success">Submit</button>
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="btnAdd" class="btn btn-success">Add</button>
+                    <button type="submit" id="btnSave" class="btn btn btn-primary">Save</button>
                 </div>
 
             </div>
@@ -96,12 +97,11 @@
     });
 
 
-    $(document).on("click", ".clickview", function (e) {
+    $(document).on("click", ".clickedit", function (e) {
         var action = $(this).attr('data-id');
-        alert(action);
-        $("#myModel").modal("show");
+        $("#DataModal").modal("show");
         $.ajax({
-            url: "/Admin/GetMember?id" + action,
+            url: "/Admin/GetMember?id=" + action,
             dataType: "json",
             type: "GET",
             contentType: 'application/json; charset=utf-8',
@@ -122,7 +122,7 @@
 
     });
 
-    $(document).on("click", "#btnsave", function (event) {
+    $(document).on("click", "#btnAdd", function (event) {
         var form_data = {            
             Name: $('#Name').val(),
             Position: $('#Position').val(),
@@ -131,13 +131,55 @@
             CvPath: $('#Cv').val()
         };
         $.post("/Admin/CreatMember", form_data, function (data) {
-            alert("Success");
             $("#DataModal").modal("hide");
-            $.get("/Admin/GetTeamPartial", function (data2) {
-                alert(data2);
+            $.get("/Admin/GetTeamPartial", function (data2) {               
                 $("#Teampartial").html(data2);
             });
         });
 
     });
+
+
+    $(document).on("click", "#btnSave", function (event) {
+        var form_data = {
+            Name: $('#Name').val(),
+            Position: $('#Position').val(),
+            Details: $('#Details').val(),
+            PicturePath: $('#Picture').val(),
+            CvPath: $('#Cv').val()
+        };
+        $.post("/Admin/Savemember", form_data, function (data) {
+            $("#DataModal").modal("hide");
+            $.get("/Admin/GetTeamPartial", function (data2) {
+                $("#Teampartial").html(data2);
+            });
+        });
+
+    });
+
+
+    $(document).on("click", ".clickdelete", function (e) {
+        var action = $(this).attr('data-id');
+        $.ajax({
+            url: "/Admin/DeleteRow?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                    $("#DataModal").modal("hide");
+                    $.get("/Admin/GetTeamPartial", function (data2) {
+                        $("#Teampartial").html(data2);
+                    });
+                
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
 </script>

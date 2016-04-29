@@ -224,19 +224,20 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        public ActionResult TeamMember()
+        public ActionResult Projects()
         {
             try
             {
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-
+                throw;
             }
             return View();
         }
+
 
         public ActionResult Team()
         {
@@ -299,19 +300,44 @@ namespace WebApplication.Controllers
            
         }
 
-
-        public ActionResult Projects()
+        public ActionResult Savemember(TeamMember Input)
         {
             try
             {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.Entry(Input).State = EntityState.Modified;
+                    touch.SaveChanges();
+                }
 
             }
             catch (Exception)
             {
-                
-                throw;
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View();
+            return Json(true, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+        public ActionResult DeleteRow(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+
+                    var del = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
+                    touch.TeamMembers.Remove(del);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+
         }
 
 
