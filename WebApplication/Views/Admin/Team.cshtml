@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<div>
+<div id="RederPartial">
     @{Html.RenderPartial("_Partial", Model); }
 </div>
 
@@ -99,7 +99,7 @@
     $(document).on("click", ".clickview", function (e) {
         var action = $(this).attr('data-id');
         alert(action);
-        $("#myModel").modal("show");
+        $("#DataModal").modal("show");
         $.ajax({
             url: "/Admin/GetMember?id" + action,
             dataType: "json",
@@ -130,10 +130,10 @@
             PicturePath: $('#Picture').val(),
             CvPath: $('#Cv').val()
         };
-        $.post("/Admin/CreatMember?data_Id", form_data, function (data) {
-            $("#myModel").modal("hide");
-            $.get(function (data2) {
-                $("#Teampartial").html(data2);
+        $.post("/Admin/CreatMember", form_data, function (data) {
+            $("#DataModal").modal("hide");
+            $.get("/Admin/CreatMember", function (data2) {
+                $("#RederPartial").html(data2);
             });
         });
 

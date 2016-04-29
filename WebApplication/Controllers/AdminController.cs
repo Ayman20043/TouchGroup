@@ -289,6 +289,12 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-      
+
+        public ActionResult ReturnParial()
+        {
+            return PartialView("_Partial");
+        }
+
+
     }
 }
