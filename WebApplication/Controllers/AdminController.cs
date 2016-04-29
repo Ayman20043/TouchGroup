@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using WebApplication.Models;
 
@@ -73,13 +74,13 @@ namespace WebApplication.Controllers
             try
             {
                 using (TouchContext db = new TouchContext())
-                {
+            {
                     var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
                     if (intro != null)
                         return View(intro);
                     return View(new CompanyProfile() { Id = 1, Content = "Introduction", SectionName = "Introduction" });
-                }
             }
+        }
             catch (Exception)
             {
 
@@ -160,7 +161,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-
+                
                 throw;
             }
         }
@@ -284,15 +285,33 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                return Json(false,JsonRequestBehavior.AllowGet);
             }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetTeamPartial()
+        {
+            using (TouchContext db=new TouchContext())
+            {
+                return PartialView("_Partial",db.TeamMembers.ToList());
+            }
+           
         }
 
 
-        public ActionResult ReturnParial()
+        public ActionResult Projects()
         {
-            return PartialView("_Partial");
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            return View();
         }
 
 
