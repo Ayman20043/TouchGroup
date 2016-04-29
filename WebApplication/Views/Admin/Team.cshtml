@@ -25,6 +25,68 @@
 </div>
 
 
+<div id="ViewModel" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Member Dtails</h4>
+            </div>
+            <form id="MemberView" data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <input type="hidden" id="hdnIdview">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Name
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Nameview" name="Name" readonly="readonly" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Position">
+                        Position
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Positionview" name="Position" readonly="readonly" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Details">
+                        Details
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Detailsview" name="Details" readonly="readonly" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+                        Picture
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Pictureview" name="Picture" readonly="readonly" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Cv">
+                        Cv
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="CvView" name="Cv" readonly="readonly" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div id="DataModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -125,7 +187,7 @@
     });
 
     $(document).on("click", "#btnAdd", function (event) {
-        var form_data = {            
+        var form_data = {
             Name: $('#Name').val(),
             Position: $('#Position').val(),
             Details: $('#Details').val(),
@@ -134,7 +196,7 @@
         };
         $.post("/Admin/CreatMember", form_data, function (data) {
             $("#DataModal").modal("hide");
-            $.get("/Admin/GetTeamPartial", function (data2) {               
+            $.get("/Admin/GetTeamPartial", function (data2) {
                 $("#Teampartial").html(data2);
             });
         });
@@ -144,7 +206,7 @@
 
     $(document).on("click", "#btnSave", function (event) {
         var form_data = {
-            Id:$('#hdnId').val(),
+            Id: $('#hdnId').val(),
             Name: $('#Name').val(),
             Position: $('#Position').val(),
             Details: $('#Details').val(),
@@ -172,11 +234,36 @@
             processData: false,
             cache: false,
             success: function (data) {
-                    $("#DataModal").modal("hide");
-                    $.get("/Admin/GetTeamPartial", function (data2) {
-                        $("#Teampartial").html(data2);
-                    });
-                
+                $("#DataModal").modal("hide");
+                $.get("/Admin/GetTeamPartial", function (data2) {
+                    $("#Teampartial").html(data2);
+                });
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
+    $(document).on("click", ".clickview", function (e) {
+        var action = $(this).attr('data-id');
+        $("#ViewModel").modal("show");
+        $.ajax({
+            url: "/Admin/GetMember?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#Nameview").val(data.Name);
+                $("#Positionview").val(data.Position);
+                $("#Detailsview").val(data.Details);
+                $("#Pictureview").val(data.PicturePath);
+                $("#CvView").val(data.CvPath);
             },
             error: function (xhr) {
                 alert('error');
