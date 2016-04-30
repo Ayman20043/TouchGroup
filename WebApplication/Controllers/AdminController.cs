@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using WebApplication.Models;
+using WebApplication.Models.ViewModel;
 
 namespace WebApplication.Controllers
 {
@@ -274,14 +275,14 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult CreatMember(TeamMember Input)
+        public ActionResult CreatMember(TeamMemberViewModel Input)
         {
             try
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    touch.TeamMembers.Add(Input);
-                    touch.SaveChanges();
+                    //touch.TeamMembers.Add(Input);
+                    //touch.SaveChanges();
                 }
             }
             catch (Exception)
