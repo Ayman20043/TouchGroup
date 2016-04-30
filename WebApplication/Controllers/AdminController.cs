@@ -292,7 +292,8 @@ namespace WebApplication.Controllers
 
                     touch.TeamMembers.Add
                         (new TeamMember() { Name=Input.Name,Position= Input.Position,Details= Input.Details,
-                           PicturePath= Input.PicturePath.FileName,CvPath= Input.CvPath.FileName  });
+                           PicturePath= Input.PicturePath.FileName+DateTime.Now,
+                            CvPath = Input.CvPath.FileName+DateTime.Now});
                     touch.SaveChanges();
                 }
             }

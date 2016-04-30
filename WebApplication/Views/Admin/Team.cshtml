@@ -203,6 +203,11 @@
             processData: false,
             cache: false,
             success: function (data) {
+                $('#Name').val(" "),
+                $('#Position').val(" "),
+                $('#Details').val(" "),
+                $('#Picture').val(" "),
+                $('#Cv').val(" ")
                 $("#DataModal").modal("hide");
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
