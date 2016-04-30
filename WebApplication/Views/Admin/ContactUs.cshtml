@@ -128,8 +128,7 @@
     $(document).ready(function() {
         $("#btnsubmit").click(function (e) {
             e.preventDefault();
-            $.post("/Admin/ContactUs", $('#signupform').serialize(), function (data, textStatus, jqxhr) {
-               
+            $.post("/Admin/ContactUs", $('#signupform').serialize(), function (data, textStatus, jqxhr) {               
                 if (textStatus ==="success")
                     $('.alert-success').show();
                 else
