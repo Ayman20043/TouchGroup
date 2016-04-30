@@ -75,13 +75,13 @@ namespace WebApplication.Controllers
             try
             {
                 using (TouchContext db = new TouchContext())
-            {
+                {
                     var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
                     if (intro != null)
                         return View(intro);
                     return View(new CompanyProfile() { Id = 1, Content = "Introduction", SectionName = "Introduction" });
+                }
             }
-        }
             catch (Exception)
             {
 
@@ -162,7 +162,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -279,26 +279,37 @@ namespace WebApplication.Controllers
         {
             try
             {
+                if (Input.PicturePath != null && Input.CvPath != null)
+                {
+                    Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/")
+                                                          + Input.PicturePath.FileName);
+                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")
+                                                         + Input.CvPath.FileName);
+
+                }
                 using (TouchContext touch = new TouchContext())
                 {
-                    //touch.TeamMembers.Add(Input);
-                    //touch.SaveChanges();
+
+                    touch.TeamMembers.Add
+                        (new TeamMember() { Name=Input.Name,Position= Input.Position,Details= Input.Details,
+                           PicturePath= Input.PicturePath.FileName,CvPath= Input.CvPath.FileName  });
+                    touch.SaveChanges();
                 }
             }
             catch (Exception)
             {
-                return Json(false,JsonRequestBehavior.AllowGet);
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetTeamPartial()
         {
-            using (TouchContext db=new TouchContext())
+            using (TouchContext db = new TouchContext())
             {
-                return PartialView("_Partial",db.TeamMembers.ToList());
+                return PartialView("_Partial", db.TeamMembers.ToList());
             }
-           
+
         }
 
         public ActionResult Savemember(TeamMember Input)

@@ -125,8 +125,7 @@
                         Picture <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="Picture" name="Picture" required="required" class="form-control col-md-7 col-xs-12">
-                        <span><input type="file" id="PicturePath" name="PicturePath" /></span>
+                        <input type="file" id="PicturePath" name="PicturePath" />
                     </div>
                 </div>
 
@@ -135,8 +134,7 @@
                         Cv <span class="required">*</span>
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="Cv" name="Cv" required="required" class="form-control col-md-7 col-xs-12">
-                        <span><input type="file" id="file" name="upload" /></span>
+                        <input type="file" id="CvPath" name="CvPath" />
                     </div>
                 </div>
 
@@ -187,18 +185,15 @@
     });
 
     $(document).on("click", "#btnAdd", function (event) {
-        var form_data = {            
+        var form_data = {
             Name: $('#Name').val(),
             Position: $('#Position').val(),
             Details: $('#Details').val(),
             PicturePath: $('#Picture').val(),
             CvPath: $('#Cv').val()
         };
-
-      
         var form = $('#form2')[0];
         var dataString = new FormData(form);
-        alert(dataString);
         $.ajax({
             url: "/Admin/CreatMember",
             type: "POST",
@@ -208,12 +203,11 @@
             processData: false,
             cache: false,
             success: function (data) {
-                alert("success");
-            $("#DataModal").modal("hide");
-            $.get("/Admin/GetTeamPartial", function (data2) {               
-                $("#Teampartial").html(data2);
-            });
-                
+                $("#DataModal").modal("hide");
+                $.get("/Admin/GetTeamPartial", function (data2) {
+                    $("#Teampartial").html(data2);
+                });
+
             },
             error: function (xhr) {
                 alert('error');
@@ -222,7 +216,7 @@
 
         //$.post("/Admin/CreatMember", form_data, function (data) {
         //    $("#DataModal").modal("hide");
-        //    $.get("/Admin/GetTeamPartial", function (data2) {               
+        //    $.get("/Admin/GetTeamPartial", function (data2) {
         //        $("#Teampartial").html(data2);
         //    });
         //});
@@ -260,11 +254,11 @@
             processData: false,
             cache: false,
             success: function (data) {
-                    $("#DataModal").modal("hide");
-                    $.get("/Admin/GetTeamPartial", function (data2) {
-                        $("#Teampartial").html(data2);
-                    });
-                
+                $("#DataModal").modal("hide");
+                $.get("/Admin/GetTeamPartial", function (data2) {
+                    $("#Teampartial").html(data2);
+                });
+
             },
             error: function (xhr) {
                 alert('error');
