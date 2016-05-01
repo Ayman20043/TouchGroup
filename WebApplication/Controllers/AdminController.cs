@@ -8,6 +8,7 @@ using System.Web.Helpers;
 using System.Web.Mvc;
 using WebApplication.Models;
 using WebApplication.Models.ViewModel;
+using WebApplication.Helpers;
 
 namespace WebApplication.Controllers
 {
@@ -281,9 +282,11 @@ namespace WebApplication.Controllers
             {
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
-                    Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/")
+                    Input.PicturePath.SaveAs(HttpContext.
+                        Server.MapPath("~/Images/Profile/")
                                                           + Input.PicturePath.FileName);
-                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")
+                    Input.CvPath.SaveAs(HttpContext.Server
+                        .MapPath("~/File/")
                                                          + Input.CvPath.FileName);
 
                 }
@@ -291,9 +294,14 @@ namespace WebApplication.Controllers
                 {
 
                     touch.TeamMembers.Add
-                        (new TeamMember() { Name=Input.Name,Position= Input.Position,Details= Input.Details,
-                           PicturePath= Input.PicturePath.FileName+DateTime.Now,
-                            CvPath = Input.CvPath.FileName+DateTime.Now});
+                        (new TeamMember()
+                        {
+                            Name = Input.Name,
+                            Position = Input.Position,
+                            Details = Input.Details,
+                            PicturePath = Input.PicturePath.FileName + DateTime.Now,
+                            CvPath = Input.CvPath.FileName + DateTime.Now
+                        });
                     touch.SaveChanges();
                 }
             }
