@@ -47,7 +47,7 @@ namespace WebApplication.Helpers
                              imgPhoto.VerticalResolution);
 
             Graphics grPhoto = Graphics.FromImage(bmPhoto);
-            grPhoto.Clear(Color.Red);
+            grPhoto.Clear(Color.Transparent);
             grPhoto.InterpolationMode =
                     InterpolationMode.HighQualityBicubic;
 

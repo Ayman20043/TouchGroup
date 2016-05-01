@@ -283,12 +283,13 @@ namespace WebApplication.Controllers
             {
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
+                    String[] Arr = Input.PicturePath.FileName.Split('.');
                     Input.PicturePath.SaveAs(HttpContext.
-                        Server.MapPath("~/Images/Profile/")+ Input.PicturePath.FileName + DateTime.Now.ToFileTimeUtc() + "_L");
+                        Server.MapPath("~/Images/Profile/")+Arr[0]+ DateTime.Now.ToFileTimeUtc() + "_L"+"."+Arr[1]);
                     Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName + DateTime.Now.ToFileTimeUtc() );
-                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 50, 50);
+                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream),100,100);
                     resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/Profile/") + Input.PicturePath.FileName+DateTime.Now.ToFileTimeUtc() + "_S");
+                        Server.MapPath("~/Images/Profile/") + Arr[0]+DateTime.Now.ToFileTimeUtc() + "_S"+"."+Arr[1] );
                 }
                 using (TouchContext touch = new TouchContext())
                 {
