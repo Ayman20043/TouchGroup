@@ -10,7 +10,7 @@ namespace WebApplication.Helpers
 {
     public class ImageResizeHelper
     {
-        static Image FixedSize(Image imgPhoto, int Width, int Height)
+      public  static Image FixedSize(Image imgPhoto, int Width, int Height)
         {
             int sourceWidth = imgPhoto.Width;
             int sourceHeight = imgPhoto.Height;

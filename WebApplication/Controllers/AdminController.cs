@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -283,12 +284,10 @@ namespace WebApplication.Controllers
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
                     Input.PicturePath.SaveAs(HttpContext.
-                        Server.MapPath("~/Images/Profile/")
-                                                          + Input.PicturePath.FileName);
-                    Input.CvPath.SaveAs(HttpContext.Server
-                        .MapPath("~/File/")
-                                                         + Input.CvPath.FileName);
-
+                        Server.MapPath("~/Images/Profile/")+ Input.PicturePath.FileName);
+                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName);
+                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 50, 50);
+                    resizedImage.Save();
                 }
                 using (TouchContext touch = new TouchContext())
                 {
