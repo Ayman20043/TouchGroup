@@ -284,27 +284,27 @@ namespace WebApplication.Controllers
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
                     Input.PicturePath.SaveAs(HttpContext.
-                        Server.MapPath("~/Images/Profile/")+ Input.PicturePath.FileName);
-                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName);
+                        Server.MapPath("~/Images/Profile/")+ Input.PicturePath.FileName + DateTime.Now.ToFileTimeUtc() + "_L");
+                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName + DateTime.Now.ToFileTimeUtc() );
                     var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 50, 50);
-                    resizedImage.Save();
+                    resizedImage.Save(HttpContext.
+                        Server.MapPath("~/Images/Profile/") + Input.PicturePath.FileName+DateTime.Now.ToFileTimeUtc() + "_S");
                 }
                 using (TouchContext touch = new TouchContext())
                 {
-
                     touch.TeamMembers.Add
                         (new TeamMember()
                         {
                             Name = Input.Name,
                             Position = Input.Position,
                             Details = Input.Details,
-                            PicturePath = Input.PicturePath.FileName + DateTime.Now,
-                            CvPath = Input.CvPath.FileName + DateTime.Now
+                            PicturePath = Input.PicturePath.FileName,
+                            CvPath = Input.CvPath.FileName
                         });
                     touch.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
