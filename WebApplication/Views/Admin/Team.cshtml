@@ -140,9 +140,8 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-
-                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <div class="modal-footer" >
+                <div id="ModalFooter" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                     <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button type="submit" id="btnAdd" class="btn btn-success">Add</button>
                     <button type="submit" id="btnSave" class="btn btn btn-primary">Save</button>
@@ -303,14 +302,14 @@
         $.listen('parsley:field:validate', function () {
             validateFront();
         });
-        $('#form2 #btnAdd').on('click', function () {
+        $('#ModalFooter .btn').on('click', function () {
             $('#form2').parsley().validate();
             validateFront();
         });
         var validateFront = function () {
             if (true === $('#form2').parsley().isValid()) {
                 $('.bs-callout-info').removeClass('hidden');
-                $('.bs-callout-warning').addClass('hidden');
+                $('.bs-callout-warning').addClass('hidden');              
             } else {
                 $('.bs-callout-info').addClass('hidden');
                 $('.bs-callout-warning').removeClass('hidden');
