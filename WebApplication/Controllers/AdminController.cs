@@ -286,19 +286,22 @@ namespace WebApplication.Controllers
                     String[] Arr = Input.PicturePath.FileName.Split('.');
                     Input.PicturePath.SaveAs(HttpContext.
                         Server.MapPath("~/Images/Profile/")+Arr[0]+ DateTime.Now.ToFileTimeUtc() + "_L"+"."+Arr[1]);
-                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName + DateTime.Now.ToFileTimeUtc() );
+                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName + DateTime.Now.ToFileTimeUtc());
                     var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream),100,100);
                     resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/Profile/") + Arr[0]+DateTime.Now.ToFileTimeUtc() + "_S"+"."+Arr[1] );
+                        Server.MapPath("~/Images/Profile/Display/") + Arr[0]+DateTime.Now.ToFileTimeUtc() + "_S"+"."+Arr[1] );
                 }
                 using (TouchContext touch = new TouchContext())
                 {
+                    String[] Arr = Input.PicturePath.FileName.Split('.');
+                    var ext = Arr[1];
                     touch.TeamMembers.Add
                         (new TeamMember()
                         {
                             Name = Input.Name,
                             Position = Input.Position,
                             Details = Input.Details,
+                            Extention = ext,
                             PicturePath = Input.PicturePath.FileName,
                             CvPath = Input.CvPath.FileName
                         });
