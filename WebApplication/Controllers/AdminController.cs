@@ -302,7 +302,7 @@ namespace WebApplication.Controllers
                             Position = Input.Position,
                             Details = Input.Details,
                             Extention = ext,
-                            PicturePath = Input.PicturePath.FileName,
+                            PicturePath = Arr[0]+DateTime.Now,
                             CvPath = Input.CvPath.FileName
                         });
                     touch.SaveChanges();
