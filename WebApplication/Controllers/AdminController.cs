@@ -231,14 +231,16 @@ namespace WebApplication.Controllers
         {
             try
             {
-
+                using (TouchContext db = new TouchContext())
+                {
+                    return View( db.Projects.ToList());
+                }
             }
             catch (Exception)
             {
-
-                throw;
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return View();
+
         }
 
 
@@ -360,6 +362,41 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
 
         }
+        [HttpPost]
+        public ActionResult AddProject(ProjectViewModel input)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetAllProjects()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    return PartialView("_ProjectsPartial", db.Projects.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
 
 
     }
