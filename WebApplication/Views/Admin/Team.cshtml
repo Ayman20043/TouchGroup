@@ -204,6 +204,7 @@
             processData: false,
             cache: false,
             success: function (data) {
+
                 $('#Name').val(" "),
                 $('#Position').val(" "),
                 $('#Details').val(" "),
@@ -302,7 +303,7 @@
         $.listen('parsley:field:validate', function () {
             validateFront();
         });
-        $('#ModalFooter .btn').on('click', function () {
+        $('#ModalFooter #btnAdd').on('click', function () {
             $('#form2').parsley().validate();
             validateFront();
         });
@@ -316,9 +317,6 @@
             }
         };
     });
-    try {
-        hljs.initHighlightingOnLoad();
-    } catch (err) { }
     
 </script>
 <script src="~/Scripts/Admin/js/parsley/parsley.min.js"></script>

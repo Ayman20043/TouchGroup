@@ -179,6 +179,10 @@
     <Compile Include="Migrations\201604251610049_seed.Designer.cs">
       <DependentUpon>201604251610049_seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605022316434_TouchContext.cs" />
+    <Compile Include="Migrations\201605022316434_TouchContext.Designer.cs">
+      <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -668,7 +672,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="File\" />
-    <Folder Include="Images\Profile\" />
+    <Folder Include="Images\Profile\Display\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -683,6 +687,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604251610049_seed.resx">
       <DependentUpon>201604251610049_seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605022316434_TouchContext.resx">
+      <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
