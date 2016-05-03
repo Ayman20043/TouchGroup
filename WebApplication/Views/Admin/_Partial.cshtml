@@ -30,7 +30,7 @@
                     @Html.DisplayFor(modelItem => item.Position)
                 </td>
                 <td>
-                    <img src="~/Images/Profile/Display/@item.PicturePath+@item.Extention" >
+                    <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'  >
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Details)
