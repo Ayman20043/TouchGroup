@@ -187,20 +187,7 @@
     });
 
     $(document).on("click", "#btnAdd", function (event) {
-        $('#DataModal').on('hidden.bs.modal', function () {
-            $('#Name').val(" ");
-            $('#Position').val(" ");
-            $('#Details').val(" ");
-            $('#Picture').val(" ");
-            $('#Cv').val(" ");
-        });
-        //var form_data = {
-        //    Name: $('#Name').val(),
-        //    Position: $('#Position').val(),
-        //    Details: $('#Details').val(),
-        //    PicturePath: $('#Picture').val(),
-        //    CvPath: $('#Cv').val()
-        //};
+
         var form = $('#form2')[0];
         var dataString = new FormData(form);
         $.ajax({
@@ -212,6 +199,7 @@
             processData: false,
             cache: false,
             success: function (data) {
+                $("#DataModal").modal("hide");
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
@@ -232,15 +220,6 @@
 
 
     $(document).on("click", "#btnSave", function (event) {
-        
-        //var form_data = {
-        //    Id: $('#hdnId').val(),
-        //    Name: $('#Name').val(),
-        //    Position: $('#Position').val(),
-        //    Details: $('#Details').val(),
-        //    PicturePath: $('#Picture').val(),
-        //    CvPath: $('#Cv').val()
-        //};
         var form = $('#form2')[0];
         var dataString = new FormData(form);
         $.ajax({
