@@ -233,7 +233,7 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext db = new TouchContext())
                 {
-                    return View( db.Projects.ToList());
+                    return View(db.Projects.ToList());
                 }
             }
             catch (Exception)
@@ -283,28 +283,27 @@ namespace WebApplication.Controllers
         {
             try
             {
+                var Date = DateTime.Now.ToFileTimeUtc();
+                String[] Arr = Input.PicturePath.FileName.Split('.');
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
-                    String[] Arr = Input.PicturePath.FileName.Split('.');
                     Input.PicturePath.SaveAs(HttpContext.
-                        Server.MapPath("~/Images/Profile/")+Arr[0]+ DateTime.Now.ToFileTimeUtc() + "_L"+"."+Arr[1]);
-                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/")+ Input.CvPath.FileName + DateTime.Now.ToFileTimeUtc());
-                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream),100,100);
+                        Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
+                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 100, 100);
                     resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/Profile/Display/") + Arr[0]+DateTime.Now.ToFileTimeUtc() + "_S"+"."+Arr[1] );
+                        Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                 }
                 using (TouchContext touch = new TouchContext())
                 {
-                    String[] Arr = Input.PicturePath.FileName.Split('.');
-                    var ext = Arr[1];
                     touch.TeamMembers.Add
                         (new TeamMember()
                         {
                             Name = Input.Name,
                             Position = Input.Position,
                             Details = Input.Details,
-                            Extention = ext,
-                            PicturePath = Arr[0]+DateTime.Now,
+                            Extention = Arr[1],
+                            PicturePath = Arr[0] + Date,
                             CvPath = Input.CvPath.FileName
                         });
                     touch.SaveChanges();
@@ -326,18 +325,52 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult Savemember(TeamMember Input)
+        public ActionResult Savemember(TeamMemberViewModel Input)
         {
             try
             {
+                TeamMember Member = new TeamMember();
+                var Date = DateTime.Now.ToFileTimeUtc();
                 using (TouchContext touch = new TouchContext())
                 {
-                    touch.Entry(Input).State = EntityState.Modified;
+                    if (Input.PicturePath != null && Input.CvPath != null)
+                    {
+                        string[] Arr = Input.PicturePath.FileName.Split('.');
+                        Input.PicturePath.SaveAs(HttpContext.
+                      Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                        var resizedImage = Helpers.ImageResizeHelper
+                            .FixedSize(Image.FromStream(Input.PicturePath.InputStream), 100, 100);
+                        resizedImage.Save(HttpContext.
+                            Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
+                        Member = new TeamMember()
+                        {
+                            Name = Input.Name,
+                            Position = Input.Position,
+                            Details = Input.Details,
+                            Extention = Arr[1],
+                            PicturePath = Arr[0] + Date,
+                            CvPath = Input.CvPath.FileName
+                        };
+                        touch.Entry(Member).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        Member = new TeamMember()
+                        {
+                            Name = Input.Name,
+                            Position = Input.Position,
+                            Details = Input.Details,
+                            CvPath = Input.CvPath.FileName
+
+                        };
+                        touch.Entry(Member).State = EntityState.Modified;
+                    }
                     touch.SaveChanges();
                 }
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
@@ -372,7 +405,7 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    
+
                 }
 
 

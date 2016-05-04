@@ -97,7 +97,7 @@
             <div class="modal-body">
                 <form id="form2" data-parsley-validate class="form-horizontal form-label-left">
                     <div class="form-group">
-                        <input type="hidden" id="hdnId">
+                        <input type="hidden" id="Id">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
                             Name <span class="required">*</span>
                         </label>
@@ -140,7 +140,7 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer" >
+            <div class="modal-footer">
                 <div id="ModalFooter" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                     <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button type="submit" id="btnAdd" class="btn btn-success">Add</button>
@@ -186,13 +186,20 @@
     });
 
     $(document).on("click", "#btnAdd", function (event) {
-        var form_data = {
-            Name: $('#Name').val(),
-            Position: $('#Position').val(),
-            Details: $('#Details').val(),
-            PicturePath: $('#Picture').val(),
-            CvPath: $('#Cv').val()
-        };
+        $('#DataModal').on('hidden.bs.modal', function () {
+            $('#Name').val(" ");
+            $('#Position').val(" ");
+            $('#Details').val(" ");
+            $('#Picture').val(" ");
+            $('#Cv').val(" ");
+        });
+        //var form_data = {
+        //    Name: $('#Name').val(),
+        //    Position: $('#Position').val(),
+        //    Details: $('#Details').val(),
+        //    PicturePath: $('#Picture').val(),
+        //    CvPath: $('#Cv').val()
+        //};
         var form = $('#form2')[0];
         var dataString = new FormData(form);
         $.ajax({
@@ -204,13 +211,6 @@
             processData: false,
             cache: false,
             success: function (data) {
-
-                $('#Name').val(" "),
-                $('#Position').val(" "),
-                $('#Details').val(" "),
-                $('#Picture').val(" "),
-                $('#Cv').val(" ")
-                $("#DataModal").modal("hide");
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
@@ -231,19 +231,41 @@
 
 
     $(document).on("click", "#btnSave", function (event) {
-        var form_data = {
-            Id: $('#hdnId').val(),
-            Name: $('#Name').val(),
-            Position: $('#Position').val(),
-            Details: $('#Details').val(),
-            PicturePath: $('#Picture').val(),
-            CvPath: $('#Cv').val()
-        };
-        $.post("/Admin/Savemember", form_data, function (data) {
-            $("#DataModal").modal("hide");
-            $.get("/Admin/GetTeamPartial", function (data2) {
-                $("#Teampartial").html(data2);
-            });
+        $('#DataModal').on('hidden.bs.modal', function () {
+            $('#Name').val(" ");
+            $('#Position').val(" ");
+            $('#Details').val(" ");
+            $('#Picture').val(" ");
+            $('#Cv').val(" ");
+        });
+        //var form_data = {
+        //    Id: $('#hdnId').val(),
+        //    Name: $('#Name').val(),
+        //    Position: $('#Position').val(),
+        //    Details: $('#Details').val(),
+        //    PicturePath: $('#Picture').val(),
+        //    CvPath: $('#Cv').val()
+        //};
+        var form = $('#form2')[0];
+        var dataString = new FormData(form);
+        $.ajax({
+            url: "/Admin/Savemember",
+            type: "POST",
+            async: true,
+            data: dataString,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#DataModal").modal("hide");
+                $.get("/Admin/GetTeamPartial", function (data2) {
+                    $("#Teampartial").html(data2);
+                });
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
         });
 
     });
@@ -310,13 +332,13 @@
         var validateFront = function () {
             if (true === $('#form2').parsley().isValid()) {
                 $('.bs-callout-info').removeClass('hidden');
-                $('.bs-callout-warning').addClass('hidden');              
+                $('.bs-callout-warning').addClass('hidden');
             } else {
                 $('.bs-callout-info').addClass('hidden');
                 $('.bs-callout-warning').removeClass('hidden');
             }
         };
     });
-    
+
 </script>
 <script src="~/Scripts/Admin/js/parsley/parsley.min.js"></script>
