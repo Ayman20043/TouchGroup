@@ -49,8 +49,8 @@ namespace WebApplication.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
         
         public string UserName { get; set; }
         [Required]
