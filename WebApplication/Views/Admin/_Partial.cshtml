@@ -1,51 +1,53 @@
 ﻿@model IEnumerable<WebApplication.Models.TeamMember>
-<div id="Teampartial">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PicturePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CvPath)
-            </th>
-            <th></th>
-        </tr>
+@using PagedList.Mvc
 
-        @foreach (var item in Model)
-        {
+    <div id="Teampartial">
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position)
-                </td>
-                <td>
-                    <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'  >
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Details)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CvPath)
-                </td>
-                <td>
-                    <a id="ViewClick" data-id="@item.Id" class="btn btn-primary btn-xs clickview"><i class="fa fa-folder"></i> View </a>
-                    <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-xs edite clickedit"><i class="fa fa-pencil "></i> Edit </a>
-                    <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-xs clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PicturePath)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CvPath)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Details)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CvPath)
+                    </td>
+                    <td>
+                        <a id="ViewClick" data-id="@item.Id" class="btn btn-primary btn-xs clickview"><i class="fa fa-folder"></i> View </a>
+                        <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-xs edite clickedit"><i class="fa fa-pencil "></i> Edit </a>
+                        <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-xs clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+                    </td>
+                </tr>
+            }
 
-</div>
+        </table>
+
+    </div>
