@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201605022316434_TouchContext.Designer.cs">
       <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605051133179_TouchContext1.cs" />
+    <Compile Include="Migrations\201605051133179_TouchContext1.Designer.cs">
+      <DependentUpon>201605051133179_TouchContext1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -690,6 +694,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605022316434_TouchContext.resx">
       <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605051133179_TouchContext1.resx">
+      <DependentUpon>201605051133179_TouchContext1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
