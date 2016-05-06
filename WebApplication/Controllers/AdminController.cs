@@ -234,7 +234,7 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext db = new TouchContext())
                 {
-                       return View(db.Projects.ToList());
+                    return View(db.Projects.ToList());
                 }
             }
             catch (Exception)
@@ -334,7 +334,7 @@ namespace WebApplication.Controllers
                 var Date = DateTime.Now.ToFileTimeUtc();
                 Member = new TeamMember()
                 {
-                    Id=Input.Id,
+                    Id = Input.Id,
                     Name = Input.Name,
                     Position = Input.Position,
                     Details = Input.Details,
@@ -369,7 +369,23 @@ namespace WebApplication.Controllers
 
         }
 
+        public JsonResult GetProject(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var member = touch.TeamMembers.SingleOrDefault(A => A.Id == id);
+                    return Json(member, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+
+        }
         public ActionResult DeleteRow(int id)
         {
             try
@@ -390,16 +406,36 @@ namespace WebApplication.Controllers
 
         }
         [HttpPost]
-        public ActionResult AddProject(ProjectViewModel input)
+        public ActionResult AddProject(ProjectViewModel Input)
         {
             try
             {
-                using (TouchContext touch = new TouchContext())
+                List<Category> cat = new List<Category>();
+                SelectList CatList = new SelectList(cat, "Id", "Name");
+                ViewBag.CategoryList = CatList;
+                var Date = DateTime.Now.ToFileTimeUtc();
+                if (Input.LogoPath != null)
                 {
-
+                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.LogoPath.InputStream), 100, 100);
+                    resizedImage.Save(HttpContext.
+                        Server.MapPath("~/Images/logo/") + Date);
                 }
 
-
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.Projects.Add
+                        (new Project()
+                        {
+                            Name = Input.Name,
+                            Location = Input.Location,
+                            Area = Input.Area,
+                            Client = Input.Client,
+                            LogoPath = Input.LogoPath.FileName + Date,
+                            Category = Input.Category,
+                            SubCategory = Input.SubCategory
+                        });
+                    touch.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -414,13 +450,44 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext db = new TouchContext())
                 {
-                     return PartialView("_ProjectsPartial", db.Projects.ToList());
+                    return PartialView("_ProjectsPartial", db.Projects.ToList());
                 }
             }
             catch (Exception)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult DeleteProject(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var del = touch.Projects.FirstOrDefault(a => a.Id == id);
+                    touch.Projects.Remove(del);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SaveProject()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
 

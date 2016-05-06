@@ -702,6 +702,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="File\" />
+    <Folder Include="Images\Logo\" />
     <Folder Include="Images\Profile\Display\" />
   </ItemGroup>
   <ItemGroup>
