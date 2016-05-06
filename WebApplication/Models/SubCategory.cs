@@ -13,13 +13,14 @@ namespace WebApplication.Models
         {
             Projects = new List<Project>();
         }
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        [Key,ForeignKey("Category")]
-        public int CategoryId { get; set; }
       
-        public Category Category { get; set; }
-        public List<Project> Projects { get; set; }
+        public int CategoryId { get; set; }
+        //[ForeignKey("CategoriesId")]
+        public virtual Category Category { get; set; }
+        public virtual List<Project> Projects { get; set; }
 
     }
 }

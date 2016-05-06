@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using WebApplication.Models;
@@ -14,7 +15,14 @@ namespace WebApplication
         {
 
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+           // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Project>().HasKey(p => p.Id);
+            modelBuilder.Entity<Project>().HasOptional(p => p.SubCategory);
+            modelBuilder.Entity<Project>().HasRequired(p => p.Category);
 
+        }
         public DbSet<CareerInfo> CareerInformation  { get; set; }
         public DbSet<Category> Categories  { get; set; }
         public DbSet<SubCategory> SubCategories  { get; set; }

@@ -183,6 +183,22 @@
     <Compile Include="Migrations\201605022316434_TouchContext.Designer.cs">
       <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605061519336_Subcategory2.cs" />
+    <Compile Include="Migrations\201605061519336_Subcategory2.Designer.cs">
+      <DependentUpon>201605061519336_Subcategory2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605061525303_Subcategory3.cs" />
+    <Compile Include="Migrations\201605061525303_Subcategory3.Designer.cs">
+      <DependentUpon>201605061525303_Subcategory3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605061530162_Subcategory4.cs" />
+    <Compile Include="Migrations\201605061530162_Subcategory4.Designer.cs">
+      <DependentUpon>201605061530162_Subcategory4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605061538441_projects.cs" />
+    <Compile Include="Migrations\201605061538441_projects.Designer.cs">
+      <DependentUpon>201605061538441_projects.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -690,6 +706,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605022316434_TouchContext.resx">
       <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605061519336_Subcategory2.resx">
+      <DependentUpon>201605061519336_Subcategory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605061525303_Subcategory3.resx">
+      <DependentUpon>201605061525303_Subcategory3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605061530162_Subcategory4.resx">
+      <DependentUpon>201605061530162_Subcategory4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605061538441_projects.resx">
+      <DependentUpon>201605061538441_projects.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

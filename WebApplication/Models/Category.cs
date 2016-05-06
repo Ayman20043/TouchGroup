@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,12 +11,14 @@ namespace WebApplication.Models
         public Category()
         {
             Projects = new List<Project>();
+            Subcategories=new List<SubCategory>();
         }
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public SubCategory Subcategory { get; set; }
-        public List<Project> Projects { get; set; }
+        public virtual List<SubCategory> Subcategories { get; set; }
+        public virtual List<Project> Projects { get; set; }
 
     }
 }
