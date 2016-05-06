@@ -228,21 +228,21 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        //public ActionResult Projects()
-        //{
-        //    try
-        //    {
-        //        using (TouchContext db = new TouchContext())
-        //        {
-        //         //   return View(db.Projects.ToList());
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
+        public ActionResult Projects()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                       return View(db.Projects.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
 
-        //}
+        }
 
 
         public ActionResult Team()
@@ -408,20 +408,20 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        //public ActionResult GetAllProjects()
-        //{
-        //    try
-        //    {
-        //        using (TouchContext db = new TouchContext())
-        //        {
-        //           // return PartialView("_ProjectsPartial", db.Projects.ToList());
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Json(false, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+        public ActionResult GetAllProjects()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                     return PartialView("_ProjectsPartial", db.Projects.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
 
