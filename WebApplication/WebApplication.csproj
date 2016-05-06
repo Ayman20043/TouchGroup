@@ -225,6 +225,11 @@
     <Compile Include="Models\ViewModel\TeamMemberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserDataContextMigrations\201605061557299_Initial.cs" />
+    <Compile Include="UserDataContextMigrations\201605061557299_Initial.Designer.cs">
+      <DependentUpon>201605061557299_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserDataContextMigrations\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Admin\css\animate.min.css" />
@@ -728,6 +733,12 @@
     <EmbeddedResource Include="Migrations\201605061538441_projects.resx">
       <DependentUpon>201605061538441_projects.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
+      <DependentUpon>201605061557299_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
