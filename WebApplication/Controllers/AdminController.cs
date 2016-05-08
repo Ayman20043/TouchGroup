@@ -22,6 +22,7 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        #region//ContactUs
         public ActionResult ContactUs()
         {
             try
@@ -72,7 +73,10 @@ namespace WebApplication.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
+        #endregion
 
+
+        #region//Home
         public ActionResult Introduction()
         {
             try
@@ -227,24 +231,10 @@ namespace WebApplication.Controllers
             }
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
-
-        public ActionResult Projects()
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    return View(db.Projects.ToList());
-                }
-            }
-            catch (Exception)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-
-        }
+        #endregion
 
 
+        #region //Team Members
         public ActionResult Team()
         {
             try
@@ -368,24 +358,6 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
 
         }
-
-        public JsonResult GetProject(int id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    var member = touch.TeamMembers.SingleOrDefault(A => A.Id == id);
-                    return Json(member, JsonRequestBehavior.AllowGet);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
         public ActionResult DeleteRow(int id)
         {
             try
@@ -405,6 +377,45 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
 
         }
+
+        #endregion
+
+
+        #region //Project 
+        public ActionResult Projects()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    return View(db.Projects.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public JsonResult GetProject(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var project = touch.Projects.SingleOrDefault(A => A.Id == id);
+                    return Json(project, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+     
         [HttpPost]
         public ActionResult AddProject(ProjectViewModel Input)
         {
@@ -481,7 +492,10 @@ namespace WebApplication.Controllers
         {
             try
             {
+                using (TouchContext db = new TouchContext())
+                {
 
+                }
             }
             catch (Exception ex)
             {
@@ -490,7 +504,7 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-
+        #endregion
 
 
     }
