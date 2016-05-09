@@ -388,10 +388,13 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext db = new TouchContext())
                 {
+                    List<Category> cat = new List<Category>(db.Categories.ToList());
+                    SelectList CatList = new SelectList(cat, "Id", "Name");
+                    ViewBag.CategoryList = CatList;
                     return View(db.Projects.ToList());
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
@@ -415,15 +418,12 @@ namespace WebApplication.Controllers
             }
 
         }
-     
+
         [HttpPost]
         public ActionResult AddProject(ProjectViewModel Input)
         {
             try
             {
-                List<Category> cat = new List<Category>();
-                SelectList CatList = new SelectList(cat, "Id", "Name");
-                ViewBag.CategoryList = CatList;
                 var Date = DateTime.Now.ToFileTimeUtc();
                 if (Input.LogoPath != null)
                 {
@@ -504,6 +504,80 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult DropDown()
+        {
+            try
+            {
+                using (TouchContext db= new TouchContext())
+                {
+                    List<SubCategory> subcat = new List<SubCategory>(db.SubCategories.ToList());
+                    SelectList subCatList = new SelectList(subcat, "Id", "Name");
+                    ViewBag.subCategoryList = subCatList;
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
+
+        #region//Social Links
+        public ActionResult SocialLink()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    if (db.SocialLinks.Any())
+                    {
+                        var existingRow = db.SocialLinks.FirstOrDefault();
+                        return View(existingRow);
+                    }
+                    else
+                    {
+                        return View(new SocialLink());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                //Todo Write Some Exception Logging Technique 
+                // throw;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public HttpStatusCodeResult SocialLink(SocialLink input)
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    if (input.Id > 0)
+                    {
+                        db.Entry(input).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        db.SocialLinks.Add(input);
+                    }
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+                // throw;
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
         #endregion
 
 

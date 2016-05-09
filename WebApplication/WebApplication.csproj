@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201605061538441_projects.Designer.cs">
       <DependentUpon>201605061538441_projects.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605092259143_Eman .cs" />
+    <Compile Include="Migrations\201605092259143_Eman .Designer.cs">
+      <DependentUpon>201605092259143_Eman .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -219,6 +223,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\SocialLink.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\ViewModel\ProjectViewModel.cs" />
@@ -698,6 +703,7 @@
     <Content Include="Views\Admin\_Partial.cshtml" />
     <Content Include="Views\Admin\_ProjectsPartial.cshtml" />
     <Content Include="Views\Admin\Projects.cshtml" />
+    <Content Include="Views\Admin\SocialLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -733,6 +739,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605061538441_projects.resx">
       <DependentUpon>201605061538441_projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605092259143_Eman .resx">
+      <DependentUpon>201605092259143_Eman .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>
