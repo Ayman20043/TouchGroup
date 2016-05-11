@@ -76,162 +76,7 @@ namespace WebApplication.Controllers
         #endregion
 
 
-        #region//Home
-        public ActionResult Introduction()
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    var intro = db.CompanyProfiles.FirstOrDefault(x => x.Id == 1);
-                    if (intro != null)
-                        return View(intro);
-                    return View(new CompanyProfile() { Id = 1, Content = "Introduction", SectionName = "Introduction" });
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Introduction(CompanyProfile input)
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    db.Entry(input).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-                // throw;
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-
-
-        public ActionResult Philosophy()
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    var Philo = db.CompanyProfiles.FirstOrDefault(x => x.Id == 2);
-                    if (Philo != null)
-                        return View(Philo);
-                    return View(new CompanyProfile() { Id = 2, Content = "Philosophy", SectionName = "Philosophy" });
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Philosophy(CompanyProfile input)
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    db.Entry(input).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-                // throw;
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-
-
-        public ActionResult Objectives()
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    var Objectives = db.CompanyProfiles.FirstOrDefault(x => x.Id == 3);
-                    if (Objectives != null)
-                        return View(Objectives);
-                    return View(new CompanyProfile() { Id = 3, Content = "Objectives", SectionName = "Main Objectives" });
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Objectives(CompanyProfile input)
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    db.Entry(input).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-                // throw;
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-
-
-        public ActionResult Services()
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    var Services = db.CompanyProfiles.FirstOrDefault(x => x.Id == 4);
-                    if (Services != null)
-                        return View(Services);
-                    return View(new CompanyProfile() { Id = 4, Content = "Services", SectionName = "Portfolio of Services" });
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        [ValidateInput(false)]
-        [HttpPost]
-        public ActionResult Services(CompanyProfile input)
-        {
-            try
-            {
-                using (TouchContext db = new TouchContext())
-                {
-                    db.Entry(input).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-                // throw;
-            }
-            return new HttpStatusCodeResult(HttpStatusCode.OK);
-        }
-        #endregion
+        
 
 
         #region //Team Members
@@ -505,10 +350,10 @@ namespace WebApplication.Controllers
         }
 
         public JsonResult DropDown(int id)
-        { 
+        {
             try
             {
-                using (TouchContext db= new TouchContext())
+                using (TouchContext db = new TouchContext())
                 {
                     List<SubCategory> subcat = new List<SubCategory>(db.SubCategories.ToList());
                     SelectList subCatList = new SelectList(subcat, "Id", "Name");
@@ -593,67 +438,142 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
+
                 throw;
             }
-
-            return Json(false,JsonRequestBehavior.AllowGet);
-
         }
 
-        public ActionResult CompanyPartial()
+
+        public ActionResult EditProfile(int id)
         {
             try
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    return View("_CompanyPartial", touch.CompanyProfiles.ToList());
+                    var find = touch.CompanyProfiles.FirstOrDefault(a=>a.Id==id);
+                    return View();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+
                 throw;
             }
-
-            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult DeleteContent( int id)
+        [HttpPost]
+        public ActionResult EditProfile(CompanyProfile input)
         {
             try
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    var del = touch.CompanyProfiles.FirstOrDefault(a=>a.Id==id);
+                    touch.Entry(input).State = EntityState.Modified;
+                    touch.SaveChanges();
+                    return Redirect("~/Admin/CompanyProfile");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public ActionResult DeleteProfile(int? id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    //return View(touch.CompanyProfiles.FirstOrDefault(a => a.Id == id));
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProfile(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var del = touch.CompanyProfiles.FirstOrDefault(a => a.Id == id);
                     touch.CompanyProfiles.Remove(del);
                     touch.SaveChanges();
+                    return Redirect("~/Admin/CompanyProfile");
+
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Json(false, JsonRequestBehavior.AllowGet);
+
+                throw;
             }
-            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditProfile()
+        public ActionResult ProfileDetails(int id)
         {
             try
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    
+                    return View(touch.CompanyProfiles.FirstOrDefault(a => a.Id == id));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                    
+
                 throw;
             }
-            return Json(false,JsonRequestBehavior.AllowGet);
         }
-         
 
-            #endregion
 
+        public ActionResult AddProfile()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
+
+
+        [HttpPost]
+
+        public ActionResult AddProfile(CompanyProfile Add)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.CompanyProfiles.Add(Add);
+                    touch.SaveChanges();
+                    return Redirect("~/Admin/CompanyProfile");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        #endregion
+
+    }
 }

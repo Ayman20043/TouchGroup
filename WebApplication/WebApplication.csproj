@@ -704,8 +704,11 @@
     <Content Include="Views\Admin\_ProjectsPartial.cshtml" />
     <Content Include="Views\Admin\Projects.cshtml" />
     <Content Include="Views\Admin\SocialLink.cshtml" />
-    <Content Include="Views\Admin\_CompanyPartial.cshtml" />
     <Content Include="Views\Admin\CompanyProfile.cshtml" />
+    <Content Include="Views\Admin\EditProfile.cshtml" />
+    <Content Include="Views\Admin\DeleteProfile.cshtml" />
+    <Content Include="Views\Admin\ProfileDetails.cshtml" />
+    <Content Include="Views\Admin\AddProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
