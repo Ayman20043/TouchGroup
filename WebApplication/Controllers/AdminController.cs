@@ -504,8 +504,8 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DropDown()
-        {
+        public JsonResult DropDown(int id)
+        { 
             try
             {
                 using (TouchContext db= new TouchContext())
@@ -547,8 +547,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-                //Todo Write Some Exception Logging Technique 
-                // throw;
+
             }
             return View();
         }
@@ -581,5 +580,80 @@ namespace WebApplication.Controllers
         #endregion
 
 
-    }
+
+        #region //Company Profile
+        public ActionResult CompanyProfile()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View(touch.CompanyProfiles.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return Json(false,JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult CompanyPartial()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View("_CompanyPartial", touch.CompanyProfiles.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteContent( int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var del = touch.CompanyProfiles.FirstOrDefault(a=>a.Id==id);
+                    touch.CompanyProfiles.Remove(del);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditProfile()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    
+                }
+            }
+            catch (Exception)
+            {
+                    
+                throw;
+            }
+            return Json(false,JsonRequestBehavior.AllowGet);
+        }
+         
+
+            #endregion
+
+        }
 }

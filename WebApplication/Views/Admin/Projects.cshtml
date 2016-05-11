@@ -206,7 +206,6 @@
             processData: false,
             cache: false,
             success: function (data) {
-                $("#DataModal").modal("hide");
                 $.get("/Admin/GetAllProjects", function (data2) {
                     $("#ProjectPartial").html(data2);
                 });

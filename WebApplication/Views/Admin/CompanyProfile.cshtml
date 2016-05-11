@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication.Models.CompanyProfile>
+@{
+    ViewBag.Title = "CompanyProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h4>Company Profile</h4>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <span>
+                    <button type="button" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i> Add New Content</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Teampartial">
+    @{Html.RenderPartial("_CompanyPartial", Model); }
+</div>
+
+
+<div id="DataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Content Dtails</h4>
+            </div>
+            <div class="modal-body">
+                <form id="ContentForm" data-parsley-validate class="form-horizontal form-label-left">
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).on("click", ".add", function (e) {
+        $("#DataModal").modal("show");
+    });
+
+    $(document).on("click", ".clickdelete", function (e) {
+        var action = $(this).attr('data-id');
+        $.ajax({
+            url: "/Admin/DeleteContent?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $.get("/Admin/CompanyPartial", function (data2) {
+                    $("#ProfilePartial").html(data2);
+                });
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
+
+</script>
