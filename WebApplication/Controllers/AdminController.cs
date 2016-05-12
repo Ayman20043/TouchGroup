@@ -76,8 +76,6 @@ namespace WebApplication.Controllers
         #endregion
 
 
-        
-
 
         #region //Team Members
         public ActionResult Team()
@@ -425,7 +423,6 @@ namespace WebApplication.Controllers
         #endregion
 
 
-
         #region //Company Profile
         public ActionResult CompanyProfile()
         {
@@ -460,7 +457,7 @@ namespace WebApplication.Controllers
                 throw;
             }
         }
-
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult EditProfile(CompanyProfile input)
         {
@@ -552,9 +549,8 @@ namespace WebApplication.Controllers
             }
         }
 
-
+        [ValidateInput(false)]
         [HttpPost]
-
         public ActionResult AddProfile(CompanyProfile Add)
         {
             try

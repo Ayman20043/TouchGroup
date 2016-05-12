@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>CompanyProfile</h2>
-
 <div class="page-title">
     <div class="title_left">
         <h4>Company Profile</h4>
@@ -15,7 +13,7 @@
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
             <div class="input-group">
                 <span>
-                    @Html.ActionLink("Add New Content", "AddProfile", new {@class="btn btn-success btn-sm"})
+                    <button id="Add" class="btn btn-success btn-sm" ><i class="fa fa-plus"></i> Add New Content</button>                   
                 </span>
             </div>
         </div>
@@ -49,3 +47,11 @@
 }
 
 </table>
+<script>
+    $(document).ready(function () {
+        $("#Add").click(function () {
+            document.location = '@Url.Action("AddProfile", "Admin")';
+        });
+    });
+
+</script>
