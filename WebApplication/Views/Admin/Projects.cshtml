@@ -81,7 +81,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @*<input type="text" id="Category" name="Category" class="form-control col-md-7 col-xs-12">*@
                             @Html.DropDownList("cat", (SelectList)ViewBag.CategoryList,
-                           "  -----Select List-----  ", new { @id = "DropDown" })
+                           "  -----Select List-----  ", new { @id = "Category", @class = "form-control", @onchange = "Fill()"})
                         </div>
                     </div>
 
@@ -91,9 +91,9 @@
                             SubCategory
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            @*<input type="text" id="SubCategory" name="SubCategory" class="form-control col-md-7 col-xs-12">*@
-                            @*@Html.DropDownList("subcat", (SelectList)ViewBag.subCategoryList,
-                           "  -----Select List-----  ", new { @id = "subDropDown" })*@
+                            @*@Html.DropDownList("subCat", (SelectList)ViewBag.subCategoryList,
+                           "  -----Select List-----  ", new { @id = "subDropDown", @class = "form-control hidden" })*@
+                            <select id=" subDropDown" class="form-control" ></select>
                         </div>
                     </div>
 
@@ -114,7 +114,6 @@
         $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
         $("#DataModal").modal("show");
     });
-
 
     $(document).on("click", ".clickedit", function (e) {
         $("#btnSubmit").text('Save').css("background-color", "#337ab7").addClass("White");
@@ -218,9 +217,28 @@
 
     });
 
-    $("#DropDown").change(function () {
-        var Select = $('#DropDown').val();
-    });
+    //$("#DropDown").onchange(function () {
+    //    var Select = $('#DropDown').val();
+    //});
+
+    function Fill() {
+        var CatId = $('#Category').val();
+        $("subDropDown").show();
+        $.ajax({
+            url: '/Admin/Fill',
+            type: "GET",
+            dataType: "JSON",
+            data: {CatId:Id},
+            success: function (subCategory) {                
+                $("#subDropDown").html(""); // clear before appending new list 
+                $.each(subCat, function (i, subCategory) {
+                    $("#subDropDown").append(
+                        $('<option></option>').val(subCategory.Id).html(subCategory.Name));
+                });
+            }
+        });
+    }
+
 
 </script>
 

@@ -223,7 +223,6 @@ namespace WebApplication.Controllers
 
         #endregion
 
-
         #region //Project 
         public ActionResult Projects()
         {
@@ -231,9 +230,11 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext db = new TouchContext())
                 {
+
                     List<Category> cat = new List<Category>(db.Categories.ToList());
                     SelectList CatList = new SelectList(cat, "Id", "Name");
                     ViewBag.CategoryList = CatList;
+
                     return View(db.Projects.ToList());
                 }
             }
@@ -347,26 +348,15 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DropDown(int id)
+
+        public ActionResult Fill(int id)
         {
-            try
+            using (TouchContext touch= new TouchContext())
             {
-                using (TouchContext db = new TouchContext())
-                {
-                    List<SubCategory> subcat = new List<SubCategory>(db.SubCategories.ToList());
-                    SelectList subCatList = new SelectList(subcat, "Id", "Name");
-                    ViewBag.subCategoryList = subCatList;
-                }
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return Json(false, JsonRequestBehavior.AllowGet);
+                var subCat = touch.SubCategories.Where(a=>a.CategoryId==id);
+                return Json(subCat, JsonRequestBehavior.AllowGet);
+            }         
         }
-
         #endregion
 
 

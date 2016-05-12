@@ -5,14 +5,11 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>EditProfile</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CompanyProfile</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
@@ -73,20 +70,6 @@
           '//www.tinymce.com/css/codepen.min.css'
         ]
     });
-    $(document).ready(function () {
-        $("#btnsubmit").click(function (e) {
-            e.preventDefault();
-            tinyMCE.triggerSave();
-            alert($("#mytextarea").val());
-            //$("#mytextarea").val("asdasdasdasada");
-            $.post("/Admin/Introduction", $('#EditForm').serialize(), function (data, textStatus, jqxhr) {
-
-                if (textStatus === "success")
-                    $('.alert-success').show();
-                else
-                    $('.alert-danger').show();
-            });
-        });
-    });
+   
     </script>
 }
