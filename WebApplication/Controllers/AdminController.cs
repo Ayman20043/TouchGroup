@@ -124,12 +124,12 @@ namespace WebApplication.Controllers
                 {
                     Input.PicturePath.SaveAs(HttpContext.
                         Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
-                    if (Arry[1]== "pdf"||Arry[1]=="doc")
+                    if (Arry[1]== "pdf")
                     {
                         Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
                     }
-
-                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 100, 100);
+                    Bitmap b =new Bitmap (Input.PicturePath.InputStream);
+                    var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
                     resizedImage.Save(HttpContext.
                         Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                 }
@@ -444,7 +444,7 @@ namespace WebApplication.Controllers
                 using (TouchContext touch = new TouchContext())
                 {
                     var find = touch.CompanyProfiles.FirstOrDefault(a => a.Id == id);
-                    return View();
+                    return View(find);
                 }
             }
             catch (Exception ex)
