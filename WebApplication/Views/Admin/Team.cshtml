@@ -127,7 +127,7 @@
                             Picture <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" id="PicturePath" name="PicturePath"  accept="image/*" />
+                            <input type="file" id="PicturePath" required="required" name="PicturePath"  accept="image/*" />
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@
                             Cv <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" id="CvPath" name="CvPath" accept=".pdf"/>
+                            <input type="file" id="CvPath" required="required" name="CvPath" accept=".pdf"/>
                         </div>
                     </div>
                 </form>
@@ -219,25 +219,46 @@
         if (btnSubmit.textContent == "Add") {
             var form = $('#form2')[0];
             var dataString = new FormData(form);
-            $.ajax({
-                url: "/Admin/CreatMember",
-                type: "POST",
-                async: true,
-                data: dataString,
-                contentType: false,
-                processData: false,
-                cache: false,
-                success: function (data) {
-                    $("#DataModal").modal("hide");
-                    $.get("/Admin/GetTeamPartial", function (data2) {
-                        $("#Teampartial").html(data2);
-                    });
-
-                },
-                error: function (xhr) {
-                    alert('error');
-                }
+            $.listen('parsley:field:validate', function () {
+                validateFront();
             });
+            var validateFront = function () {
+                if (true === $('#form2').parsley().isValid()) {
+                    $('.bs-callout-info').removeClass('hidden');
+                    $('.bs-callout-warning').addClass('hidden');
+                    return true;
+                } else {
+                    $('.bs-callout-info').addClass('hidden');
+                    $('.bs-callout-warning').removeClass('hidden');
+                    return false;
+                }
+            };
+            $('#form2').parsley().validate();
+            var isValid = validateFront();
+            if (isValid) {
+                $.ajax({
+                    url: "/Admin/CreatMember",
+                    type: "POST",
+                    async: true,
+                    data: dataString,
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(data) {
+                        $("#DataModal").modal("hide");
+                        $.get("/Admin/GetTeamPartial", function(data2) {
+                            $("#Teampartial").html(data2);
+                        });
+
+                    },
+                    error: function(xhr) {
+                        alert('error');
+                    }
+                });
+            } else {
+                alert('Not Valid');
+            }
+        
         }
         else {
             var form = $('#form2')[0];
@@ -366,22 +387,12 @@
             //$('#Cv').val("");
             $('#form2')[0].reset();
         });
-        $.listen('parsley:field:validate', function () {
-            validateFront();
-        });
-        $('#ModalFooter #btnAdd').on('click', function () {
-            $('#form2').parsley().validate();
-            validateFront();
-        });
-        var validateFront = function () {
-            if (true === $('#form2').parsley().isValid()) {
-                $('.bs-callout-info').removeClass('hidden');
-                $('.bs-callout-warning').addClass('hidden');
-            } else {
-                $('.bs-callout-info').addClass('hidden');
-                $('.bs-callout-warning').removeClass('hidden');
-            }
-        };
+      
+        //$('#ModalFooter #btnAdd').on('click', function () {
+        //    $('#form2').parsley().validate();
+        //    validateFront();
+        //});
+
     });
 
 </script>
