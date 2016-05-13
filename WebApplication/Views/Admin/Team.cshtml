@@ -127,7 +127,7 @@
                             Picture <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" id="PicturePath" name="PicturePath" />
+                            <input type="file" id="PicturePath" name="PicturePath"  accept="image/*" />
                         </div>
                     </div>
 
@@ -136,7 +136,7 @@
                             Cv <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="file" id="CvPath" name="CvPath" />
+                            <input type="file" id="CvPath" name="CvPath" accept=".pdf"/>
                         </div>
                     </div>
                 </form>
@@ -326,11 +326,12 @@
     $(document).ready(function () {
 
         $('#DataModal').on('hidden.bs.modal', function () {
-            $('#Name').val(" ");
-            $('#Position').val(" ");
-            $('#Details').val(" ");
-            $('#Picture').val(" ");
-            $('#Cv').val(" ");
+            //$('#Name').val(" ");
+            //$('#Position').val(" ");
+            //$('#Details').val(" ");
+            //$('#Picture').val("");
+            //$('#Cv').val("");
+            $('#form2')[0].reset();
         });
         $.listen('parsley:field:validate', function () {
             validateFront();

@@ -112,7 +112,7 @@ namespace WebApplication.Controllers
             }
 
         }
-
+        [HttpPost]
         public ActionResult CreatMember(TeamMemberViewModel Input)
         {
             try
