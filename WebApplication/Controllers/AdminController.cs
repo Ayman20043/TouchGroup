@@ -306,6 +306,10 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Home()
+        {
+            return View();
+        }
         public ActionResult GetAllProjects()
         {
             try
