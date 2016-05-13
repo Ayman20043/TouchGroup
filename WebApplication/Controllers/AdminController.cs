@@ -184,7 +184,8 @@ namespace WebApplication.Controllers
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
                         Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
-                        var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 100, 100);
+                        Bitmap b = new Bitmap(Input.PicturePath.InputStream);
+                        var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
                         resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                         Member.PicturePath = Arr[0] + Date;
                         Member.Extention = Arr[1];
@@ -474,22 +475,22 @@ namespace WebApplication.Controllers
         }
 
 
-        public ActionResult DeleteProfile(int? id)
-        {
-            try
-            {
-                using (TouchContext touch = new TouchContext())
-                {
-                    //return View(touch.CompanyProfiles.FirstOrDefault(a => a.Id == id));
-                    return View();
-                }
-            }
-            catch (Exception ex)
-            {
+        //public ActionResult DeleteProfile(int? id)
+        //{
+        //    try
+        //    {
+        //        using (TouchContext touch = new TouchContext())
+        //        {
+        //            //return View(touch.CompanyProfiles.FirstOrDefault(a => a.Id == id));
+        //            return View();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
 
         [HttpPost]
         public ActionResult DeleteProfile(int id)
