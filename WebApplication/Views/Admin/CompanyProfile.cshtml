@@ -42,15 +42,41 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                <button id="Edit" class="btn btn-primary" ><i class="fa fa-edit"></i>Edit</button>
-                <button id="Details" class="btn btn-success"><i class="fa fa-fire"></i>Details</button>
-                <button id="Delete" class="btn btn-danger "><i class="fa fa-trash"></i>Delete</button>
+                <button id="Edit" data-id="@item.Id" class="btn btn-primary" ><i class="fa fa-edit"></i>Edit</button>
+                <button id="Details" data-id="@item.Id" class="btn btn-success"><i class="fa fa-fire"></i>Details</button>
+                <button id="Delete" data-id="@item.Id" class="btn btn-danger "><i class="fa fa-trash"></i>Delete</button>
 
             </td>
         </tr>
     }
 
 </table>
+
+<div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Member Dtails</h4>
+            </div>
+            <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        Are You Sure Want To Delete ?<span class="required"></span>
+                    </label>
+                   
+                </div>         
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btnDel" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function () {
         $("#Add").click(function () {
@@ -60,20 +86,31 @@
 
     $(document).ready(function () {
         $("#Edit").click(function () {
-            document.location = '@Url.Action("EditProfile", "Admin")';
+            var action = $(this).attr('data-id');
+            document.location = '@Url.Action("EditProfile", "Admin")?id=' + action;
         });
     });
 
     $(document).ready(function () {
         $("#Details").click(function () {
-            document.location = '@Url.Action("ProfileDetails", "Admin")';
+            var action = $(this).attr('data-id');
+            alert(action);
+            @*document.location = '@Url.Action("ProfileDetails", "Admin")?id=' + action;*@
         });
     });
 
     $(document).ready(function () {
         $("#Delete").click(function () {
-            document.location = '@Url.Action("DeleteProfile", "Admin")';
+            $("#DeleteModel").modal("show");
         });
     });
+
+    $(document).ready(function () {
+        $("#btnDel").click(function () {
+            var action = $(this).attr('data-id');
+            document.location = '@Url.Action("DeleteProfile", "Admin")?id=' + action;
+        });
+    });
+
 
 </script>
