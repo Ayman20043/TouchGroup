@@ -336,7 +336,7 @@ namespace WebApplication.Controllers
                     touch.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
@@ -478,25 +478,6 @@ namespace WebApplication.Controllers
             }
         }
 
-
-        //public ActionResult DeleteProfile(int? id)
-        //{
-        //    try
-        //    {
-        //        using (TouchContext touch = new TouchContext())
-        //        {
-        //            //return View(touch.CompanyProfiles.FirstOrDefault(a => a.Id == id));
-        //            return View();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-
-        [HttpPost]
         public ActionResult DeleteProfile(int id)
         {
             try
@@ -506,15 +487,14 @@ namespace WebApplication.Controllers
                     var del = touch.CompanyProfiles.FirstOrDefault(a => a.Id == id);
                     touch.CompanyProfiles.Remove(del);
                     touch.SaveChanges();
-                    return Redirect("~/Admin/CompanyProfile");
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                throw;
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
+            return Redirect("~/Admin/CompanyProfile");
         }
 
         public ActionResult ProfileDetails(int id)

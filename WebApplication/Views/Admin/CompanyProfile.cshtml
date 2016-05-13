@@ -42,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.Content)
             </td>
             <td>
-                <button id="Edit" data-id="@item.Id" class="btn btn-primary" ><i class="fa fa-edit"></i>Edit</button>
-                <button id="Details" data-id="@item.Id" class="btn btn-success"><i class="fa fa-fire"></i>Details</button>
-                <button id="Delete" data-id="@item.Id" class="btn btn-danger "><i class="fa fa-trash"></i>Delete</button>
+                <button id="Edit" data-id="@item.Id" class="btn btn-primary btnedite" ><i class="fa fa-edit"></i>Edit</button>
+                <button id="Details" data-id="@item.Id" class="btn btn-success btndetails"><i class="fa fa-fire"></i>Details</button>
+                <button id="Delete" data-id="@item.Id" class="btn btn-danger clickdelete"><i class="fa fa-trash"></i>Delete</button>
 
             </td>
         </tr>
@@ -70,7 +70,7 @@
             <div class="modal-footer">
                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                     <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="btnDel" data-id="" class="btn btn-primary" data-dismiss="modal">Delete</button>
+                    <button type="submit" id="Del" data-id="" class="btn btn-warning btndel" data-dismiss="modal">Delete</button>
                 </div>
 
             </div>
@@ -86,31 +86,33 @@
     });
 
     $(document).ready(function () {
-        $(".btn-primary").click(function () {
+        $(".btnedite").click(function () {
             var action = $(this).attr('data-id');
             document.location = '@Url.Action("EditProfile", "Admin")?id=' + action;
         });
     });
 
     $(document).ready(function () {
-        $(".btn-success").click(function () {
-            var action = $(this).attr('data-id');    
+        $(".btndetails").click(function () {
+            var action = $(this).attr('data-id');
             document.location = '@Url.Action("ProfileDetails", "Admin")?id=' + action;
         });
     });
 
-    $(document).ready(function () {
-        $(".btn-danger").click(function () {
-            var action = $(this).attr('data-id');
-            $("#btnDel").attr('data-id', action);
-            $('#DeleteModel').modal('show');
-        });
+   $(document).on("click", ".btndel", function (e) {
+       var action = $(this).attr('data-id');
+       $.get("/Admin/DeleteProfile?id=" + action, function (data2) {
+           $("#DeleteModel").modal("hide");
+
+       });
+       @*document.location = '@Url.Action("DeleteProfile", "Admin")?id=' + action;*@
     });
 
     $(document).ready(function () {
-        $("#btnDel").click(function () {
+        $(".clickdelete").click(function () {
             var action = $(this).attr('data-id');
-            document.location = '@Url.Action("DeleteProfile", "Admin")?id=' + action;
+            $(".btndel").attr('data-id',action);
+            $("#DeleteModel").modal("show");
         });
     });
 

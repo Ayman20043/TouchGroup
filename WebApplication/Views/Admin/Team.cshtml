@@ -276,6 +276,30 @@
     });
 
 
+    $(document).on("click", ".clickview", function (e) {
+        var action = $(this).attr('data-id');
+        $("#ViewModel").modal("show");
+        $.ajax({
+            url: "/Admin/GetMember?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                var aymoseba = "~/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+                $("#Nameview").html(data.Name);
+                $("#Positionview").html(data.Position);
+                $("#Detailsview").html(data.Details);
+                $("#Pictureview").attr("Src", aymoseba);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
 
     $(document).on("click", ".btndel", function (e) {
         var action = $(this).attr('data-id');
@@ -301,31 +325,6 @@
 
     });
 
-    $(document).on("click", ".clickview", function (e) {
-        var action = $(this).attr('data-id');
-        $("#ViewModel").modal("show");
-        $.ajax({
-            url: "/Admin/GetMember?id=" + action,
-            dataType: "json",
-            type: "GET",
-            contentType: 'application/json; charset=utf-8',
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                var aymoseba = "~/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
-                $("#Nameview").html(data.Name);
-                $("#Positionview").html(data.Position);
-                $("#Detailsview").html(data.Details);
-                $("#Pictureview").attr("Src",aymoseba);                
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
-
-    });
-
     $(document).ready(function () {
         $(".clickdelete").click(function () {
             var action = $(this).attr('data-id');
@@ -342,9 +341,6 @@
             $('#form2')[0].reset();
             $('#form2').parsley().reset();
         });
-      
-    
-
     });
 
 </script>
