@@ -276,7 +276,6 @@
                     $.get("/Admin/GetTeamPartial", function (data2) {
                         $("#Teampartial").html(data2);
                     });
-
                 },
                 error: function (xhr) {
                     alert('error');
@@ -284,40 +283,8 @@
             });
 
         }
-        //$.post("/Admin/CreatMember", form_data, function (data) {
-        //    $("#DataModal").modal("hide");
-        //    $.get("/Admin/GetTeamPartial", function (data2) {
-        //        $("#Teampartial").html(data2);
-        //    });
-        //});
 
     });
-
-
-    //$(document).on("click", "#Save", function (event) {
-    //    var form = $('#form2')[0];
-    //    var dataString = new FormData(form);
-    //    $.ajax({
-    //        url: "/Admin/Savemember",
-    //        type: "POST",
-    //        async: true,
-    //        data: dataString,
-    //        contentType: false,
-    //        processData: false,
-    //        cache: false,
-    //        success: function (data) {
-    //        $("#DataModal").modal("hide");
-    //        $.get("/Admin/GetTeamPartial", function (data2) {
-    //            $("#Teampartial").html(data2);
-    //        });
-
-    //        },
-    //        error: function (xhr) {
-    //            alert('error');
-    //        }
-    //    });
-
-    //});
 
 
     $(document).on("click", ".dele", function (e) {
@@ -380,18 +347,11 @@
     $(document).ready(function () {
 
         $('#DataModal').on('hidden.bs.modal', function () {
-            //$('#Name').val(" ");
-            //$('#Position').val(" ");
-            //$('#Details').val(" ");
-            //$('#Picture').val("");
-            //$('#Cv').val("");
             $('#form2')[0].reset();
+            $('#form2').parsley().reset();
         });
       
-        //$('#ModalFooter #btnAdd').on('click', function () {
-        //    $('#form2').parsley().validate();
-        //    validateFront();
-        //});
+    
 
     });
 
