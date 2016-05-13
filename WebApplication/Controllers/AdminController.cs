@@ -119,17 +119,23 @@ namespace WebApplication.Controllers
             {
                 var Date = DateTime.Now.ToFileTimeUtc();
                 String[] Arr = Input.PicturePath.FileName.Split('.');
+                String[] Arry = Input.CvPath.FileName.Split('.');
                 if (Input.PicturePath != null && Input.CvPath != null)
                 {
                     Input.PicturePath.SaveAs(HttpContext.
                         Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
-                    Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                    if (Arry[1]== "pdf"||Arry[1]=="doc")
+                    {
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                    }
+
                     var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(Input.PicturePath.InputStream), 100, 100);
                     resizedImage.Save(HttpContext.
                         Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                 }
                 using (TouchContext touch = new TouchContext())
-                {
+                {   
+                                
                     touch.TeamMembers.Add
                         (new TeamMember()
                         {
@@ -351,11 +357,11 @@ namespace WebApplication.Controllers
 
         public ActionResult Fill(int id)
         {
-            using (TouchContext touch= new TouchContext())
+            using (TouchContext touch = new TouchContext())
             {
-                var subCat = touch.SubCategories.Where(a=>a.CategoryId==id);
+                var subCat = touch.SubCategories.Where(a => a.CategoryId == id);
                 return Json(subCat, JsonRequestBehavior.AllowGet);
-            }         
+            }
         }
         #endregion
 
@@ -437,7 +443,7 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                    var find = touch.CompanyProfiles.FirstOrDefault(a=>a.Id==id);
+                    var find = touch.CompanyProfiles.FirstOrDefault(a => a.Id == id);
                     return View();
                 }
             }
