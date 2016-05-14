@@ -270,7 +270,6 @@ namespace WebApplication.Controllers
 
         }
 
-        [HttpPost]
         public ActionResult AddProject(ProjectViewModel Input)
         {
             try

@@ -442,6 +442,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Admin.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\userM.png" />
     <Content Include="Scripts\Admin\js\autocomplete\countries.js" />
     <Content Include="Scripts\Admin\js\autocomplete\jquery.autocomplete.js" />
     <Content Include="Scripts\Admin\js\bootstrap.min.js" />

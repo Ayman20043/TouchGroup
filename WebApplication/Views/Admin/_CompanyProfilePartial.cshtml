@@ -7,10 +7,7 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.SectionName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
+            </th>           
             <th>
 
             </th>
@@ -23,11 +20,8 @@
                     @Html.DisplayFor(modelItem => item.SectionName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    <button id="Edit" data-id="@item.Id" class="btn btn-primary btnedite"><i class="fa fa-edit"></i>Edit</button>
                     <button id="Details" data-id="@item.Id" class="btn btn-success btndetails"><i class="fa fa-fire"></i>Details</button>
+                    <button id="Edit" data-id="@item.Id" class="btn btn-info btnedite"><i class="fa fa-edit"></i>Edit</button>                    
                     <button id="Delete" data-id="@item.Id" class="btn btn-danger clickdelete"><i class="fa fa-trash"></i>Delete</button>
 
                 </td>
