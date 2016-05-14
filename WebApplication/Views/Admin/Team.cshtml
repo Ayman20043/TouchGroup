@@ -313,7 +313,7 @@
             processData: false,
             cache: false,
             success: function (data) {
-                var aymoseba = "~/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+                var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
                 $("#Nameview").html(data.Name);
                 $("#Positionview").html(data.Position);
                 $("#Detailsview").html(data.Details);
@@ -327,7 +327,7 @@
     });
 
     $(document).ready(function () {
-        $(".clickdelete").click(function () {
+        $(document).on("click", ".clickdelete", function (e) {
             var action = $(this).attr('data-id');
             $(".btndel").attr('data-id',action);
             $("#DeleteModel").modal("show");
