@@ -937,6 +937,7 @@
     <Content Include="Views\Admin\AddProfile.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\_CompanyProfilePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

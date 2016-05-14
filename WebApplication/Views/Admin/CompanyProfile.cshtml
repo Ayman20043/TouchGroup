@@ -19,38 +19,10 @@
         </div>
     </div>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SectionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
 
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SectionName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                <button id="Edit" data-id="@item.Id" class="btn btn-primary btnedite" ><i class="fa fa-edit"></i>Edit</button>
-                <button id="Details" data-id="@item.Id" class="btn btn-success btndetails"><i class="fa fa-fire"></i>Details</button>
-                <button id="Delete" data-id="@item.Id" class="btn btn-danger clickdelete"><i class="fa fa-trash"></i>Delete</button>
-
-            </td>
-        </tr>
-    }
-
-</table>
+<div id="Teampartial">
+    @{Html.RenderPartial("_CompanyProfilePartial", Model); }
+</div>
 
 <div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -99,22 +71,51 @@
         });
     });
 
-   $(document).on("click", ".btndel", function (e) {
-       var action = $(this).attr('data-id');
-       $.get("/Admin/DeleteProfile?id=" + action, function (data2) {
-           $("#DeleteModel").modal("hide");
+   //$(document).on("click", ".btndel", function (e) {
+   //    var action = $(this).attr('data-id');
+   //    $.get("/Admin/DeleteProfile?id=" + action, function (data2) {
 
-       });
-       @*document.location = '@Url.Action("DeleteProfile", "Admin")?id=' + action;*@
+   //        $("#DeleteModel").modal("hide");           
+   //    });
+      
+   // });
+
+   // $(document).ready(function () {
+   //     $(".clickdelete").click(function () {
+   //         var action = $(this).attr('data-id');
+   //         $(".btndel").attr('data-id',action);
+   //         $("#DeleteModel").modal("show");
+   //     });
+   // });
+
+    $(document).on("click", ".btndel", function (e) {
+        var action = $(this).attr('data-id');
+        $.ajax({
+            url: "/Admin/DeleteProfile?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#DeleteModel").modal("hide");
+                $.get("/Admin/GetCompanyPartial", function (data2) {
+                    $("#companyprofile").html(data2);
+                });            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
     });
 
     $(document).ready(function () {
-        $(".clickdelete").click(function () {
+        $(document).on("click", ".clickdelete", function (e) {
             var action = $(this).attr('data-id');
-            $(".btndel").attr('data-id',action);
+            $(".btndel").attr('data-id', action);
             $("#DeleteModel").modal("show");
         });
     });
-
 
 </script>

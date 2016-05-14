@@ -425,6 +425,8 @@ namespace WebApplication.Controllers
 
 
         #region //Company Profile
+
+
         public ActionResult CompanyProfile()
         {
             try
@@ -441,6 +443,20 @@ namespace WebApplication.Controllers
             }
         }
 
+        public ActionResult GetCompanyPartial()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    return PartialView("_CompanyProfilePartial", db.CompanyProfiles.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public ActionResult EditProfile(int id)
         {
@@ -494,7 +510,7 @@ namespace WebApplication.Controllers
             {
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
-            return Redirect("~/Admin/CompanyProfile");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ProfileDetails(int id)
