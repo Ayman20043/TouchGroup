@@ -363,7 +363,7 @@ namespace WebApplication.Controllers
         {
             using (TouchContext touch = new TouchContext())
             {
-                var subCat = touch.SubCategories.Where(a => a.CategoryId == id);
+                var subCat = touch.SubCategories.Where(a => a.CategoryId == id).ToList();
                 return Json(subCat, JsonRequestBehavior.AllowGet);
             }
         }

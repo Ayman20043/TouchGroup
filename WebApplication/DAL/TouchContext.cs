@@ -13,10 +13,11 @@ namespace WebApplication
         public TouchContext()
             : base("DefaultConnection")
         {
-
+            this.Configuration.LazyLoadingEnabled = false;
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            
            // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Project>().HasKey(p => p.Id);
             modelBuilder.Entity<Project>().HasOptional(p => p.SubCategory);

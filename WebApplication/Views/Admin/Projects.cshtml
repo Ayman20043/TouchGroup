@@ -81,7 +81,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @*<input type="text" id="Category" name="Category" class="form-control col-md-7 col-xs-12">*@
                             @Html.DropDownList("cat", (SelectList)ViewBag.CategoryList,
-                           "  -----Select List-----  ", new { @id = "Category", @class = "form-control", @onchange = "Fill()"})
+                           "  -----Select List-----  ", new { @class = "form-control"})
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @*@Html.DropDownList("subCat", (SelectList)ViewBag.subCategoryList,
                            "  -----Select List-----  ", new { @id = "subDropDown", @class = "form-control hidden" })*@
-                            <select id=" subDropDown" class="form-control" ></select>
+                            <select id=" subDropDown" class="form-control " ></select>
                         </div>
                     </div>
 
@@ -217,12 +217,30 @@
 
     });
 
-    //$("#DropDown").onchange(function () {
-    //    var Select = $('#DropDown').val();
-    //});
+    $(document).on("change", "#cat", function () {
+       var CatId = $(this).val();
+        $("subDropDown").show();
+        $.ajax({
+            url: '/Admin/Fill',
+            type: "GET",
+            dataType: "JSON",
+            data: { id: CatId },
+            success: function (subCategory) {
+                alert(JSON.stringify(subCategory));
+                $("#subDropDown").show();
+                $("#subDropDown").html(""); // clear before appending new list 
+                $.each(subCategory, function (i, subCategory) {
+                    //$("#subDropDown").append(
+                    //    $('<option></option>').val(subCategory.Id).html(subCategory.Name));
+                    //alert(subCategory.Id);
+                    $("#subDropDown").append('<option value="'+subCategory.Id+'">'+subCategory.Name+'</option>');
+                });
+            }
+        });
+    });
 
     function Fill() {
-        var CatId = $('#Category').val();
+        var CatId = $('#Cat').val();
         $("subDropDown").show();
         $.ajax({
             url: '/Admin/Fill',
