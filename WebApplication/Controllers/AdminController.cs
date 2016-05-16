@@ -567,5 +567,11 @@ namespace WebApplication.Controllers
 
         #endregion
 
+
+        public ActionResult Templete()
+        {
+            return View();
+        }
+
     }
 }
