@@ -1,12 +1,16 @@
-﻿    $(document).on("click", ".add", function (e) {
-        $("#DataModal").modal("show");
-    });
+﻿
+$(document).on("click", ".add", function (e) {
+    $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
+    $("#DataModal").modal("show");
+});
 
 
 $(document).on("click", ".clickedit", function (e) {
+    $("#btnSubmit").text('Save').css("background-color", "#337ab7").addClass("White");
     var action = $(this).attr('data-id');
     $("#DataModal").modal("show");
     $("#hdnId").val(action);
+    $("#Id").val(action);
     $.ajax({
         url: "/Admin/GetMember?id=" + action,
         dataType: "json",
@@ -29,107 +33,78 @@ $(document).on("click", ".clickedit", function (e) {
 
 });
 
-
-//var fileUpload = $("#imgefile").get(0).files;
-//var files = fileUpload.files;
-
-
-//$(document).on("click", "#btnAdd", function (event) {
-//    alert("");
-//    var form_data = {
-//        Name: $('#Name').val(),
-//        Position: $('#Position').val(),
-//        Details: $('#Details').val(),
-//        PicturePath: $("#imgefile").get(0).files[0],
-//        CvPath: $('#Cv').val()
-//    };
-
-//    if (window.FormData !== undefined) {  
-  
-//        var fileUpload = $("#imgefile").get(0);  
-//        var files = fileUpload.files;  
-              
-//        // Create FormData object  
-//        var fileData = new FormData();  
-  
-//        // Looping over all files and add it to FormData object  
-//        for (var i = 0; i < files.length; i++) {  
-//            fileData.append(files[i].name, files[i]);  
-//        }  
-              
-//        // Adding one more key to FormData object  
-//        fileData.append('Name', $('#Name').val()); 
-//        $.ajax({
-//            url: "/Admin/UploadFile",     
-//            type: "POST",
-//            async: true,
-//            data: fileData,
-//            processData: false,
-//            cache: false,
-//            success: function (data) {
-//                $("#DataModal").modal("hide");
-//                $.get("/Admin/GetTeamPartial", function (data2) {
-//                    $("#Teampartial").html(data2);
-//                });
-
-//            },
-//            error: function (xhr) {
-//                alert('error');
-//            }
-//        });
-//    } else {  
-//        alert("FormData is not supported.");  
-//    }  
-//    //    $.ajax({
-//    //     url: "/Admin/UploadFile",
-//    //    dataType: "json",
-//    //    type: "POST",
-//    //    async: true,
-//    //    data:form_data,
-//    //    processData: false,
-//    //    cache: false,
-//    //    success: function (data) {
-//    //        $("#DataModal").modal("hide");
-//    //        $.get("/Admin/GetTeamPartial", function (data2) {
-//    //            $("#Teampartial").html(data2);
-//    //        });
-
-//    //    },
-//    //    error: function (xhr) {
-//    //        alert('error');
-//    //    }
-//    //});
-
-//    //$.post("/Admin/UploadFile", form_data, function (data) {
-//    //    $("#DataModal").modal("hide");
-//    //    $.get("/Admin/GetTeamPartial", function (data2) {
-//    //        $("#Teampartial").html(data2);
-//    //    });
-//    //});
-
-//});
-
-
-$(document).on("click", "#btnSave", function (event) {
-    var form_data = {
-        Id: $('#hdnId').val(),
-        Name: $('#Name').val(),
-        Position: $('#Position').val(),
-        Details: $('#Details').val(),
-        PicturePath: $('#Picture').val(),
-        CvPath: $('#Cv').val()
-    };
-    $.post("/Admin/Savemember", form_data, function (data) {
-        $("#DataModal").modal("hide");
-        $.get("/Admin/GetTeamPartial", function (data2) {
-            $("#Teampartial").html(data2);
+$(document).on("click", "#btnSubmit", function (event) {
+    if (btnSubmit.textContent == "Add") {
+        var form = $('#form2')[0];
+        var dataString = new FormData(form);
+        $.listen('parsley:field:validate', function () {
+            validateFront();
         });
-    });
+        var validateFront = function () {
+            if (true === $('#form2').parsley().isValid()) {
+                $('.bs-callout-info').removeClass('hidden');
+                $('.bs-callout-warning').addClass('hidden');
+                return true;
+            } else {
+                $('.bs-callout-info').addClass('hidden');
+                $('.bs-callout-warning').removeClass('hidden');
+                return false;
+            }
+        };
+        $('#form2').parsley().validate();
+        var isValid = validateFront();
+        if (isValid) {
+            $.ajax({
+                url: "/Admin/CreatMember",
+                type: "POST",
+                async: true,
+                data: dataString,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (data) {
+                    $("#DataModal").modal("hide");
+                    $.get("/Admin/GetTeamPartial", function (data2) {
+                        $("#Teampartial").html(data2);
+                    });
 
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        } else {
+         
+        }
+
+    }
+    else {
+        var form = $('#form2')[0];
+        var dataString = new FormData(form);
+        $.ajax({
+            url: "/Admin/Savemember",
+            type: "POST",
+            async: true,
+            data: dataString,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#DataModal").modal("hide");
+                $.get("/Admin/GetTeamPartial", function (data2) {
+                    $("#Teampartial").html(data2);
+                });
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    }
 });
 
 
-$(document).on("click", ".clickdelete", function (e) {
+
+$(document).on("click", ".btndel", function (e) {
     var action = $(this).attr('data-id');
     $.ajax({
         url: "/Admin/DeleteRow?id=" + action,
@@ -140,7 +115,7 @@ $(document).on("click", ".clickdelete", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            $("#DataModal").modal("hide");
+            $("#DeleteModel").modal("hide");
             $.get("/Admin/GetTeamPartial", function (data2) {
                 $("#Teampartial").html(data2);
             });
@@ -165,11 +140,11 @@ $(document).on("click", ".clickview", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            $("#Nameview").val(data.Name);
-            $("#Positionview").val(data.Position);
-            $("#Detailsview").val(data.Details);
-            $("#Pictureview").val(data.PicturePath);
-            $("#CvView").val(data.CvPath);
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+            $("#Nameview").html(data.Name);
+            $("#Positionview").html(data.Position);
+            $("#Detailsview").html(data.Details);
+            $("#Pictureview").attr("Src", aymoseba);
         },
         error: function (xhr) {
             alert('error');
@@ -178,29 +153,23 @@ $(document).on("click", ".clickview", function (e) {
 
 });
 
-
-
-
-$(document).on("click", ".btnupload", function (e) {
-    var form = $('#demo-form2')[0];
-    var dataString = new FormData(form);
-    $.ajax({
-        url: "/Admin/UploadFile", 
-        type: 'POST',
-        xhr: function () { 
-            var myXhr = $.ajaxSettings.xhr();
-            if (myXhr.upload) { 
-                myXhr.upload.addEventListener('progress', progressHandlingFunction,
-				false);
-            }
-            return myXhr;
-        },
-        success: successHandler,
-        error: errorHandler,
-        complete: completeHandler,        
-        data: dataString,
-        cache: false,
-        contentType: false,
-        processData: false
+$(document).ready(function () {
+    $(document).on("click", ".clickdelete", function (e) {
+        var action = $(this).attr('data-id');
+        $(".btndel").attr('data-id', action);
+        $("#DeleteModel").modal("show");
     });
+});
+
+
+
+$(document).ready(function () {
+
+    $('#DataModal').on('hidden.bs.modal', function () {
+        $('#form2')[0].reset();
+        $('#form2').parsley().reset();
+    });
+
+
+
 });
