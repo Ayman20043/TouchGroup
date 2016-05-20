@@ -10,7 +10,7 @@ $(document).on("click", ".clickedit", function (e) {
     var action = $(this).attr('data-id');
     $("#DataModal").modal("show");
     $("#hdnId").val(action);
-    $("#Id").val(action);
+    $("#Id").val(action);   
     $.ajax({
         url: "/Admin/GetMember?id=" + action,
         dataType: "json",
@@ -20,9 +20,11 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+            $("#Picture").attr("Src", aymoseba);
             $("#Name").val(data.Name);
             $("#Position").val(data.Position);
-            $("#Details").val(data.Details);
+            $("#Details").val(data.Details);            
             $("#Picture").val(data.PicturePath);
             $("#Cv").val(data.CvPath);
         },
@@ -170,6 +172,7 @@ $(document).ready(function () {
         $('#form2').parsley().reset();
     });
 
-
-
 });
+
+var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+$("#Pictureview").attr("Src", aymoseba);
