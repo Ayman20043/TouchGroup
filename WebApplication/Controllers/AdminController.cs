@@ -14,6 +14,7 @@ using WebApplication.Helpers;
 
 namespace WebApplication.Controllers
 {
+    
     public class AdminController : Controller
     {
         // GET: Admin
@@ -42,8 +43,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-                //Todo Write Some Exception Logging Technique 
-                // throw;
+                              
             }
             return View();
         }
@@ -323,7 +323,7 @@ namespace WebApplication.Controllers
                 return Json(false, JsonRequestBehavior.AllowGet);
             }
         }
-
+        
         public ActionResult DeleteProject(int id)
         {
             try
@@ -472,7 +472,7 @@ namespace WebApplication.Controllers
 
                 throw;
             }
-        }
+        }      
         [ValidateInput(false)]
         [HttpPost]
         public ActionResult EditProfile(CompanyProfile input)
