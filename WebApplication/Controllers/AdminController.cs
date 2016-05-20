@@ -76,7 +76,6 @@ namespace WebApplication.Controllers
         #endregion
 
 
-
         #region //Team Members
         public ActionResult Team()
         {

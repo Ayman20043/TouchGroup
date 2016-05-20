@@ -1872,7 +1872,7 @@ ul.nav-tabs li.highlight.active.highlight a { background-color: #4ecd7a; color: 
 /* ======================== Panels, Wells ======================== */
 .well, .panel { box-shadow: none; -webkit-box-shadow: none; border: 0; }
 
-.well { padding-top: 40px; padding-bottom: 25px; margin-bottom: 40px; }
+.well { padding-top: 20px; padding-bottom: 40px; margin-bottom: 40px; }
 .well h3 { font-size: 28px; font-weight: bold; margin-top: 16px; margin-bottom: 30px; }
 .well button { margin-bottom: 20px; }
 
