@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201605201849495_ProjectImagesAdded.Designer.cs">
       <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605210955504_home.cs" />
+    <Compile Include="Migrations\201605210955504_home.Designer.cs">
+      <DependentUpon>201605210955504_home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -1080,6 +1084,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605201849495_ProjectImagesAdded.resx">
       <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605210955504_home.resx">
+      <DependentUpon>201605210955504_home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

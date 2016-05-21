@@ -362,7 +362,7 @@ namespace WebApplication.Controllers
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;
-                return View();
+                return Redirect("~/Admin/Projects");
             }
         }
         public ActionResult GetAllProjects()
@@ -627,11 +627,6 @@ namespace WebApplication.Controllers
 
         #endregion
 
-
-        public ActionResult Templete()
-        {
-            return View();
-        }
         public ActionResult HomeIndexTemplete()
         {
             return View();
