@@ -311,7 +311,7 @@ namespace WebApplication.Controllers
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;
-                return View(); 
+                return View();
             }
         }
         [HttpPost]
@@ -632,6 +632,9 @@ namespace WebApplication.Controllers
         {
             return View();
         }
-
+        public ActionResult HomeIndexTemplete()
+        {
+            return View();
+        }
     }
 }

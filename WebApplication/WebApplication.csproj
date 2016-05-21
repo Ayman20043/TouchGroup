@@ -455,6 +455,13 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Admin.png" />
+    <Content Include="Images\backgrounds\bg-img-1.jpg" />
+    <Content Include="Images\backgrounds\bg-img-2.jpg" />
+    <Content Include="Images\backgrounds\bg-img-3.jpg" />
+    <Content Include="Images\backgrounds\bg-img-4.jpg" />
+    <Content Include="Images\backgrounds\bg-img-5.jpg" />
+    <Content Include="Images\backgrounds\gradient.png" />
+    <Content Include="Images\LOGO TO GO.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\userM.png" />
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
@@ -1028,7 +1035,9 @@
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Admin\_CompanyProfilePartial.cshtml" />
     <Content Include="Views\Admin\Templete.cshtml" />
+    <Content Include="Views\Admin\HomeIndexTemplete.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
+    <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

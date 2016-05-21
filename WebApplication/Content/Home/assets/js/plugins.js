@@ -40,7 +40,7 @@
       always_show_after_threshold: !$('body').hasClass('menu-bar-ontop'),
       container_960_threshold: 1300,   // Menubar is always opened if screen width more than 1300px (960px container)
       container_1170_threshold: 1600,  // Menubar is always opened if screen width more than 1600px (1170px container)
-      load_closed_belov: 768,          // Close menubar on load if screen width less than 768px
+      load_closed_belov: 1400,          // Close menubar on load if screen width less than 768px
       main_block: '#main'              // By default menuber pushes main block when opens
    };
 
@@ -67,17 +67,21 @@
          // Shod menubar on hover (and hide on mouseout)
          this.$element.hover(
             function() {
-               that.show();
+             //  that.show();
             }, function() {
-               if(window.innerWidth < that.current_threshold)
-                  that.hide();
+               if (window.innerWidth < that.current_threshold) {
+                  // that.hide();
+               }
+                
             }
          );
 
          // Hide menubar on #main hover
          $('#main').hover(function(){
-            if(!that.options.always_show_after_threshold || window.innerWidth < that.current_threshold)
-               that.hide();
+             if (!that.options.always_show_after_threshold || window.innerWidth < that.current_threshold) {
+                 //that.hide();
+             }
+           
          });
 
          // Toggle menubar on mb-toggler click

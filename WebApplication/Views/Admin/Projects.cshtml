@@ -112,33 +112,35 @@
 <script>
     $(document).on("click", ".add", function (e) {
         $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
-        $("#DataModal").modal("show");
+        //$("#DataModal").modal("show");
+        document.location = '@Url.Action("ProjectForm", "Admin")';
     });
 
     $(document).on("click", ".clickedit", function (e) {
         $("#btnSubmit").text('Save').css("background-color", "#337ab7").addClass("White");
         var action = $(this).attr('data-id');
-        $("#DataModal").modal("show");
-        $("#Id").val(action);
-        $.ajax({
-            url: "/Admin/GetProject?id=" + action,
-            dataType: "json",
-            type: "GET",
-            contentType: 'application/json; charset=utf-8',
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                $("#Name").val(data.Name);
-                $("#Position").val(data.Position);
-                $("#Details").val(data.Details);
-                $("#Picture").val(data.PicturePath);
-                $("#Cv").val(data.CvPath);
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
+        document.location = '@Url.Action("ProjectForm", "Admin")?id=' + action;
+        //$("#DataModal").modal("show");
+        //$("#Id").val(action);
+        //$.ajax({
+        //    url: "/Admin/GetProject?id=" + action,
+        //    dataType: "json",
+        //    type: "GET",
+        //    contentType: 'application/json; charset=utf-8',
+        //    async: true,
+        //    processData: false,
+        //    cache: false,
+        //    success: function (data) {
+        //        $("#Name").val(data.Name);
+        //        $("#Position").val(data.Position);
+        //        $("#Details").val(data.Details);
+        //        $("#Picture").val(data.PicturePath);
+        //        $("#Cv").val(data.CvPath);
+        //    },
+        //    error: function (xhr) {
+        //        alert('error');
+        //    }
+        //});
 
     });
 
