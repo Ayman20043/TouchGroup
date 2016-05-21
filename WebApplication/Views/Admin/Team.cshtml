@@ -31,37 +31,41 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Member Dtails</h4>
             </div>
-            <form id="MemberView" data-parsley-validate class="form-horizontal form-label-left">
+            <form id="MemberView" data-parsley-validate class="form-horizontal form-label-left">    
+                <br />          
                 <div class="form-group">
                     <input type="hidden" id="hdnIdview">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
-                        Name
-                    </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class=" col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Name
+                        </label>
                         <p id="Nameview" class=" col-md-7 col-xs-12" ></p>                       
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Position">
-                        Position
-                    </label>
+
+                <div class="form-group">                   
                     <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class=" col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Position 
+                        </label>
                         <p id="Positionview" class="col-md-7 col-xs-12"></p>                       
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Details">
-                        Details
-                    </label>
+
+                <div class="form-group">                   
                     <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class=" col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Dtails
+                        </label>
                         <p id="Detailsview" class="col-md-7 col-xs-12"></p>                        
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
-                        Picture
-                    </label>
+
+                <div class="form-group">                   
                     <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Picture
+                        </label>
                         <img  id="Pictureview" />
                     </div>
                 </div>
@@ -115,7 +119,16 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
-                            Picture <span class="required">*</span>
+                            Picture
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <img id="Picture" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Picture
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="file" id="PicturePath" class="form-control" required="required" name="PicturePath"  accept="image/*" />

@@ -459,6 +459,7 @@
     <Content Include="Images\userM.png" />
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
+    <Content Include="Scripts\Admin\JQScripts\Validation.js" />
     <Content Include="Scripts\Admin\js\autocomplete\countries.js" />
     <Content Include="Scripts\Admin\js\autocomplete\jquery.autocomplete.js" />
     <Content Include="Scripts\Admin\js\bootstrap.min.js" />

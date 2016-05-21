@@ -14,6 +14,7 @@ using WebApplication.Helpers;
 
 namespace WebApplication.Controllers
 {
+    [HandleError(View = "Error")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -42,8 +43,7 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-                //Todo Write Some Exception Logging Technique 
-                // throw;
+
             }
             return View();
         }
@@ -74,7 +74,6 @@ namespace WebApplication.Controllers
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
         #endregion
-
 
 
         #region //Team Members
@@ -124,18 +123,18 @@ namespace WebApplication.Controllers
                 {
                     Input.PicturePath.SaveAs(HttpContext.
                         Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
-                    if (Arry[1]== "pdf")
+                    if (Arry[1] == "pdf")
                     {
                         Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
                     }
-                    Bitmap b =new Bitmap (Input.PicturePath.InputStream);
+                    Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                     var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
                     resizedImage.Save(HttpContext.
                         Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                 }
                 using (TouchContext touch = new TouchContext())
-                {   
-                                
+                {
+
                     touch.TeamMembers.Add
                         (new TeamMember()
                         {
@@ -494,7 +493,6 @@ namespace WebApplication.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -536,12 +534,14 @@ namespace WebApplication.Controllers
         {
             try
             {
-                using (TouchContext touch = new TouchContext())
-                {
-                    touch.Entry(input).State = EntityState.Modified;
-                    touch.SaveChanges();
-                    return Redirect("~/Admin/CompanyProfile");
-                }
+               
+                    using (TouchContext touch = new TouchContext())
+                    {
+                        touch.Entry(input).State = EntityState.Modified;
+                        touch.SaveChanges();
+                        return Redirect("~/Admin/CompanyProfile");
+                    }
+               
             }
             catch (Exception ex)
             {
@@ -568,7 +568,7 @@ namespace WebApplication.Controllers
             }
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-
+        [ValidateInput(false)]
         public ActionResult ProfileDetails(int id)
         {
             try
@@ -588,6 +588,7 @@ namespace WebApplication.Controllers
 
         public ActionResult AddProfile()
         {
+            //throw new Exception();
             try
             {
                 using (TouchContext touch = new TouchContext())
@@ -608,12 +609,14 @@ namespace WebApplication.Controllers
         {
             try
             {
+
                 using (TouchContext touch = new TouchContext())
                 {
                     touch.CompanyProfiles.Add(Add);
                     touch.SaveChanges();
                     return Redirect("~/Admin/CompanyProfile");
                 }
+
             }
             catch (Exception ex)
             {

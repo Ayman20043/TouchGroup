@@ -23,12 +23,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Content)
+            @{                
+            }
+            @Html.Raw(Model.Content)
+           
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "EditProfile", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "/CompanyProfile")
+    @Html.ActionLink("Back", "/CompanyProfile")
 </p>
