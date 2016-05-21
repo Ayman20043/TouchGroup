@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201605092259143_Eman .Designer.cs">
       <DependentUpon>201605092259143_Eman .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605201849495_ProjectImagesAdded.cs" />
+    <Compile Include="Migrations\201605201849495_ProjectImagesAdded.Designer.cs">
+      <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -222,6 +226,7 @@
     <Compile Include="Models\License.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectImage.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\SocialLink.cs" />
     <Compile Include="Models\SubCategory.cs" />
@@ -309,6 +314,15 @@
     <Content Include="Content\Admin\css\progressbar\bootstrap-progressbar-3.3.0.css" />
     <Content Include="Content\Admin\css\select\select2.min.css" />
     <Content Include="Content\Admin\css\switchery\switchery.min.css" />
+    <Content Include="Content\Admin\fonts\fonts\css\font-awesome.css" />
+    <Content Include="Content\Admin\fonts\fonts\css\font-awesome.min.css" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Admin\fonts\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap-fileinput\css\fileinput.css" />
+    <Content Include="Content\bootstrap-fileinput\css\fileinput.min.css" />
+    <Content Include="Content\bootstrap-fileinput\img\loading-sm.gif" />
+    <Content Include="Content\bootstrap-fileinput\img\loading.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Home\assets\fonts\ElegantIcons.svg" />
@@ -443,6 +457,7 @@
     <Content Include="Images\Admin.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\userM.png" />
+    <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
     <Content Include="Scripts\Admin\js\autocomplete\countries.js" />
     <Content Include="Scripts\Admin\js\autocomplete\jquery.autocomplete.js" />
@@ -702,7 +717,79 @@
     <Content Include="Content\Home\scss\_layout.scss" />
     <Content Include="Content\Home\scss\_menu-bar.scss" />
     <Content Include="Content\Home\scss\_settings.scss" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Admin\fonts\fonts\fonts\FontAwesome.otf" />
+    <Content Include="Content\Admin\fonts\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Admin\fonts\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Admin\fonts\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\fonts\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Admin\fonts\fonts\less\animated.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\bordered-pulled.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\core.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\fixed-width.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\font-awesome.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\icons.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\larger.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\list.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\mixins.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\path.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\rotated-flipped.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\spinning.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\stacked.less" />
+    <Content Include="Content\Admin\fonts\fonts\less\variables.less" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_animated.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_core.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_fixed-width.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_icons.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_larger.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_list.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_mixins.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_path.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_spinning.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_stacked.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\_variables.scss" />
+    <Content Include="Content\Admin\fonts\fonts\scss\font-awesome.scss" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput.min.js" />
+    <Content Include="Scripts\fileinput_locale_ar.js" />
+    <Content Include="Scripts\fileinput_locale_bg.js" />
+    <Content Include="Scripts\fileinput_locale_ca.js" />
+    <Content Include="Scripts\fileinput_locale_cr.js" />
+    <Content Include="Scripts\fileinput_locale_cz.js" />
+    <Content Include="Scripts\fileinput_locale_da.js" />
+    <Content Include="Scripts\fileinput_locale_de.js" />
+    <Content Include="Scripts\fileinput_locale_el.js" />
+    <Content Include="Scripts\fileinput_locale_es.js" />
+    <Content Include="Scripts\fileinput_locale_fa.js" />
+    <Content Include="Scripts\fileinput_locale_fi.js" />
+    <Content Include="Scripts\fileinput_locale_fr.js" />
+    <Content Include="Scripts\fileinput_locale_hu.js" />
+    <Content Include="Scripts\fileinput_locale_id.js" />
+    <Content Include="Scripts\fileinput_locale_it.js" />
+    <Content Include="Scripts\fileinput_locale_ja.js" />
+    <Content Include="Scripts\fileinput_locale_LANG.js" />
+    <Content Include="Scripts\fileinput_locale_nl.js" />
+    <Content Include="Scripts\fileinput_locale_pl.js" />
+    <Content Include="Scripts\fileinput_locale_pt-BR.js" />
+    <Content Include="Scripts\fileinput_locale_pt.js" />
+    <Content Include="Scripts\fileinput_locale_ro.js" />
+    <Content Include="Scripts\fileinput_locale_ru.js" />
+    <Content Include="Scripts\fileinput_locale_sk.js" />
+    <Content Include="Scripts\fileinput_locale_th.js" />
+    <Content Include="Scripts\fileinput_locale_tr.js" />
+    <Content Include="Scripts\fileinput_locale_uk.js" />
+    <Content Include="Scripts\fileinput_locale_zh-TW.js" />
+    <Content Include="Scripts\fileinput_locale_zh.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -940,12 +1027,14 @@
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Admin\_CompanyProfilePartial.cshtml" />
     <Content Include="Views\Admin\Templete.cshtml" />
+    <None Include="Views\Admin\ProjectForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="File\" />
     <Folder Include="Images\Logo\" />
     <Folder Include="Images\Profile\Display\" />
+    <Folder Include="Images\Projects\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -978,6 +1067,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605092259143_Eman .resx">
       <DependentUpon>201605092259143_Eman .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605201849495_ProjectImagesAdded.resx">
+      <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

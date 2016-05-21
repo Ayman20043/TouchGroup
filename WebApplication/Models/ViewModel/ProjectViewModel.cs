@@ -17,5 +17,6 @@ namespace WebApplication.Models.ViewModel
         public int? SubCategoryId { get; set; }
         public Category Category { get; set; }
         public SubCategory SubCategory { get; set; }
+        public List<HttpPostedFileBase> ProjectImages { get; set; }
     }
 }

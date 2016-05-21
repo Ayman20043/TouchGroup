@@ -305,9 +305,66 @@ namespace WebApplication.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Home()
+        public ActionResult ProjectForm(int? id)
         {
-            return View();
+            using (TouchContext db=new TouchContext())
+            {
+                List<Category> cat = new List<Category>(db.Categories.ToList());
+                SelectList CatList = new SelectList(cat, "Id", "Name");
+                ViewBag.CategoryList = CatList;
+                return View(); 
+            }
+        }
+        [HttpPost]
+        public ActionResult ProjectForm(ProjectViewModel input)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var Date = DateTime.Now.ToFileTimeUtc();
+                Project project;
+                if (input.Id==0)
+                {
+
+                    project = new Project()
+                    {
+                        Area = input.Area,
+                        Client = input.Client,
+                        Location = input.Location,
+                        Name = input.Name,
+                        CategoryId = input.CategoryId,
+                        SubCategoryId = input.SubCategoryId,
+                        LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
+                    };
+                    db.Projects.Add(project);
+                    db.SaveChanges(); 
+                }
+                else
+                {
+                    project = db.Projects.Single(e => e.Id == input.Id);
+                }
+            
+                if (input.LogoPath != null)
+                {
+                    input.LogoPath.SaveAs((HttpContext.Server.MapPath("~/Images/logo/") + input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()));
+                }
+                if (input.ProjectImages.Any())
+                {
+                    List<ProjectImage> images=new List<ProjectImage>();
+                    foreach (var image in input.ProjectImages)
+                    {
+                        var file = image.FileName.Split('.').First() + Date +"."+ image.FileName.Split('.').Last();
+                        image.SaveAs((HttpContext.Server.MapPath("~/Images/Projects/") +file));
+                        images.Add(new ProjectImage() {FileName = file,ProjectId = project.Id});
+                    }
+                    db.ProjectsImages.AddRange(images);
+                    db.SaveChanges();
+                }
+              
+                List<Category> cat = new List<Category>(db.Categories.ToList());
+                SelectList CatList = new SelectList(cat, "Id", "Name");
+                ViewBag.CategoryList = CatList;
+                return View();
+            }
         }
         public ActionResult GetAllProjects()
         {

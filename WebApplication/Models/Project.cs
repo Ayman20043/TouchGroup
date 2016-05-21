@@ -9,6 +9,11 @@ namespace WebApplication.Models
 {
     public class Project
     {
+        public Project()
+        {
+            ProjectImages = new List<ProjectImage>();
+        }
+        
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,10 +23,9 @@ namespace WebApplication.Models
         public string LogoPath { get; set; }
         public int CategoryId { get; set; }
         public int? SubCategoryId { get; set; }
-      
         public Category Category { get; set; }
-   
         public SubCategory SubCategory { get; set; }
+        public List<ProjectImage> ProjectImages { get; set; }
 
 
     }
