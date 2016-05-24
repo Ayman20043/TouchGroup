@@ -36,6 +36,7 @@ namespace WebApplication
         public DbSet<Service> Services  { get; set; }
         public DbSet<TeamMember> TeamMembers  { get; set; }
         public DbSet<SocialLink> SocialLinks { get; set; }
+        public DbSet<HomeImage> HomeImages { get; set; }
 
     }
 }

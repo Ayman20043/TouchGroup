@@ -176,6 +176,7 @@ namespace WebApplication.Controllers
                     Name = Input.Name,
                     Position = Input.Position,
                     Details = Input.Details,
+                    
                 };
                 using (TouchContext touch = new TouchContext())
                 {
@@ -323,7 +324,6 @@ namespace WebApplication.Controllers
                 Project project;
                 if (input.Id==0)
                 {
-
                     project = new Project()
                     {
                         Area = input.Area,
@@ -623,6 +623,147 @@ namespace WebApplication.Controllers
 
                 throw;
             }
+        }
+
+        #endregion
+
+
+        #region //Home Images
+
+        public ActionResult HomeImage()
+        {
+            try
+            {
+                using (TouchContext db= new TouchContext())
+                {
+                    return View(db.HomeImages.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }          
+        }
+
+        public ActionResult GetHomePartial()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return PartialView("_HomeImagePartial", db.HomeImages.ToList());
+            }
+
+        }
+        public ActionResult CreatHome(HomeImageViewModel Input)
+        {
+            try
+            {
+                var Date = DateTime.Now.ToFileTimeUtc();
+                String[] Arr = Input.PicturePath.FileName.Split('.');              
+                if (Input.PicturePath != null)
+                {
+                    Input.PicturePath.SaveAs(HttpContext.
+                        Server.MapPath("~/Images/backgrounds/") + Arr[0] + Date + "_L." + Arr[1]);
+                    Bitmap b = new Bitmap(Input.PicturePath.InputStream);
+                    var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
+                    resizedImage.Save(HttpContext.
+                        Server.MapPath("~/Images/backgrounds/SmallBackGround/") + Arr[0] + Date + "_S." + Arr[1]);
+                }
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.HomeImages.Add
+                        (new HomeImage()
+                        {
+                            Title = Input.Title,
+                            Description = Input.Description,
+                            Extention = Arr[1],
+                            PicturePath = Arr[0] + Date,
+                            IsActive=Input.IsActive
+                        });
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult SaveHomeImages(HomeImageViewModel Input)
+        {
+            try
+            {
+                HomeImage home = new HomeImage();
+                var Date = DateTime.Now.ToFileTimeUtc();
+                home = new HomeImage()
+                {
+                    Id = Input.Id,
+                    Title = Input.Title,
+                    Description = Input.Description,
+                    IsActive = Input.IsActive,
+
+                };
+                using (TouchContext touch = new TouchContext())
+                {
+                    if (Input.PicturePath != null)
+                    {
+                        string[] Arr = Input.PicturePath.FileName.Split('.');
+                        Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
+                        Bitmap b = new Bitmap(Input.PicturePath.InputStream);
+                        var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
+                        resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
+                        home.PicturePath = Arr[0] + Date;
+                        home.Extention = Arr[1];
+
+                    }
+                    touch.Entry(home).State = EntityState.Modified;
+                    touch.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+
+        }
+        public JsonResult GetHomeImage(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var home = touch.HomeImages.SingleOrDefault(A => A.Id == id);
+                    return Json(home, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        public ActionResult DeleteElemnt(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+
+                    var del = touch.HomeImages.FirstOrDefault(a => a.Id == id);
+                    touch.HomeImages.Remove(del);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+
         }
 
         #endregion

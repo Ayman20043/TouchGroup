@@ -219,12 +219,21 @@
     <Compile Include="Migrations\201605210955504_home.Designer.cs">
       <DependentUpon>201605210955504_home.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605231910317_HomeImage.cs" />
+    <Compile Include="Migrations\201605231910317_HomeImage.Designer.cs">
+      <DependentUpon>201605231910317_HomeImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605231942560_HomeImage1.cs" />
+    <Compile Include="Migrations\201605231942560_HomeImage1.Designer.cs">
+      <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\HomeImage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobApplication.cs" />
     <Compile Include="Models\License.cs" />
@@ -235,6 +244,7 @@
     <Compile Include="Models\SocialLink.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TeamMember.cs" />
+    <Compile Include="Models\ViewModel\HomeImageViewModel.cs" />
     <Compile Include="Models\ViewModel\ProjectViewModel.cs" />
     <Compile Include="Models\ViewModel\TeamMemberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -468,6 +478,7 @@
     <Content Include="Images\LOGO TO GO.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\userM.png" />
+    <Content Include="Scripts\Admin\JQScripts\HomeImage.js" />
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
     <Content Include="Scripts\Admin\JQScripts\Validation.js" />
@@ -1040,12 +1051,15 @@
     <Content Include="Views\Admin\_CompanyProfilePartial.cshtml" />
     <Content Include="Views\Admin\Templete.cshtml" />
     <Content Include="Views\Admin\HomeIndexTemplete.cshtml" />
+    <Content Include="Views\Admin\HomeImage.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
+    <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="File\" />
+    <Folder Include="Images\backgrounds\SmallBackGround\" />
     <Folder Include="Images\Logo\" />
     <Folder Include="Images\Profile\Display\" />
     <Folder Include="Images\Projects\" />
@@ -1087,6 +1101,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605210955504_home.resx">
       <DependentUpon>201605210955504_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605231910317_HomeImage.resx">
+      <DependentUpon>201605231910317_HomeImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605231942560_HomeImage1.resx">
+      <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>
