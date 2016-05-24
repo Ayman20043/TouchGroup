@@ -2,6 +2,7 @@
 $(document).on("click", ".add", function (e) {
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
+    $("#Picture").hide();
 });
 
 
@@ -10,7 +11,8 @@ $(document).on("click", ".clickedit", function (e) {
     var action = $(this).attr('data-id');
     $("#DataModal").modal("show");
     $("#hdnId").val(action);
-    $("#Id").val(action);   
+    $("#Id").val(action);
+    $("#Picture").show();
     $.ajax({
         url: "/Admin/GetMember?id=" + action,
         dataType: "json",
@@ -166,7 +168,6 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-
     $('#DataModal').on('hidden.bs.modal', function () {
         $('#form2')[0].reset();
         $('#form2').parsley().reset();

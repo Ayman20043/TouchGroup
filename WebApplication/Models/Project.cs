@@ -25,6 +25,7 @@ namespace WebApplication.Models
         public int? SubCategoryId { get; set; }
         public Category Category { get; set; }
         public SubCategory SubCategory { get; set; }
+        public Boolean IsActive { get; set; }
         public List<ProjectImage> ProjectImages { get; set; }
 
 

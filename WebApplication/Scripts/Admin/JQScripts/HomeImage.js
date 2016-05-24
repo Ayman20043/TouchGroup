@@ -21,6 +21,7 @@ $(document).ready(function () {
 $(document).on("click", ".add", function (e) {
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
+    $("#Picture").hide();
 });
 
 $(document).on("click", ".clickedit", function (e) {
@@ -29,6 +30,7 @@ $(document).on("click", ".clickedit", function (e) {
     $("#DataModal").modal("show");
     $("#hdnId").val(action);
     $("#Id").val(action);
+    $("#Picture").show();
     $.ajax({
         url: "/Admin/GetHomeImage?id=" + action,
         dataType: "json",
@@ -38,6 +40,8 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
+            var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention
+            $("#Picture").attr("Src", aymoseba);
             $("#Title").val(data.Title);
             $("#Description").val(data.Description);
             $("#PicturePath").val(data.PicturePath);

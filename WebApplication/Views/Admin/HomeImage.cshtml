@@ -53,6 +53,15 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+
+                        </label>                      
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <img id="Picture" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
                             Picture
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -63,8 +72,8 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Position">
                             Is Active
                         </label>                     
-                        <div class="col-md-6 col-sm-6 col-xs-12">                             
-                            <input type="checkbox" id="IsActive" name="IsActive"  class="form-control col-md-7 col-xs-12">                    
+                        <div class="col-md-6 col-sm-6 col-xs-12">   
+                            @Html.CheckBox("IsActive")                                                        
                         </div>
                     </div>
 
