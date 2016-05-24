@@ -645,7 +645,6 @@ namespace WebApplication.Controllers
                 throw;
             }          
         }
-
         public ActionResult GetHomePartial()
         {
             using (TouchContext db = new TouchContext())
@@ -689,7 +688,6 @@ namespace WebApplication.Controllers
             }
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult SaveHomeImages(HomeImageViewModel Input)
         {
             try
