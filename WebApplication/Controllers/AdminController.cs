@@ -320,6 +320,7 @@ namespace WebApplication.Controllers
             using (TouchContext db = new TouchContext())
             {
                 var Date = DateTime.Now.ToFileTimeUtc();
+                string[] arr = input.LogoPath.FileName.Split('.');
                 Project project;
                 if (input.Id==0)
                 {
@@ -332,7 +333,8 @@ namespace WebApplication.Controllers
                         IsActive=input.IsActive,
                         CategoryId = input.CategoryId,
                         SubCategoryId = input.SubCategoryId,
-                        LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
+                        LogoPath=arr[0]+Date+"."+arr[1]
+                        //LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
                     };
                     db.Projects.Add(project);
                     db.SaveChanges(); 
@@ -346,7 +348,7 @@ namespace WebApplication.Controllers
                 {
                     var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(input.LogoPath.InputStream), 100, 100);
                     resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/logo/") + Date);
+                        Server.MapPath("~/Images/logo/")+arr[0]+ Date +"."+ arr[1]);
                 }
                 if (input.ProjectImages.Any())
                 {
