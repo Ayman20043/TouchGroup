@@ -21,7 +21,7 @@
                     <td>@Html.DisplayFor(modelItem => item.Location)</td>
                     <td>@Html.DisplayFor(modelItem => item.Area)</td>
                     <td>@Html.DisplayFor(modelItem => item.Client)</td>
-                    <td>@Html.DisplayFor(modelItem => item.LogoPath)</td>
+                    <td><img src='~/Images/Logo/@item.LogoPath'></td>
                     <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
                     <td>
                         @if (item.SubCategory != null)

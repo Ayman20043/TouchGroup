@@ -7,54 +7,48 @@
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <div class="form-horizontal">
+        @Html.HiddenFor(e => Model.Id)
         <div class="form-group">
-            @Html.HiddenFor(e => Model.Id)
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
-                Name
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Name" name="Name" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Location">
-                Location
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Location" name="Location" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Area">
-                Area
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Area" name="Area" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Client">
-                Client
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="Client" name="Client" required="required" class="form-control col-md-7 col-xs-12">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="LogoPath">
-                Logo
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="file" id="LogoPath" class="form-control file-loading" required="required" accept="image/*" name="LogoPath" />
-                @*<input id="LogoPath" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">*@
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group col-md-12">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Category">
-                Category
-            </label>
-            <div class="col-md-5 col-sm-5 col-xs-12 ">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control col-md-6 col-sm-6 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Area, new { htmlAttributes = new { @class = "form-control col-md-6 col-sm-6 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Area, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Client, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Client, new { htmlAttributes = new { @class = "form-control col-md-6 col-sm-6 col-xs-12" } })
+                @Html.ValidationMessageFor(model => model.Client, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                <input type="file" id="LogoPath" class="form-control file-loading" required="required" accept="image/*" name="LogoPath" />               
+            </div>
+        </div>
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-7">
                 @*<input type="text" id="Category" name="Category" class="form-control col-md-7 col-xs-12">*@
                 @Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryList,
                     "  -----Select Catrgory-----  ", new { @class = "form-control col-md-3 col-xs-12", @required = "required" })
@@ -64,10 +58,8 @@
             </div>
         </div>
         <div class="form-group collapse" id="subDropDownDiv">
-            <label class="control-label col-md-3 " for="SubCategory">
-                Sub Category
-            </label>
-            <div class="col-md-5 col-sm-5 col-xs-12">
+            @Html.LabelFor(model => model.SubCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
                 <select id="SubCategoryId" name="SubCategoryId" required="required" data-val="true" class="form-control"></select>
             </div>
             <div class="col-md-1">
@@ -75,18 +67,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 " for="LogoPath2">
-                Project Images
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
                 <label class="control-label">Select File</label>
                 <input id="ProjectImages" name="ProjectImages" required="required" type="file" multiple class="file-loading">
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3 col-sm-3  col-xs-12" for="IsActive">
-                Is Active
-            </label>
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6 col-sm-6 col-xs-12 col-lg-offset-0">
                 @Html.CheckBox("IsActive", new { @class = " form-control " })
             </div>

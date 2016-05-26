@@ -307,10 +307,11 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db=new TouchContext())
             {
+                var obj = db.Projects.Where(a => a.Id == id).FirstOrDefault();
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;
-                return View();
+                return View(obj);
             }
         }
         [HttpPost]
@@ -340,10 +341,12 @@ namespace WebApplication.Controllers
                 {
                     project = db.Projects.Single(e => e.Id == input.Id);
                 }
-            
+
                 if (input.LogoPath != null)
                 {
-                    input.LogoPath.SaveAs((HttpContext.Server.MapPath("~/Images/logo/") + input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()));
+                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(input.LogoPath.InputStream), 100, 100);
+                    resizedImage.Save(HttpContext.
+                        Server.MapPath("~/Images/logo/") + Date);
                 }
                 if (input.ProjectImages.Any())
                 {
