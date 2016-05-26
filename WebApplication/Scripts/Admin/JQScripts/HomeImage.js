@@ -40,12 +40,13 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention
+            alert(JSON.stringify(data));
+            var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention;
             $("#Picture").attr("Src", aymoseba);
             $("#Title").val(data.Title);
             $("#Description").val(data.Description);
-            $("#PicturePath").val(data.PicturePath);
-            $("#IsActive").val(data.IsActive);
+            //$("#PicturePath").val(data.PicturePath);
+            $("#IsActive").prop('checked',Boolean(data.IsActive));
         },
         error: function (xhr) {
             alert('error');
@@ -95,7 +96,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                 }
             });
         } else {
-            alert('Not Valid');
+          
         }
 
     }

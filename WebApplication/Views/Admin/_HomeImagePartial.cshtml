@@ -32,9 +32,9 @@
                     <img src='~/Images/backgrounds/SmallBackGround/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
+                    @Html.CheckBoxFor(modelItem => item.IsActive, new { @class = " flat ", @disabled = "disabled" })
                 </td>
-                <td>
+                <td>    
                     @*<a id="ViewClick" data-id="@item.Id" class="btn btn-success  clickview"><i class="fa fa-fire"></i> Details </a>*@
                     <a id="EditeClick" data-id="@item.Id" class="btn btn-info  edite clickedit"><i class="fa fa-pencil "></i> Edit </a>
                     <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger  clickdelete"><i class="fa fa-trash-o"></i> Delete </a>

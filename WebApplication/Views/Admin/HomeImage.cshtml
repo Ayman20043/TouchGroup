@@ -69,11 +69,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Position">
+                        <label class="control-label col-md-3 col-sm-3  col-xs-12" for="Position">
                             Is Active
                         </label>                     
-                        <div class="col-md-6 col-sm-6 col-xs-12">   
-                            @Html.CheckBox("IsActive")                                                        
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-offset-0">   
+                            @Html.CheckBox("IsActive",new {@class= " form-control " })                                                        
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Member Dtails</h4>
+                <h4 class="modal-title">Delete Image</h4>
             </div>
             <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
                 <div class="form-group">
