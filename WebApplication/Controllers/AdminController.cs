@@ -168,18 +168,15 @@ namespace WebApplication.Controllers
         {
             try
             {
-                TeamMember Member = new TeamMember();
-                var Date = DateTime.Now.ToFileTimeUtc();
-                Member = new TeamMember()
-                {
-                    Id = Input.Id,
-                    Name = Input.Name,
-                    Position = Input.Position,
-                    Details = Input.Details,
-                    
-                };
                 using (TouchContext touch = new TouchContext())
                 {
+                var obj = touch.TeamMembers.Where(a => a.Id == Input.Id).FirstOrDefault();
+                    obj.Id = Input.Id;
+                    obj.Name = Input.Name;
+                    obj.Position = Input.Position;
+                    obj.Details = Input.Details;
+                                   
+                    var Date = DateTime.Now.ToFileTimeUtc();             
                     if (Input.PicturePath != null)
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
@@ -187,16 +184,16 @@ namespace WebApplication.Controllers
                         Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                         var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
                         resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
-                        Member.PicturePath = Arr[0] + Date;
-                        Member.Extention = Arr[1];
+                        obj.PicturePath = Arr[0] + Date;
+                        obj.Extention = Arr[1];
 
                     }
                     if (Input.CvPath != null)
                     {
                         Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
-                        Member.CvPath = Input.CvPath.FileName;
+                        obj.CvPath= Input.CvPath.FileName;
                     }
-                    touch.Entry(Member).State = EntityState.Modified;
+                    touch.Entry(obj).State = EntityState.Modified;
                     touch.SaveChanges();
                 }
 
@@ -293,7 +290,8 @@ namespace WebApplication.Controllers
                             Client = Input.Client,
                             LogoPath = Input.LogoPath.FileName + Date,
                             Category = Input.Category,
-                            SubCategory = Input.SubCategory
+                            SubCategory = Input.SubCategory,
+                            IsActive=Input.IsActive
                         });
                     touch.SaveChanges();
                 }
@@ -330,6 +328,7 @@ namespace WebApplication.Controllers
                         Client = input.Client,
                         Location = input.Location,
                         Name = input.Name,
+                        IsActive=input.IsActive,
                         CategoryId = input.CategoryId,
                         SubCategoryId = input.SubCategoryId,
                         LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
@@ -692,30 +691,25 @@ namespace WebApplication.Controllers
         {
             try
             {
-                HomeImage home = new HomeImage();
-                var Date = DateTime.Now.ToFileTimeUtc();
-                home = new HomeImage()
+               using (TouchContext touch = new TouchContext())
                 {
-                    Id = Input.Id,
-                    Title = Input.Title,
-                    Description = Input.Description,
-                    IsActive = Input.IsActive,
-
-                };
-                using (TouchContext touch = new TouchContext())
-                {
-                    if (Input.PicturePath != null)
+                 var obj = touch.HomeImages.Where(a => a.Id == Input.Id).FirstOrDefault();
+                    obj.Title = Input.Title;
+                    obj.Description = Input.Title;
+                    obj.IsActive = Input.IsActive;
+                 var Date = DateTime.Now.ToFileTimeUtc();              
+                 if (Input.PicturePath != null)
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
                         Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
                         Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                         var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
                         resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
-                        home.PicturePath = Arr[0] + Date;
-                        home.Extention = Arr[1];
+                        obj.PicturePath = Arr[0] + Date;
+                        obj.Extention = Arr[1];
 
-                    }
-                    touch.Entry(home).State = EntityState.Modified;
+                    }                   
+                    touch.Entry(obj).State = EntityState.Modified;
                     touch.SaveChanges();
                 }
 

@@ -71,7 +71,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                     $.get("/Admin/GetTeamPartial", function (data2) {
                         $("#Teampartial").html(data2);
                     });
-
+                    $("#PicturePath").empty();
                 },
                 error: function (xhr) {
                     alert('error');
@@ -98,6 +98,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
+                $("#PicturePath").empty();
             },
             error: function (xhr) {
                 alert('error');

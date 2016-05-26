@@ -89,7 +89,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                     $.get("/Admin/GetHomePartial", function (data2) {
                         $("#HomePartial").html(data2);
                     });
-
+                    $("#PicturePath").empty();
                 },
                 error: function (xhr) {
                     alert('error');
@@ -116,6 +116,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                 $.get("/Admin/GetHomePartial", function (data2) {
                     $("#HomePartial").html(data2);
                 });
+                $("#PicturePath").empty();
             },
             error: function (xhr) {
                 alert('error');
