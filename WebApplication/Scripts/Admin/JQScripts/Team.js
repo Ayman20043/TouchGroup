@@ -1,6 +1,5 @@
 ﻿
 $(document).on("click", ".add", function (e) {
-    $("#PicturePath").empty();
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
     $("#Picture").hide();
@@ -72,7 +71,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                     $.get("/Admin/GetTeamPartial", function (data2) {
                         $("#Teampartial").html(data2);
                     });
-                    $("#PicturePath").empty();
+                    $(".loading").empty();
                 },
                 error: function (xhr) {
                     alert('error');
@@ -99,7 +98,8 @@ $(document).on("click", "#btnSubmit", function (event) {
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
-                $("#PicturePath").empty();
+                debugger;
+                $(".loading").empty();
             },
             error: function (xhr) {
                 alert('error');
@@ -181,17 +181,3 @@ var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Exte
 $("#Pictureview").attr("Src", aymoseba);
 
 
-$(document).on('ready', function () {
-    $("#PicturePath").fileinput({
-        previewFileType: "image",
-        browseClass: "btn btn-success",
-        browseLabel: "Pick Image",
-        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-        removeClass: "btn btn-danger",
-        removeLabel: "Delete",
-        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-        uploadClass: "btn btn-info",
-        uploadLabel: "Upload",
-        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
-    });
-});

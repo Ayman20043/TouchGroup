@@ -227,12 +227,17 @@
     <Compile Include="Migrations\201605271823352_linkat.Designer.cs">
       <DependentUpon>201605271823352_linkat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605271908082_ContactUsMessage.cs" />
+    <Compile Include="Migrations\201605271908082_ContactUsMessage.Designer.cs">
+      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\ContactUsMessage.cs" />
     <Compile Include="Models\HomeImage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobApplication.cs" />
@@ -1107,6 +1112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605271823352_linkat.resx">
       <DependentUpon>201605271823352_linkat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271908082_ContactUsMessage.resx">
+      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

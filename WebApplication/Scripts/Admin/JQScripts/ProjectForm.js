@@ -2,7 +2,6 @@
     var CatId = $(this).val();
     //  alert(CatId);
     if (CatId != "") {
-        debugger;
         $("#subDropDownDiv").show();
         $.ajax({
             url: '/Admin/Fill',
