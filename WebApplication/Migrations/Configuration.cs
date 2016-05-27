@@ -28,6 +28,39 @@ namespace WebApplication.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.ContactUsMessages.AddOrUpdate(
+                new Models.ContactUsMessage
+                {
+                    Id = 1,
+                    Name = "Aliaa Omar",
+                    From = "Aliaa@touchgroup.org",              
+                    Message = "EEEEEEEEEEEEEEEEEEEEEE",
+                    IsRead = true,
+                    SendDate = DateTime.Now,
+                    Subject = "Arch Job"
+                },
+                 new Models.ContactUsMessage
+                 {
+                     Id = 2,
+                     Name = "Mohamed",
+                     From = "Mohamed@touchgroup.org",
+                     Message = "EEEEEEEEEEEEEEEEEEEEEE",
+                     IsRead = false,
+                     SendDate = DateTime.Now,
+                     Subject = "Arch Job"
+                 },
+                  new Models.ContactUsMessage
+                  {
+                      Id = 3,
+                      Name = "Ayman",
+                      From = "Ayman@touchgroup.org",
+                      Message = "EEEEEEEEEEEEEEEEEEEEEE",
+                      IsRead = false,
+                      SendDate = DateTime.Now,
+                      Subject = "Arch Job"
+                  }
+                );
         }
     }
 }

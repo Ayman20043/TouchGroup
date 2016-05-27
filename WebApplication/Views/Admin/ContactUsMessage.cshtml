@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplication.Models.ContactUsMessage>
+
+@{
+    ViewBag.Title = "ContactUsMessage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>Contact Us Message</h4>
+
+<table class="table table-bordered " >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SendDate)
+        </th>
+        <th>
+           Action
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.IsRead == false)
+    {
+        <tr style="background-color:lightgrey">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.From)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SendDate)
+            </td>
+            <td>
+                <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
+                <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+            </td>
+        </tr>
+    }
+    else { 
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.From)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.SendDate)
+        </td> 
+        <td>
+            <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
+            <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+        </td> 
+    </tr>
+    }
+}
+
+</table>

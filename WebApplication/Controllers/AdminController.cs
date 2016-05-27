@@ -170,13 +170,13 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext touch = new TouchContext())
                 {
-                var obj = touch.TeamMembers.Where(a => a.Id == Input.Id).FirstOrDefault();
+                    var obj = touch.TeamMembers.Where(a => a.Id == Input.Id).FirstOrDefault();
                     obj.Id = Input.Id;
                     obj.Name = Input.Name;
                     obj.Position = Input.Position;
                     obj.Details = Input.Details;
-                                   
-                    var Date = DateTime.Now.ToFileTimeUtc();             
+
+                    var Date = DateTime.Now.ToFileTimeUtc();
                     if (Input.PicturePath != null)
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
@@ -191,7 +191,7 @@ namespace WebApplication.Controllers
                     if (Input.CvPath != null)
                     {
                         Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
-                        obj.CvPath= Input.CvPath.FileName;
+                        obj.CvPath = Input.CvPath.FileName;
                     }
                     touch.Entry(obj).State = EntityState.Modified;
                     touch.SaveChanges();
@@ -291,7 +291,7 @@ namespace WebApplication.Controllers
                             LogoPath = Input.LogoPath.FileName + Date,
                             Category = Input.Category,
                             SubCategory = Input.SubCategory,
-                            IsActive=Input.IsActive
+                            IsActive = Input.IsActive
                         });
                     touch.SaveChanges();
                 }
@@ -305,7 +305,7 @@ namespace WebApplication.Controllers
 
         public ActionResult ProjectForm(int? id)
         {
-            using (TouchContext db=new TouchContext())
+            using (TouchContext db = new TouchContext())
             {
                 var obj = db.Projects.Where(a => a.Id == id).FirstOrDefault();
                 List<Category> cat = new List<Category>(db.Categories.ToList());
@@ -322,7 +322,7 @@ namespace WebApplication.Controllers
                 var Date = DateTime.Now.ToFileTimeUtc();
                 string[] arr = input.LogoPath.FileName.Split('.');
                 Project project;
-                if (input.Id==0)
+                if (input.Id == 0)
                 {
                     project = new Project()
                     {
@@ -330,14 +330,14 @@ namespace WebApplication.Controllers
                         Client = input.Client,
                         Location = input.Location,
                         Name = input.Name,
-                        IsActive=input.IsActive,
+                        IsActive = input.IsActive,
                         CategoryId = input.CategoryId,
                         SubCategoryId = input.SubCategoryId,
-                        LogoPath=arr[0]+Date+"."+arr[1]
+                        LogoPath = arr[0] + Date + "." + arr[1]
                         //LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
                     };
                     db.Projects.Add(project);
-                    db.SaveChanges(); 
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -348,21 +348,21 @@ namespace WebApplication.Controllers
                 {
                     var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(input.LogoPath.InputStream), 100, 100);
                     resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/logo/")+arr[0]+ Date +"."+ arr[1]);
+                        Server.MapPath("~/Images/logo/") + arr[0] + Date + "." + arr[1]);
                 }
                 if (input.ProjectImages.Any())
                 {
-                    List<ProjectImage> images=new List<ProjectImage>();
+                    List<ProjectImage> images = new List<ProjectImage>();
                     foreach (var image in input.ProjectImages)
                     {
-                        var file = image.FileName.Split('.').First() + Date +"."+ image.FileName.Split('.').Last();
-                        image.SaveAs((HttpContext.Server.MapPath("~/Images/Projects/") +file));
-                        images.Add(new ProjectImage() {FileName = file,ProjectId = project.Id});
+                        var file = image.FileName.Split('.').First() + Date + "." + image.FileName.Split('.').Last();
+                        image.SaveAs((HttpContext.Server.MapPath("~/Images/Projects/") + file));
+                        images.Add(new ProjectImage() { FileName = file, ProjectId = project.Id });
                     }
                     db.ProjectsImages.AddRange(images);
                     db.SaveChanges();
                 }
-              
+
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;
@@ -430,7 +430,7 @@ namespace WebApplication.Controllers
 
         public ActionResult addCategory(Category input)
         {
-            using (TouchContext db= new TouchContext())
+            using (TouchContext db = new TouchContext())
             {
                 db.Categories.Add(input);
                 db.SaveChanges();
@@ -558,14 +558,14 @@ namespace WebApplication.Controllers
         {
             try
             {
-               
-                    using (TouchContext touch = new TouchContext())
-                    {
-                        touch.Entry(input).State = EntityState.Modified;
-                        touch.SaveChanges();
-                        return Redirect("~/Admin/CompanyProfile");
-                    }
-               
+
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.Entry(input).State = EntityState.Modified;
+                    touch.SaveChanges();
+                    return Redirect("~/Admin/CompanyProfile");
+                }
+
             }
             catch (Exception ex)
             {
@@ -658,7 +658,7 @@ namespace WebApplication.Controllers
         {
             try
             {
-                using (TouchContext db= new TouchContext())
+                using (TouchContext db = new TouchContext())
                 {
                     return View(db.HomeImages.ToList());
                 }
@@ -667,7 +667,7 @@ namespace WebApplication.Controllers
             {
 
                 throw;
-            }          
+            }
         }
         public ActionResult GetHomePartial()
         {
@@ -682,7 +682,7 @@ namespace WebApplication.Controllers
             try
             {
                 var Date = DateTime.Now.ToFileTimeUtc();
-                String[] Arr = Input.PicturePath.FileName.Split('.');              
+                String[] Arr = Input.PicturePath.FileName.Split('.');
                 if (Input.PicturePath != null)
                 {
                     Input.PicturePath.SaveAs(HttpContext.
@@ -701,7 +701,7 @@ namespace WebApplication.Controllers
                             Description = Input.Description,
                             Extention = Arr[1],
                             PicturePath = Arr[0] + Date,
-                            IsActive=Input.IsActive
+                            IsActive = Input.IsActive
                         });
                     touch.SaveChanges();
                 }
@@ -719,11 +719,11 @@ namespace WebApplication.Controllers
                 var Date = DateTime.Now.ToFileTimeUtc();
                 using (TouchContext touch = new TouchContext())
                 {
-                 var obj = touch.HomeImages.Where(a => a.Id == Input.Id).FirstOrDefault();
+                    var obj = touch.HomeImages.Where(a => a.Id == Input.Id).FirstOrDefault();
                     obj.Title = Input.Title;
                     obj.Description = Input.Title;
-                    obj.IsActive = Input.IsActive;                             
-                 if (Input.PicturePath != null)
+                    obj.IsActive = Input.IsActive;
+                    if (Input.PicturePath != null)
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
                         Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/backgrounds/") + Arr[0] + Date + "_L." + Arr[1]);
@@ -733,7 +733,7 @@ namespace WebApplication.Controllers
                         obj.PicturePath = Arr[0] + Date;
                         obj.Extention = Arr[1];
 
-                    }                   
+                    }
                     touch.Entry(obj).State = EntityState.Modified;
                     touch.SaveChanges();
                 }
@@ -789,5 +789,15 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+        public ActionResult ContactUsMessage()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return View(db.ContactUsMessages.ToList());
+            }
+
+        }
+
+
     }
 }

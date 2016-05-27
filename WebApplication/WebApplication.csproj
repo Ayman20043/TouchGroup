@@ -1057,6 +1057,7 @@
     <Content Include="Views\Admin\Templete.cshtml" />
     <Content Include="Views\Admin\HomeIndexTemplete.cshtml" />
     <Content Include="Views\Admin\HomeImage.cshtml" />
+    <Content Include="Views\Admin\ContactUsMessage.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
     <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
