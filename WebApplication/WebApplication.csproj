@@ -1062,6 +1062,7 @@
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
     <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
     <Content Include="Views\Shared\_BasicHomeLayout.cshtml" />
+    <Content Include="Views\Shared\_InsideHomeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
