@@ -7,13 +7,13 @@ namespace WebApplication.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Eman : IMigrationMetadata
+    public sealed partial class linkat : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Eman));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(linkat));
         
         string IMigrationMetadata.Id
         {
-            get { return "201605092259143_Eman "; }
+            get { return "201605271823352_linkat"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,7 +1,8 @@
-﻿$(document).on("change", "#CategoryId", function () {
+﻿$(document).on("change", "#addCategorys", function () {
     var CatId = $(this).val();
     //  alert(CatId);
     if (CatId != "") {
+        debugger;
         $("#subDropDownDiv").show();
         $.ajax({
             url: '/Admin/Fill',
@@ -59,6 +60,7 @@ $(document).on('ready', function () {
     $('#AddsubCat').click(function () {
         $('.modal-title').html("New SubCategory");
         $('#SubCatModal').modal('show');
+        $("#displayCat").text() = $(".subcatdata :selected").text();
     });
 });
 
@@ -86,3 +88,28 @@ $(document).on("click", "#btnSubmit", function (event) {
     });
 });
 
+$(document).on("click", "#btnSubmitSub", function (event) {
+    $(".subcatdata :selected").text();
+    var value =$("#addCategorys :selected").val();
+    var form = $('#SubForm')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: "/Admin/addSubCategory",
+        type: "POST",
+        async: true,
+        data: dataString,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            alert(JSON.stringify(data));
+            $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
+            $("#CategoryModel").modal("hide");
+            $.get("/Admin/ProjectForm", function (data2) {
+            });
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+});

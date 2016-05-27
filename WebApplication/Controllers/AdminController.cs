@@ -435,7 +435,17 @@ namespace WebApplication.Controllers
                 db.Categories.Add(input);
                 db.SaveChanges();
             }
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(input, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult addSubCategory(SubCategory input)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                db.SubCategories.Add(input);
+                db.SaveChanges();
+            }
+            return Json(input, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
