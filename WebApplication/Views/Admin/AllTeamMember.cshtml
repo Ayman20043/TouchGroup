@@ -1,0 +1,45 @@
+﻿@using WebApplication.Models
+@model List<WebApplication.Models.TeamMember>
+@{
+    ViewBag.Title = "AllTeamMember";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@foreach (TeamMember item in Model)
+{
+    <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+        <div class="well profile_view">
+            <div class="col-sm-12">
+                <h2>@item.Name</h2>
+                <div class="left col-xs-7">                  
+                    <p><strong>Position :</strong>@item.Position </p>
+                    <p><strong>Details :</strong>@item.Details </p>
+                    @*<ul class="list-unstyled">
+                        <li><i class="fa fa-phone"></i> Address:@item.Details </li>
+                    </ul>*@
+                    <br />
+                </div>
+                <div class="right col-xs-5 text-center">
+                    <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'>   
+                    <br />            
+                </div>
+            </div>
+            <div class="col-xs-12 bottom text-center">             
+                <div class="col-xs-12 col-sm-6 emphasis">
+                    <button type="button" class="btn btn-danger btn-xs">
+                        <i class="fa fa-edit">
+                        </i>Delete
+                    </button>
+                    <button type="button" class="btn btn-success btn-xs">
+                        <i class="fa fa-edit">
+                        </i>Edit
+                    </button>
+                    <button type="button" class="btn btn-primary btn-xs">
+                        <i class="fa fa-user">
+                        </i> View Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
