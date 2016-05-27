@@ -193,16 +193,6 @@
 
 <script>
     $(document).on('ready', function () {
-        $("#PicturePath").fileinput({
-            showUpload: false,
-            previewFileType: "image",
-            browseClass: "btn btn-success",
-            browseLabel: "Pick Image",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-            removeClass: "btn btn-danger",
-            removeLabel: "Delete",
-            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-        });
         $("#CvPath").fileinput({
             showUpload: false,
             showCaption: true,
@@ -213,7 +203,30 @@
             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
             previewSettings: { image: { width: "auto", height: "160px" } }
         });
+        $("#PicturePath").fileinput({
+            showUpload: false,
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> "
+        });
+       
 
     });
-
+    //$(document).on('ready', function() {
+        
+    //    //$("#CvPath").fileinput({
+    //    //    showUpload: false,
+    //    //    showCaption: true,
+    //    //    showRemove: false,
+    //    //    showClose: false,
+    //    //    browseClass: "btn btn-primary btn-md",
+    //    //    fileType: "pdf",
+    //    //    previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+    //    //    previewSettings: { image: { width: "auto", height: "160px" } }
+    //    //});
+    //});
 </script>

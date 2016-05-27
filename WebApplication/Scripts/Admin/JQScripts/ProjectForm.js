@@ -59,7 +59,7 @@ $(document).on('ready', function () {
     $('#AddsubCat').click(function () {
         $('.modal-title').html("New SubCategory");
         $('#SubCatModal').modal('show');
-        $("#displayCat").text() = $(".subcatdata :selected").text();
+        $("#displayCat").text($("#addCategorys :selected").text());
     });
 });
 
@@ -89,7 +89,9 @@ $(document).on("click", "#btnSubmit", function (event) {
 
 $(document).on("click", "#btnSubmitSub", function (event) {
     $(".subcatdata :selected").text();
-    var value =$("#addCategorys :selected").val();
+    var value = $("#addCategorys :selected").val();
+    $("#SubForm #CategoryId").val(value);
+    alert($("#SubForm #CategoryId").val());
     var form = $('#SubForm')[0];
     var dataString = new FormData(form);
     $.ajax({

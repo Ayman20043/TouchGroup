@@ -1,5 +1,4 @@
-﻿
-$(document).on("click", ".add", function (e) {
+﻿$(document).on("click", ".add", function (e) {
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
     $("#Picture").hide();
@@ -22,7 +21,7 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention;
             $("#Picture").attr("Src", aymoseba);
             $("#Name").val(data.Name);
             $("#Position").val(data.Position);
@@ -98,7 +97,6 @@ $(document).on("click", "#btnSubmit", function (event) {
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
-                debugger;
                 $(".loading").empty();
             },
             error: function (xhr) {
@@ -146,7 +144,7 @@ $(document).on("click", ".clickview", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention;
             $("#Nameview").html(data.Name);
             $("#Positionview").html(data.Position);
             $("#Detailsview").html(data.Details);
@@ -177,7 +175,5 @@ $(document).ready(function () {
 
 });
 
-var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
-$("#Pictureview").attr("Src", aymoseba);
 
 
