@@ -165,8 +165,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 $(document).ready(function () {
     $('#DataModal').on('hidden.bs.modal', function () {
         $('#form2')[0].reset();

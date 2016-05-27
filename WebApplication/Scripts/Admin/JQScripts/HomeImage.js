@@ -1,4 +1,4 @@
-﻿$(document).on('ready', function () {
+﻿$(document).on('ready', function() {
     $("#PicturePath").fileinput({
         previewFileType: "image",
         browseClass: "btn btn-success",
@@ -7,9 +7,7 @@
         removeClass: "btn btn-danger",
         removeLabel: "Delete",
         removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-        uploadClass: "btn btn-info",
-        uploadLabel: "Upload",
-        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+        showUpload: false,
     });
 });
 
