@@ -40,7 +40,6 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            alert(JSON.stringify(data));
             var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention;
             $("#Picture").attr("Src", aymoseba);
             $("#Title").val(data.Title);

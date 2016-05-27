@@ -10,7 +10,10 @@ namespace WebApplication.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (TouchContext db=new TouchContext())
+            {
+                return View(db.HomeImages.Where(i=>i.IsActive==true).ToList()); 
+            }
         }
 
         public ActionResult About()

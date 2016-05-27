@@ -228,7 +228,7 @@ function init_layer_slider()
    $('#layerslider').layerSlider({
       sublayerContainer : 1170,
       skin: 'mental',
-      skinsPath: 'assets/plugins/layerslider/skins/',
+      skinsPath: '/Content/Home/assets/plugins/layerslider/skins/',
       showBarTimer        : true,
       showCircleTimer     : false,
       pauseOnHover: false
@@ -237,7 +237,7 @@ function init_layer_slider()
    // Single Work style 1
    $('#layerslider-singlework1').layerSlider({
       skin: 'mental',
-      skinsPath: 'assets/plugins/layerslider/skins/',
+      skinsPath: '/Content/Home/assets/plugins/layerslider/skins/',
       showBarTimer        : true,
       showCircleTimer     : false,
       pauseOnHover: false,
@@ -251,7 +251,7 @@ function init_layer_slider()
    $('#layerslider-singlework2').layerSlider({
       sublayerContainer : 1170,
       skin: 'mental',
-      skinsPath: 'assets/plugins/layerslider/skins/',
+      skinsPath: '/Content/Home/assets/plugins/layerslider/skins/',
       showBarTimer        : true,
       showCircleTimer     : false,
       pauseOnHover: false,
@@ -272,7 +272,7 @@ function init_layer_slider()
    $('#layerslider-singlework-thumbs').layerSlider({
       sublayerContainer : 1170,
       skin: 'mental',
-      skinsPath: 'assets/plugins/layerslider/skins/',
+      skinsPath: '/Content/Home/assets/plugins/layerslider/skins/',
       showBarTimer        : true,
       showCircleTimer     : false,
       pauseOnHover: false,
