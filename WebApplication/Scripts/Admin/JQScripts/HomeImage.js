@@ -1,13 +1,15 @@
 ﻿$(document).on('ready', function () {
     $("#PicturePath").fileinput({
-        showUpload: false,
-        showCaption: true,
-        showRemove: false,
-        showClose: false,
-        browseClass: "btn btn-primary btn-md",
-        fileType: "Image",
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        previewSettings: { image: { width: "auto", height: "160px" } }
+        previewFileType: "image",
+        browseClass: "btn btn-success",
+        browseLabel: "Pick Image",
+        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+        removeClass: "btn btn-danger",
+        removeLabel: "Delete",
+        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+        uploadClass: "btn btn-info",
+        uploadLabel: "Upload",
+        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
     });
 });
 
@@ -40,7 +42,6 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            alert(JSON.stringify(data));
             var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention;
             $("#Picture").attr("Src", aymoseba);
             $("#Title").val(data.Title);

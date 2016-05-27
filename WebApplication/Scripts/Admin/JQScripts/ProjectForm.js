@@ -39,12 +39,10 @@ $(document).on('ready', function () {
 });
 
 $(document).on('ready', function () {
-    $('#AddCat').click(function () {
+    $('.AddCat').click(function () {
         $('.modal-title').html("New Category");
-        $('#DataModal').modal('show');
+        $('#CategoryModel').modal('show');
     });
-
-
 
     $("#ProjectImages").fileinput({
         uploadUrl: '#',
@@ -64,13 +62,27 @@ $(document).on('ready', function () {
     });
 });
 
-//$(document).ready(function() {
-//    $("#LogoPath").fileinput({
-//        showUpload: false,
-//        showCaption: true,
+$(document).on("click", "#btnSubmit", function (event) {
+    var form = $('#CategoryForm')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: "/Admin/addCategory",
+        type: "POST",
+        async: true,
+        data: dataString,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
+            $("#CategoryModel").modal("hide");
+            $.get("/Admin/ProjectForm", function (data2) {
+            });
 
-//        browseClass: "btn btn-primary btn-md",
-//        fileType: "Image",
-//        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>"
-//    });
-//});
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+});
+

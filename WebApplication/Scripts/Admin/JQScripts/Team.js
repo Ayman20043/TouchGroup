@@ -1,5 +1,6 @@
 ﻿
 $(document).on("click", ".add", function (e) {
+    $("#PicturePath").empty();
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
     $("#Picture").hide();
@@ -27,7 +28,7 @@ $(document).on("click", ".clickedit", function (e) {
             $("#Name").val(data.Name);
             $("#Position").val(data.Position);
             $("#Details").val(data.Details);            
-            $("#Picture").val(data.PicturePath);
+            $("#Picture").val("");
             $("#Cv").val(data.CvPath);
         },
         error: function (xhr) {
@@ -178,3 +179,19 @@ $(document).ready(function () {
 
 var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
 $("#Pictureview").attr("Src", aymoseba);
+
+
+$(document).on('ready', function () {
+    $("#PicturePath").fileinput({
+        previewFileType: "image",
+        browseClass: "btn btn-success",
+        browseLabel: "Pick Image",
+        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+        removeClass: "btn btn-danger",
+        removeLabel: "Delete",
+        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+        uploadClass: "btn btn-info",
+        uploadLabel: "Upload",
+        uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+    });
+});

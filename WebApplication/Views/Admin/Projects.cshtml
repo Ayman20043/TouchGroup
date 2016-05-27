@@ -59,7 +59,7 @@
         $("#btnSubmit").text('Save').css("background-color", "#337ab7").addClass("White");
         var action = $(this).attr('data-id');
         document.location = '@Url.Action("ProjectForm", "Admin")?id=' + action;
-      
+
     });
 
     $(document).on("click", "#btnSubmit", function (event) {
@@ -113,7 +113,7 @@
 
     });
     $(document).on("change", "#cat", function () {
-       var CatId = $(this).val();
+        var CatId = $(this).val();
         $("subDropDown").show();
         $.ajax({
             url: '/Admin/Fill',
@@ -123,12 +123,12 @@
             success: function (subCategory) {
                 alert(JSON.stringify(subCategory));
                 $("#subDropDown").show();
-                $("#subDropDown").html(""); // clear before appending new list 
+                $("#subDropDown").html(""); // clear before appending new list
                 $.each(subCategory, function (i, subCategory) {
                     //$("#subDropDown").append(
                     //    $('<option></option>').val(subCategory.Id).html(subCategory.Name));
                     //alert(subCategory.Id);
-                    $("#subDropDown").append('<option value="'+subCategory.Id+'">'+subCategory.Name+'</option>');
+                    $("#subDropDown").append('<option value="' + subCategory.Id + '">' + subCategory.Name + '</option>');
                 });
                 $("#subDropDown").change();
             }
@@ -142,9 +142,9 @@
             url: '/Admin/Fill',
             type: "GET",
             dataType: "JSON",
-            data: {CatId:Id},
-            success: function (subCategory) {                
-                $("#subDropDown").html(""); // clear before appending new list 
+            data: { CatId: Id },
+            success: function (subCategory) {
+                $("#subDropDown").html(""); // clear before appending new list
                 $.each(subCat, function (i, subCategory) {
                     $("#subDropDown").append(
                         $('<option></option>').val(subCategory.Id).html(subCategory.Name));
@@ -184,9 +184,5 @@
         });
     });
 
-
-
+    
 </script>
-
-
-
