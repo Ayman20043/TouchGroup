@@ -2,8 +2,8 @@
 @model IEnumerable<WebApplication.Models.HomeImage>
 
 <div id="HomePartial">
-    <table class="table">
-        <tr>
+    <table class="table table-bordered">
+        <tr style="">
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -34,7 +34,7 @@
                 <td>
                     @Html.CheckBoxFor(modelItem => item.IsActive, new { @class = " flat ", @disabled = "disabled" })
                 </td>
-                <td>    
+                <td>
                     @*<a id="ViewClick" data-id="@item.Id" class="btn btn-success  clickview"><i class="fa fa-fire"></i> Details </a>*@
                     <a id="EditeClick" data-id="@item.Id" class="btn btn-info  edite clickedit"><i class="fa fa-pencil "></i> Edit </a>
                     <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger  clickdelete"><i class="fa fa-trash-o"></i> Delete </a>

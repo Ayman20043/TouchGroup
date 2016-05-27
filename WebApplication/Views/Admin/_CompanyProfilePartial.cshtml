@@ -3,11 +3,11 @@
     ViewBag.Title = "_CompanyProfilePartial";
 }
 <div id="companyprofile">
-    <table class="table">
+    <table class="table table-bordered ">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.SectionName)
-            </th>           
+            </th>
             <th>
                 Actions
             </th>
@@ -21,7 +21,7 @@
                 </td>
                 <td>
                     <button id="Details" data-id="@item.Id" class="btn btn-success btndetails"><i class="fa fa-fire"></i>Details</button>
-                    <button id="Edit" data-id="@item.Id" class="btn btn-info btnedite"><i class="fa fa-edit"></i>Edit</button>                    
+                    <button id="Edit" data-id="@item.Id" class="btn btn-info btnedite"><i class="fa fa-edit"></i>Edit</button>
                     <button id="Delete" data-id="@item.Id" class="btn btn-danger clickdelete"><i class="fa fa-trash"></i>Delete</button>
 
                 </td>
