@@ -798,6 +798,14 @@ namespace WebApplication.Controllers
 
         }
 
+        public ActionResult AllTeamMember()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return View(db.TeamMembers.ToList());
+            }
+
+        }
 
     }
 }
