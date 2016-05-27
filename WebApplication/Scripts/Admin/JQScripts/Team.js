@@ -27,7 +27,7 @@ $(document).on("click", ".clickedit", function (e) {
             $("#Name").val(data.Name);
             $("#Position").val(data.Position);
             $("#Details").val(data.Details);            
-            $("#Picture").val(data.PicturePath);
+            $("#Picture").val("");
             $("#Cv").val(data.CvPath);
         },
         error: function (xhr) {
@@ -71,7 +71,7 @@ $(document).on("click", "#btnSubmit", function (event) {
                     $.get("/Admin/GetTeamPartial", function (data2) {
                         $("#Teampartial").html(data2);
                     });
-                    $("#PicturePath").empty();
+                    $(".loading").empty();
                 },
                 error: function (xhr) {
                     alert('error');
@@ -98,7 +98,8 @@ $(document).on("click", "#btnSubmit", function (event) {
                 $.get("/Admin/GetTeamPartial", function (data2) {
                     $("#Teampartial").html(data2);
                 });
-                $("#PicturePath").empty();
+                debugger;
+                $(".loading").empty();
             },
             error: function (xhr) {
                 alert('error');
@@ -178,3 +179,5 @@ $(document).ready(function () {
 
 var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention
 $("#Pictureview").attr("Src", aymoseba);
+
+

@@ -207,10 +207,6 @@
     <Compile Include="Migrations\201605061538441_projects.Designer.cs">
       <DependentUpon>201605061538441_projects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201605092259143_Eman .cs" />
-    <Compile Include="Migrations\201605092259143_Eman .Designer.cs">
-      <DependentUpon>201605092259143_Eman .cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201605201849495_ProjectImagesAdded.cs" />
     <Compile Include="Migrations\201605201849495_ProjectImagesAdded.Designer.cs">
       <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
@@ -227,12 +223,21 @@
     <Compile Include="Migrations\201605231942560_HomeImage1.Designer.cs">
       <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605271823352_linkat.cs" />
+    <Compile Include="Migrations\201605271823352_linkat.Designer.cs">
+      <DependentUpon>201605271823352_linkat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605271908082_ContactUsMessage.cs" />
+    <Compile Include="Migrations\201605271908082_ContactUsMessage.Designer.cs">
+      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CompanyProfile.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\ContactUsMessage.cs" />
     <Compile Include="Models\HomeImage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobApplication.cs" />
@@ -1094,9 +1099,6 @@
     <EmbeddedResource Include="Migrations\201605061538441_projects.resx">
       <DependentUpon>201605061538441_projects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605092259143_Eman .resx">
-      <DependentUpon>201605092259143_Eman .cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605201849495_ProjectImagesAdded.resx">
       <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
     </EmbeddedResource>
@@ -1108,6 +1110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605231942560_HomeImage1.resx">
       <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271823352_linkat.resx">
+      <DependentUpon>201605271823352_linkat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605271908082_ContactUsMessage.resx">
+      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

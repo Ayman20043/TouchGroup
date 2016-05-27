@@ -182,7 +182,7 @@ namespace WebApplication.Controllers
                         string[] Arr = Input.PicturePath.FileName.Split('.');
                         Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
                         Bitmap b = new Bitmap(Input.PicturePath.InputStream);
-                        var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
+                        var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
                         resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
                         obj.PicturePath = Arr[0] + Date;
                         obj.Extention = Arr[1];
@@ -426,6 +426,26 @@ namespace WebApplication.Controllers
                 var subCat = touch.SubCategories.Where(a => a.CategoryId == id).ToList();
                 return Json(subCat, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult addCategory(Category input)
+        {
+            using (TouchContext db= new TouchContext())
+            {
+                db.Categories.Add(input);
+                db.SaveChanges();
+            }
+            return Json(input, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult addSubCategory(SubCategory input)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                db.SubCategories.Add(input);
+                db.SaveChanges();
+            }
+            return Json(input, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
@@ -708,7 +728,7 @@ namespace WebApplication.Controllers
                         string[] Arr = Input.PicturePath.FileName.Split('.');
                         Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/backgrounds/") + Arr[0] + Date + "_L." + Arr[1]);
                         Bitmap b = new Bitmap(Input.PicturePath.InputStream);
-                        var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
+                        var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
                         resizedImage.Save(HttpContext.Server.MapPath("~/Images/backgrounds/SmallBackGround/") + Arr[0] + Date + "_S." + Arr[1]);
                         obj.PicturePath = Arr[0] + Date;
                         obj.Extention = Arr[1];

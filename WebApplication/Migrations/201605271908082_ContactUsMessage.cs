@@ -3,19 +3,21 @@ namespace WebApplication.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Eman : DbMigration
+    public partial class ContactUsMessage : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.SocialLinks",
+                "dbo.ContactUsMessages",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Facebook = c.String(),
-                        twitter = c.String(),
-                        Instgrame = c.String(),
-                        LinkedIn = c.String(),
+                        Name = c.String(),
+                        From = c.String(),
+                        Subject = c.String(),
+                        Message = c.String(),
+                        IsRead = c.Boolean(nullable: false),
+                        SendDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -23,7 +25,7 @@ namespace WebApplication.Migrations
         
         public override void Down()
         {
-            DropTable("dbo.SocialLinks");
+            DropTable("dbo.ContactUsMessages");
         }
     }
 }

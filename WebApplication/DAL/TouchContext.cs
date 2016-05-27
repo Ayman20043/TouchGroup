@@ -37,6 +37,7 @@ namespace WebApplication
         public DbSet<TeamMember> TeamMembers  { get; set; }
         public DbSet<SocialLink> SocialLinks { get; set; }
         public DbSet<HomeImage> HomeImages { get; set; }
+        public DbSet<ContactUsMessage> ContactUsMessages { get; set; }
 
     }
 }
