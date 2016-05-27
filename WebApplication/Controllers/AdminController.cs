@@ -696,20 +696,20 @@ namespace WebApplication.Controllers
         {
             try
             {
-               using (TouchContext touch = new TouchContext())
+                var Date = DateTime.Now.ToFileTimeUtc();
+                using (TouchContext touch = new TouchContext())
                 {
                  var obj = touch.HomeImages.Where(a => a.Id == Input.Id).FirstOrDefault();
                     obj.Title = Input.Title;
                     obj.Description = Input.Title;
-                    obj.IsActive = Input.IsActive;
-                 var Date = DateTime.Now.ToFileTimeUtc();              
+                    obj.IsActive = Input.IsActive;                             
                  if (Input.PicturePath != null)
                     {
                         string[] Arr = Input.PicturePath.FileName.Split('.');
-                        Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
+                        Input.PicturePath.SaveAs(HttpContext.Server.MapPath("~/Images/backgrounds/") + Arr[0] + Date + "_L." + Arr[1]);
                         Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                         var resizedImage = Helpers.ImageResizeHelper.FixedSize(b, 100, 100);
-                        resizedImage.Save(HttpContext.Server.MapPath("~/Images/Profile/Display/") + Arr[0] + Date + "_S." + Arr[1]);
+                        resizedImage.Save(HttpContext.Server.MapPath("~/Images/backgrounds/SmallBackGround/") + Arr[0] + Date + "_S." + Arr[1]);
                         obj.PicturePath = Arr[0] + Date;
                         obj.Extention = Arr[1];
 
