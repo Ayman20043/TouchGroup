@@ -108,8 +108,6 @@ $(document).on("click", "#btnSubmit", function (event) {
     }
 });
 
-
-
 $(document).on("click", ".btndel", function (e) {
     var action = $(this).attr('data-id');
     $.ajax({
@@ -134,28 +132,28 @@ $(document).on("click", ".btndel", function (e) {
 
 });
 
-$(document).on("click", ".view-pdf", function (e) {
-    var action = $(this).attr('data-id');
-    $("#Id").val(action);
-    $("#ViewModel").modal("show");
-    $.ajax({
-        url: "/Admin/GetMember?id=" + action,
-        dataType: "json",
-        type: "GET",
-        contentType: 'application/json; charset=utf-8',
-        async: true,
-        processData: false,
-        cache: false,
-        success: function (data) {
-            var aymoseba = "/File/" + data.CvPath;
-            $("#Cv").attr("href", aymoseba);
-        },
-        error: function (xhr) {
-            alert('error');
-        }
-    });
+//$(document).on("click", ".view-pdf", function (e) {
+//    var action = $(this).attr('data-id');
+//    $("#Id").val(action);
+//    $("#ViewModel").modal("show");
+//    $.ajax({
+//        url: "/Admin/GetMember?id=" + action,
+//        dataType: "json",
+//        type: "GET",
+//        contentType: 'application/json; charset=utf-8',
+//        async: true,
+//        processData: false,
+//        cache: false,
+//        success: function (data) {
+//            var aymoseba = "/File/" + data.CvPath;
+//            $("#Cv").attr("href", aymoseba);
+//        },
+//        error: function (xhr) {
+//            alert('error');
+//        }
+//    });
 
-});
+//});
 
 $(document).ready(function () {
     $(document).on("click", ".clickdelete", function (e) {
