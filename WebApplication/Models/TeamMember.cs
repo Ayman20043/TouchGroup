@@ -14,6 +14,8 @@ namespace WebApplication.Models
         public string  PicturePath { get; set; }
         public string Details { get; set; }
         public string CvPath { get; set; }
-            
+        public string Phone { get; set; }
+        public string Email { get; set; }
+
     }
 }

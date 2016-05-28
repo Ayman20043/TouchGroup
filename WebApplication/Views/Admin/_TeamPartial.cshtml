@@ -4,22 +4,7 @@
 
 <div id="NewTeamPartial">
     <div class="x_panel" style="height:600px;">
-        <div class="clearfix"></div>
-        <div class="page-title">
-            <div class="title_left">
-                <h4></h4>
-            </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <span>
-                            <button type="button" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i> Add Member</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <div class="clearfix"></div>    
         <div class="page-title">
             <div class="title_left">
                 <h3>Team Members</h3>
@@ -27,9 +12,8 @@
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btnsearch" type="button">Go!</button>
+                        <span>
+                            <button type="button" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i> Add Member</button>
                         </span>
                     </div>
                 </div>
@@ -42,8 +26,10 @@
                     <div class="col-sm-12">
                         <h2>@item.Name</h2>
                         <div class="left col-xs-7">
-                            <p><strong>Position :</strong>@item.Position </p>
-                            <p><strong>Details :</strong>@item.Details </p>
+                            <p><strong>Phone:</strong>@item.Phone </p>
+                            <p><strong>Email:</strong>@item.Email </p>
+                            <p><strong>Position:</strong>@item.Position </p>
+                            <p><strong>Details:</strong>@item.Details </p>
                             @*<ul class="list-unstyled">
                                     <li><i class="fa fa-phone"></i> Address:@item.Details </li>
                                 </ul>*@
@@ -56,8 +42,8 @@
                     </div>
                     <div class="col-xs-12 bottom text-center">
                         <div class="col-xs-12 col-sm-6 emphasis">
-                            <button type="button" class="btn btn-primary btn-xs ">
-                                <i class="fa fa-user" data-id="@item.Id">
+                            <button type="button" class="btn btn-primary btn-xs view-pdf" data-id="@item.Id">
+                                <i class="fa fa-user">
                                 </i> View Profile
                             </button>
                         </div>

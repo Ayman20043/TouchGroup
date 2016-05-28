@@ -14,5 +14,7 @@ namespace WebApplication.Models.ViewModel
         public HttpPostedFileBase PicturePath { get; set; }
         public string Details { get; set; }
         public HttpPostedFileBase CvPath { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
     }
 }
