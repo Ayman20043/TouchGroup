@@ -26,6 +26,8 @@ $(document).on("click", ".clickedit", function (e) {
             $("#Name").val(data.Name);
             $("#Position").val(data.Position);
             $("#Details").val(data.Details);
+            $("#Phone").val(data.Phone);
+            $("#Email").val(data.Email);
             $("#Picture").val("");
             $("#Cv").val(data.CvPath);
         },
@@ -132,8 +134,9 @@ $(document).on("click", ".btndel", function (e) {
 
 });
 
-$(document).on("click", ".clickview", function (e) {
+$(document).on("click", ".view-pdf", function (e) {
     var action = $(this).attr('data-id');
+    $("#Id").val(action);
     $("#ViewModel").modal("show");
     $.ajax({
         url: "/Admin/GetMember?id=" + action,
@@ -144,11 +147,8 @@ $(document).on("click", ".clickview", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention;
-            $("#Nameview").html(data.Name);
-            $("#Positionview").html(data.Position);
-            $("#Detailsview").html(data.Details);
-            $("#Pictureview").attr("Src", aymoseba);
+            var aymoseba = "/File/" + data.CvPath;
+            $("#Cv").attr("href", aymoseba);
         },
         error: function (xhr) {
             alert('error');

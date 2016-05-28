@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201605271908082_ContactUsMessage.Designer.cs">
       <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605281215138_TeamMemberEditModel.cs" />
+    <Compile Include="Migrations\201605281215138_TeamMemberEditModel.Designer.cs">
+      <DependentUpon>201605281215138_TeamMemberEditModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CareerInfo.cs" />
@@ -488,6 +492,7 @@
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
     <Content Include="Scripts\Admin\JQScripts\Validation.js" />
+    <Content Include="Scripts\Admin\JQScripts\ViewPdf.js" />
     <Content Include="Scripts\Admin\js\autocomplete\countries.js" />
     <Content Include="Scripts\Admin\js\autocomplete\jquery.autocomplete.js" />
     <Content Include="Scripts\Admin\js\bootstrap.min.js" />
@@ -787,6 +792,7 @@
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\PdfStyle.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\fileinput.min.js" />
@@ -1120,6 +1126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605271908082_ContactUsMessage.resx">
       <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605281215138_TeamMemberEditModel.resx">
+      <DependentUpon>201605281215138_TeamMemberEditModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

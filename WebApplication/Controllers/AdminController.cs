@@ -143,7 +143,9 @@ namespace WebApplication.Controllers
                             Details = Input.Details,
                             Extention = Arr[1],
                             PicturePath = Arr[0] + Date,
-                            CvPath = Input.CvPath.FileName
+                            CvPath = Input.CvPath.FileName,
+                            Email=Input.Email,
+                            Phone=Input.Phone
                         });
                     touch.SaveChanges();
                 }
@@ -183,6 +185,8 @@ namespace WebApplication.Controllers
                     obj.Name = Input.Name;
                     obj.Position = Input.Position;
                     obj.Details = Input.Details;
+                    obj.Email = Input.Email;
+                    obj.Phone = Input.Phone;
 
                     var Date = DateTime.Now.ToFileTimeUtc();
                     if (Input.PicturePath != null)
@@ -219,7 +223,6 @@ namespace WebApplication.Controllers
             {
                 using (TouchContext touch = new TouchContext())
                 {
-
                     var del = touch.TeamMembers.FirstOrDefault(a => a.Id == id);
                     touch.TeamMembers.Remove(del);
                     touch.SaveChanges();
@@ -801,11 +804,11 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db = new TouchContext())
             {
-                return View(db.ContactUsMessages.ToList());
+                return View(db.ContactUsMessages.ToList().OrderByDescending(a=>a.SendDate));
             }
 
         }
-
+ 
         public ActionResult AllTeamMember()
         {
             using (TouchContext db = new TouchContext())
