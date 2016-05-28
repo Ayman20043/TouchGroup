@@ -4335,7 +4335,7 @@ img { max-width: 100%; }
    ========================================================================== */
 /* ======================== Body & Wrapper ======================== */
 .black-body { background-color: #1a1a1a; }
-
+.black-body2 { background-image: url("/Images/backgrounds/light_sky_stars_background_85555_1366x768131088471907789978_L.jpg"); }
 #wrapper { background-color: black; }
 @media (min-width: 768px) { #wrapper { min-width: 738px; } }
 @media (min-width: 992px) { #wrapper { min-width: 990px; } }

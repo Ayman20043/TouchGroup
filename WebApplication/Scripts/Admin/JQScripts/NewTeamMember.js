@@ -67,7 +67,8 @@ $(document).on("click", "#btnSubmit", function (event) {
                 cache: false,
                 success: function (data) {
                     $("#DataModal").modal("hide");
-                    $.get("/Admin/AllTeamMember", function (data2) {
+                    $.get("/Admin/GetPartial", function (data2) {
+                        $("#NewTeamPartial").html(data2);
                     });
                     $(".loading").empty();
                 },
@@ -93,6 +94,9 @@ $(document).on("click", "#btnSubmit", function (event) {
             cache: false,
             success: function (data) {
                 $("#DataModal").modal("hide");
+                $.get("/Admin/GetPartial", function (data2) {
+                    $("#NewTeamPartial").html(data2);
+                });
                 $(".loading").empty();
             },
             error: function (xhr) {
@@ -116,8 +120,8 @@ $(document).on("click", ".btndel", function (e) {
         cache: false,
         success: function (data) {
             $("#DeleteModel").modal("hide");
-            $.get("/Admin/GetTeamPartial", function (data2) {
-                $("#Teampartial").html(data2);
+            $.get("/Admin/GetPartial", function (data2) {
+                $("#NewTeamPartial").html(data2);
             });
 
         },

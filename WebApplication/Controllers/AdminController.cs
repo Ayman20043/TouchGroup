@@ -164,6 +164,14 @@ namespace WebApplication.Controllers
 
         }
 
+        public ActionResult GetPartial()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return PartialView("_TeamPartial", db.TeamMembers.ToList());
+            }
+
+        }
         public ActionResult Savemember(TeamMemberViewModel Input)
         {
             try

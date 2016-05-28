@@ -1,6 +1,12 @@
-﻿@{
+﻿@using System.Collections.Specialized
+@{
     Layout = "../Shared/_InsideHomeLayout.cshtml";
 }
 
-
-<p>Use this area to provide additional information.</p>
+@section script{
+    <script>
+        $('body').removeClass('black-body');
+        $('body').addClass('black-body2');
+    </script>
+    
+}

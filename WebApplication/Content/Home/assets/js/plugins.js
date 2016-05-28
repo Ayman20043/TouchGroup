@@ -198,7 +198,11 @@
                e.preventDefault();
                that.toggle_sub($(this).siblings('ul'), $(this).find('i.fa'))
             });
-
+            this.$element.find('.homemenu-toggler').click(function (e) {
+                e.preventDefault();
+                that.toggle_sub($(this).siblings('ul'), $(this).parent().find('a.submenu-toggler').find('i.fa'))
+               
+            });
          },
          toggle_sub: function($sub_ul, $icon){
             if($icon.hasClass('fa-plus')) $icon.removeClass('fa-plus').addClass('fa-minus');
