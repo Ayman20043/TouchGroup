@@ -4,42 +4,199 @@
     ViewBag.Title = "AllTeamMember";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-@foreach (TeamMember item in Model)
-{
-    <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
-        <div class="well profile_view">
-            <div class="col-sm-12">
-                <h2>@item.Name</h2>
-                <div class="left col-xs-7">                  
-                    <p><strong>Position :</strong>@item.Position </p>
-                    <p><strong>Details :</strong>@item.Details </p>
-                    @*<ul class="list-unstyled">
-                        <li><i class="fa fa-phone"></i> Address:@item.Details </li>
-                    </ul>*@
-                    <br />
-                </div>
-                <div class="right col-xs-5 text-center">
-                    <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))'>   
-                    <br />            
-                </div>
+
+
+<body>
+    <div class="x_panel" style="height:600px;">
+        <div class="clearfix"></div>
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Team Members</h3>
             </div>
-            <div class="col-xs-12 bottom text-center">             
-                <div class="col-xs-12 col-sm-6 emphasis">
-                    <button type="button" class="btn btn-danger btn-xs">
-                        <i class="fa fa-edit">
-                        </i>Delete
-                    </button>
-                    <button type="button" class="btn btn-success btn-xs">
-                        <i class="fa fa-edit">
-                        </i>Edit
-                    </button>
-                    <button type="button" class="btn btn-primary btn-xs">
-                        <i class="fa fa-user">
-                        </i> View Profile
-                    </button>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btnsearch" type="button">Go!</button>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
+        @foreach (TeamMember item in Model)
+        {
+            <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                <div class="well profile_view">
+                    <div class="col-sm-12">
+                        <h2>@item.Name</h2>
+                        <div class="left col-xs-7">
+                            <p><strong>Position :</strong>@item.Position </p>
+                            <p><strong>Details :</strong>@item.Details </p>
+                            @*<ul class="list-unstyled">
+                                    <li><i class="fa fa-phone"></i> Address:@item.Details </li>
+                                </ul>*@
+                            <br />
+                        </div>
+                        <div class="right col-xs-5 text-center">
+                            <img src='~/Images/Profile/Display/@(string.Format("{0}_S.{1}",item.PicturePath,item.Extention))' alt="" class="img-circle img-responsive">
+                            <br />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 bottom text-center">
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                <i class="fa fa-user" data-id="@item.Id">
+                                </i> View Profile
+                            </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 emphasis">
+                            <button type="button" class="btn btn-success btn-xs clickedit" data-id="@item.Id">
+                                <i class="fa fa-edit">
+                                </i>Edit
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs clickdelete" data-id="@item.Id">
+                                <i class="fa fa-trash">
+                                </i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-}
+</body>
 
+<div id="DataModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Member Dtails</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <input type="hidden" name="Id" id="Id">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                            Name <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input data-val="true"
+                                   data-val-required="Email is required "
+                                   type="text" id="Name" name="Name" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Position">
+                            Position <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="Position" name="Position" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Details">
+                            Details <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="Details" name="Details" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <img id="Picture" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Picture">
+                            Picture
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @*<input type="file" id="PicturePath" class="form-control" required="required" name="PicturePath"  accept="image/*" />*@
+                            <input type="file" id="PicturePath" class="form-control file-loading loading" required="required" accept="image/*" name="PicturePath" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Cv">
+                            Cv <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="file" id="CvPath" class="form-control file-loading" required="required" name="CvPath" accept=".pdf" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div id="ModalFooter" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="btnSubmit" value="Submit" class="btn btn-success"></button>
+                    @*<button type="submit" id="btnSave" class="btn btn btn-primary">Save</button>*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Member</h4>
+            </div>
+            <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        Are You Sure Want To Delete ?<span class="required"></span>
+                    </label>
+
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="Del" class="btn btn-warning btndel " data-dismiss="modal">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/Admin/js/parsley/parsley.min.js"></script>
+<script src="~/Scripts/Admin/JQScripts/Team.js"></script>
+<link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+<script src="~/Scripts/fileinput.min.js"></script>
+<script>
+    $(document).on('ready', function () {
+        $("#CvPath").fileinput({
+            showUpload: false,
+            showCaption: true,
+            showRemove: false,
+            showClose: false,
+            browseClass: "btn btn-primary btn-md",
+            fileType: "pdf",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            previewSettings: { image: { width: "auto", height: "160px" } }
+        });
+        $("#PicturePath").fileinput({
+            showUpload: false,
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> "
+        });
+
+
+    });
+    
+</script>

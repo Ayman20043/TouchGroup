@@ -1,28 +1,9 @@
-﻿$(document).on('ready', function() {
-    $("#PicturePath").fileinput({
-        previewFileType: "image",
-        browseClass: "btn btn-success",
-        browseLabel: "Pick Image",
-        browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-        removeClass: "btn btn-danger",
-        removeLabel: "Delete",
-        removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-        showUpload: false,
-    });
-});
-
-$(document).ready(function () {
-    $('#DataModal').on('hidden.bs.modal', function () {
-        $('#form2')[0].reset();
-        $('#form2').parsley().reset();
-    });
-});
-
-$(document).on("click", ".add", function (e) {
+﻿$(document).on("click", ".add", function (e) {
     $("#btnSubmit").text('Add').css("background-color", "#5cb85c").addClass("White");
     $("#DataModal").modal("show");
     $("#Picture").hide();
 });
+
 
 $(document).on("click", ".clickedit", function (e) {
     $("#btnSubmit").text('Save').css("background-color", "#337ab7").addClass("White");
@@ -32,7 +13,7 @@ $(document).on("click", ".clickedit", function (e) {
     $("#Id").val(action);
     $("#Picture").show();
     $.ajax({
-        url: "/Admin/GetHomeImage?id=" + action,
+        url: "/Admin/GetMember?id=" + action,
         dataType: "json",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
@@ -40,12 +21,13 @@ $(document).on("click", ".clickedit", function (e) {
         processData: false,
         cache: false,
         success: function (data) {
-            var aymoseba = "/Images/backgrounds/SmallBackGround/" + data.PicturePath + "_S." + data.Extention;
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention;
             $("#Picture").attr("Src", aymoseba);
-            $("#Title").val(data.Title);
-            $("#Description").val(data.Description);
-            //$("#PicturePath").val(data.PicturePath);
-            $("#IsActive").prop('checked',Boolean(data.IsActive));
+            $("#Name").val(data.Name);
+            $("#Position").val(data.Position);
+            $("#Details").val(data.Details);
+            $("#Picture").val("");
+            $("#Cv").val(data.CvPath);
         },
         error: function (xhr) {
             alert('error');
@@ -76,7 +58,7 @@ $(document).on("click", "#btnSubmit", function (event) {
         var isValid = validateFront();
         if (isValid) {
             $.ajax({
-                url: "/Admin/CreatHome",
+                url: "/Admin/CreatMember",
                 type: "POST",
                 async: true,
                 data: dataString,
@@ -85,17 +67,16 @@ $(document).on("click", "#btnSubmit", function (event) {
                 cache: false,
                 success: function (data) {
                     $("#DataModal").modal("hide");
-                    $.get("/Admin/GetHomePartial", function (data2) {
-                        $("#HomePartial").html(data2);
+                    $.get("/Admin/AllTeamMember", function (data2) {
                     });
-                    $("#PicturePath").empty();
+                    $(".loading").empty();
                 },
                 error: function (xhr) {
                     alert('error');
                 }
             });
         } else {
-          
+
         }
 
     }
@@ -103,7 +84,7 @@ $(document).on("click", "#btnSubmit", function (event) {
         var form = $('#form2')[0];
         var dataString = new FormData(form);
         $.ajax({
-            url: "/Admin/SaveHomeImages",
+            url: "/Admin/Savemember",
             type: "POST",
             async: true,
             data: dataString,
@@ -112,10 +93,7 @@ $(document).on("click", "#btnSubmit", function (event) {
             cache: false,
             success: function (data) {
                 $("#DataModal").modal("hide");
-                $.get("/Admin/GetHomePartial", function (data2) {
-                    $("#HomePartial").html(data2);
-                });
-                $("#PicturePath").empty();
+                $(".loading").empty();
             },
             error: function (xhr) {
                 alert('error');
@@ -124,10 +102,12 @@ $(document).on("click", "#btnSubmit", function (event) {
     }
 });
 
+
+
 $(document).on("click", ".btndel", function (e) {
     var action = $(this).attr('data-id');
     $.ajax({
-        url: "/Admin/DeleteElemnt?id=" + action,
+        url: "/Admin/DeleteRow?id=" + action,
         dataType: "json",
         type: "GET",
         contentType: 'application/json; charset=utf-8',
@@ -136,8 +116,8 @@ $(document).on("click", ".btndel", function (e) {
         cache: false,
         success: function (data) {
             $("#DeleteModel").modal("hide");
-            $.get("/Admin/GetHomePartial", function (data2) {
-                $("#HomePartial").html(data2);
+            $.get("/Admin/GetTeamPartial", function (data2) {
+                $("#Teampartial").html(data2);
             });
 
         },
@@ -145,8 +125,33 @@ $(document).on("click", ".btndel", function (e) {
             alert('error');
         }
     });
+
 });
 
+$(document).on("click", ".clickview", function (e) {
+    var action = $(this).attr('data-id');
+    $("#ViewModel").modal("show");
+    $.ajax({
+        url: "/Admin/GetMember?id=" + action,
+        dataType: "json",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        async: true,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            var aymoseba = "/Images/Profile/Display/" + data.PicturePath + "_S." + data.Extention;
+            $("#Nameview").html(data.Name);
+            $("#Positionview").html(data.Position);
+            $("#Detailsview").html(data.Details);
+            $("#Pictureview").attr("Src", aymoseba);
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+
+});
 
 $(document).ready(function () {
     $(document).on("click", ".clickdelete", function (e) {
@@ -155,3 +160,14 @@ $(document).ready(function () {
         $("#DeleteModel").modal("show");
     });
 });
+
+$(document).ready(function () {
+    $('#DataModal').on('hidden.bs.modal', function () {
+        $('#form2')[0].reset();
+        $('#form2').parsley().reset();
+    });
+
+});
+
+
+

@@ -484,6 +484,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\userM.png" />
     <Content Include="Scripts\Admin\JQScripts\HomeImage.js" />
+    <Content Include="Scripts\Admin\JQScripts\NewTeamMember.js" />
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
     <Content Include="Scripts\Admin\JQScripts\Validation.js" />
