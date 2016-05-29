@@ -125,7 +125,7 @@ namespace WebApplication.Controllers
                         Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
                     if (Arry[1] == "pdf")
                     {
-                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName );
                     }
                     Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                     var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
@@ -202,7 +202,7 @@ namespace WebApplication.Controllers
                     }
                     if (Input.CvPath != null)
                     {
-                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName + Date);
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName);
                         obj.CvPath = Input.CvPath.FileName;
                     }
                     touch.Entry(obj).State = EntityState.Modified;

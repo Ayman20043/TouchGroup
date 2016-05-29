@@ -1,8 +1,7 @@
 ﻿@using WebApplication.Models
 @model IEnumerable<WebApplication.Models.Project>
 <div id="ProjectPartial">
-    <table id="datatable" class="table table-bordered">
-        <thead>
+    <table id="datatable" class="table ">
             <tr>
                 <th>Project Name</th>
                 <th>Location</th>
@@ -13,7 +12,6 @@
                 <th>SubCategory</th>
                 <th>Action</th>
             </tr>
-        </thead>
         <tbody>
             @foreach (Project item in Model)
             {
