@@ -34,7 +34,7 @@ namespace WebApplication.Migrations
                 {
                     Id = 1,
                     Name = "Aliaa Omar",
-                    From = "Aliaa@touchgroup.org",              
+                    From = "Aliaa@touchgroup.org",
                     Message = "EEEEEEEEEEEEEEEEEEEEEE",
                     IsRead = true,
                     SendDate = DateTime.Now,
@@ -48,7 +48,7 @@ namespace WebApplication.Migrations
                      Message = "EEEEEEEEEEEEEEEEEEEEEE",
                      IsRead = false,
                      SendDate = DateTime.Now,
-                     Subject = "Arch Job"
+                     Subject = "Civil Engineer"
                  },
                   new Models.ContactUsMessage
                   {
@@ -59,7 +59,27 @@ namespace WebApplication.Migrations
                       IsRead = false,
                       SendDate = DateTime.Now,
                       Subject = "Arch Job"
-                  }
+                  },
+                   new Models.ContactUsMessage
+                   {
+                       Id = 4,
+                       Name = "Suzan Omar",
+                       From = "Sozita@touchgroup.org",
+                       Message = "EEEEEEEEEEEEEEEEEEEEEE",
+                       IsRead = false,
+                       SendDate = DateTime.Now,
+                       Subject = "Arch Job"
+                   },
+                     new Models.ContactUsMessage
+                     {
+                         Id = 5,
+                         Name = "Sara Mohamed",
+                         From = "Saramohamed@touchgroup.org",
+                         Message = "EEEEEEEEEEEEEEEEEEEEEE",
+                         IsRead = true,
+                         SendDate = DateTime.Now,
+                         Subject = "Arch Job"
+                     }
                 );
         }
     }

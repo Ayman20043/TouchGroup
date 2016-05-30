@@ -800,6 +800,8 @@ namespace WebApplication.Controllers
         {
             return View();
         }
+
+        #region//Inbox Messages
         public ActionResult ContactUsMessage()
         {
             using (TouchContext db = new TouchContext())
@@ -808,7 +810,37 @@ namespace WebApplication.Controllers
             }
 
         }
- 
+
+        public ActionResult DeleteMessage(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+
+                    var del = touch.ContactUsMessages.FirstOrDefault(a => a.Id == id);
+                    touch.ContactUsMessages.Remove(del);
+                    touch.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult GetMessagePartial()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return PartialView("_MessagePartial", db.ContactUsMessages.ToList());
+            }
+
+        }
+
+        #endregion
         public ActionResult AllTeamMember()
         {
             using (TouchContext db = new TouchContext())

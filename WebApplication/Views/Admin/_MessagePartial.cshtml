@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebApplication.Models.ContactUsMessage>
+
+@{
+    ViewBag.Title = "ContactUsMessage";  
+}
+
+<div class="x_panel" style="height:600px;">
+    <div class="clearfix"></div>
+    <div class="x_title">
+        <h2>Inbox</h2>
+        <div class="clearfix"></div>
+    </div>
+    <table class="table table-striped responsive-utilities jambo_table bulk_action">
+        <thead>
+            <tr class="headings">
+                <th class="column-title">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th class="column-title">
+                    @Html.DisplayNameFor(model => model.From)
+                </th>
+                <th class="column-title">
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th class="column-title">
+                    @Html.DisplayNameFor(model => model.SendDate)
+                </th>
+                <th class="column-title">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+            {
+                if (item.IsRead == false)
+                {
+                <tr style="background-color:lightgrey">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.From)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SendDate)
+                    </td>
+                    <td>
+                        <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
+                        <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr style="background-color:white">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.From)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SendDate)
+                    </td>
+                    <td>
+                        <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
+                        <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+</div>

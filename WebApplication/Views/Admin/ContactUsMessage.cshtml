@@ -5,71 +5,67 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h4>Contact Us Message</h4>
+<div id="Teampartial">
+    @{Html.RenderPartial("_MessagePartial", Model); }
+</div>
 
-<table class="table table-bordered " >
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.From)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SendDate)
-        </th>
-        <th>
-           Action
-        </th>
-    </tr>
+<div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Message</h4>
+            </div>
+            <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        Are You Sure Want To Delete ?<span class="required"></span>
+                    </label>
 
-@foreach (var item in Model)
-{
-    if (item.IsRead == false)
-    {
-        <tr style="background-color:lightgrey">
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.From)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SendDate)
-            </td>
-            <td>
-                <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
-                <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
-            </td>
-        </tr>
-    }
-    else { 
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.From)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="Del" class="btn btn-warning btndel " data-dismiss="modal">Delete</button>
+                </div>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.SendDate)
-        </td> 
-        <td>
-            <a id="EditeClick" data-id="@item.Id" class="btn btn-info btn-sm clickView"><i class="fa fa-file "></i> Read </a>
-            <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger btn-sm clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
-        </td> 
-    </tr>
-    }
-}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on("click", ".btndel", function (e) {
+        var action = $(this).attr('data-id');
+        $.ajax({
+            url: "/Admin/DeleteMessage?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert
+                $("#DeleteModel").modal("hide");
+                $.get("/Admin/GetMessagePartial", function (data2) {
+                    $(".x_panel").html(data2);
+                });
 
-</table>
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
+
+    $(document).ready(function () {
+        $(document).on("click", ".clickdelete", function (e) {
+            var action = $(this).attr('data-id');
+            $(".btndel").attr('data-id', action);
+            $("#DeleteModel").modal("show");
+        });
+    });
+</script>
