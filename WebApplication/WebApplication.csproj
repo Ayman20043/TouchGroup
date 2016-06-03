@@ -829,6 +829,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1073,6 +1075,7 @@
     <Content Include="Views\Shared\_BasicHomeLayout.cshtml" />
     <Content Include="Views\Admin\_TeamPartial.cshtml" />
     <Content Include="Views\Shared\_InsideHomeLayout.cshtml" />
+    <Content Include="Views\Admin\_MessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
