@@ -103,6 +103,30 @@
 </div>
 
 
+<div id="pdfmodal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete Member</h4>
+            </div>
+            <div class="modal-body">
+                    <div>
+                        <iframe src="" width="500" height="500" frameborder="0"></iframe>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="Del" class="btn btn-warning btndel " data-dismiss="modal">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -160,7 +184,8 @@
 @section links{
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js" integrity="sha256-xI/qyl9vpwWFOXz7+x/9WkG5j/SVnSw21viy8fWwbeE=" crossorigin="anonymous"></script>
    <script type="text/javascript">
-    $(document).on("click", ".view-pdf", function (e) {
+       $(document).on("click", ".view-pdf", function (e) {
+           $("#pdfmodal").modal("show");
         var action = $(this).attr('data-path');
         var fileName = "/File/" + action;
         $("#dialog").dialog();
@@ -170,12 +195,6 @@
 
 
 }
-<div id="dialog" style="display:none">
-    <div>
-        <iframe src="" width="700" height="700" frameborder="1"></iframe>
-    </div>
-</div>
-
 <script src="~/Content/Home/assets/js/vendor/jquery-ui-1.10.4.custom.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
 <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
