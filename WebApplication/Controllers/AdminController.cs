@@ -328,6 +328,22 @@ namespace WebApplication.Controllers
         [HttpPost]
         public ActionResult ProjectForm(ProjectViewModel input)
         {
+            foreach (string file in Request.Files)
+            {
+                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                if (hpf.ContentLength == 0)
+                    continue;
+
+                // string savedFileName = Path.Combine(Server.MapPath("~/App_Data"), Path.GetFileName(hpf.FileName));
+                /*  hpf.SaveAs(savedFileName);*/ // Save the file
+
+                //r.Add(new ViewDataUploadFilesResult()
+                //{
+                //    Name = hpf.FileName,
+                //    Length = hpf.ContentLength,
+                //    Type = hpf.ContentType
+                //});
+            }
             using (TouchContext db = new TouchContext())
             {
                 var Date = DateTime.Now.ToFileTimeUtc();
@@ -357,7 +373,7 @@ namespace WebApplication.Controllers
 
                 if (input.LogoPath != null)
                 {
-                    var resizedImage = Helpers.ImageResizeHelper.FixedSize(Image.FromStream(input.LogoPath.InputStream), 100, 100);
+                    var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(new Bitmap(input.LogoPath.InputStream), 100, 100);
                     resizedImage.Save(HttpContext.
                         Server.MapPath("~/Images/logo/") + arr[0] + Date + "." + arr[1]);
                 }
@@ -380,9 +396,27 @@ namespace WebApplication.Controllers
                 return Redirect("~/Admin/Projects");
             }
         }
-
-        public ActionResult AsycnImageUpload(HttpPostedFileBase input)
+        [HttpPost]
+        public ActionResult AsycnImageUpload()
         {
+          //  var r = new List<ViewDataUploadFilesResult>();
+
+            foreach (string file in Request.Files)
+            {
+                HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
+                if (hpf.ContentLength == 0)
+                    continue;
+
+               // string savedFileName = Path.Combine(Server.MapPath("~/App_Data"), Path.GetFileName(hpf.FileName));
+              /*  hpf.SaveAs(savedFileName);*/ // Save the file
+
+                //r.Add(new ViewDataUploadFilesResult()
+                //{
+                //    Name = hpf.FileName,
+                //    Length = hpf.ContentLength,
+                //    Type = hpf.ContentType
+                //});
+            }
 
             return Json(true,JsonRequestBehavior.AllowGet);
         }

@@ -167,6 +167,7 @@ $(document).ready(function () {
     $('#DataModal').on('hidden.bs.modal', function () {
         $('#form2')[0].reset();
         $('#form2').parsley().reset();
+        $('#CvPath').fileinput('clear');
     });
 
 });

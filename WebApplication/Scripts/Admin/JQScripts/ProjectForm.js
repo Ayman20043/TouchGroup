@@ -46,7 +46,9 @@ $(document).on('ready', function () {
 
     $("#ProjectImages").fileinput({
         uploadAsync: true,
-        uploadUrl: '/Admin/uploadUrl',
+        uploadUrl: '/Admin/AsycnImageUpload',
+        dataType: 'json',
+        autoUpload: true,
         showUpload: false,
         showCaption: true,
         showRemove: false,
