@@ -45,7 +45,8 @@ $(document).on('ready', function () {
     });
 
     $("#ProjectImages").fileinput({
-        uploadUrl: '#',
+        uploadAsync: true,
+        uploadUrl: '/Admin/uploadUrl',
         showUpload: false,
         showCaption: true,
         showRemove: false,

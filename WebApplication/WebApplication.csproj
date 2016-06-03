@@ -1080,7 +1080,7 @@
     <Folder Include="Images\backgrounds\SmallBackGround\" />
     <Folder Include="Images\Logo\" />
     <Folder Include="Images\Profile\Display\" />
-    <Folder Include="Images\Projects\" />
+    <Folder Include="Images\Projects\Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

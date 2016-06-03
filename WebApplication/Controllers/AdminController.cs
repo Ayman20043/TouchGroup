@@ -380,6 +380,13 @@ namespace WebApplication.Controllers
                 return Redirect("~/Admin/Projects");
             }
         }
+
+        public ActionResult AsycnImageUpload(HttpPostedFileBase input)
+        {
+
+            return Json(true,JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult GetAllProjects()
         {
             try
