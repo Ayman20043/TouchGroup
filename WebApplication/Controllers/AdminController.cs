@@ -881,6 +881,27 @@ namespace WebApplication.Controllers
 
         }
 
+
+        public ActionResult ReadMessage(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var View = touch.ContactUsMessages.FirstOrDefault(a => a.Id == id);
+                    View.IsRead = true;
+                    touch.Entry(View).State = EntityState.Modified;
+                    touch.SaveChanges();
+                    return Json(View, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
         #endregion
         public ActionResult AllTeamMember()
         {
