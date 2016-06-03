@@ -318,7 +318,7 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db = new TouchContext())
             {
-                var obj = db.Projects.Where(a => a.Id == id).FirstOrDefault();
+                var obj = db.Projects.FirstOrDefault(a => a.Id == id);
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;

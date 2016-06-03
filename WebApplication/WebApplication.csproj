@@ -793,6 +793,7 @@
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\PdfStyle.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\fileinput.min.js" />
