@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<WebApplication.Models.ContactUsMessage>
-
 @{
     ViewBag.Title = "ContactUsMessage";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -7,6 +6,26 @@
 
 <div id="Teampartial">
     @{Html.RenderPartial("_MessagePartial", Model); }
+</div>
+
+<div id="message" class="modal fade" tabindex="-1" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Message Details</h4>
+            </div>
+            <div class="modal-body">               
+                <div id="msecont"></div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
@@ -68,4 +87,30 @@
             $("#DeleteModel").modal("show");
         });
     });
+
+    $(document).on("click", ".read", function (e) {
+        $("#message").modal("show");
+        var id =$(this).attr('data-id')
+        $.ajax({
+            url: "/Admin/ReadMessage?id=" + id,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#msecont").text(data.Message);
+                $.get("/Admin/GetMessagePartial", function (data2) {
+                    $(".x_panel").html(data2);
+                });
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
 </script>
