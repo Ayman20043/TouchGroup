@@ -1,5 +1,5 @@
 ﻿$(document).on('click', ".add", function (e) {
-    window.location.href = "/Admin/AddCareer"
+    window.location.href = "/Admin/AddCareer?id="+1
 })
 
 $(document).on("click", ".btndel", function (e) {

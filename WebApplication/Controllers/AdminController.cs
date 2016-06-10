@@ -890,11 +890,11 @@ namespace WebApplication.Controllers
 
         }
 
-        public ActionResult AddCareer()
+        public ActionResult AddCareer(int id)
         {
             using (TouchContext db = new TouchContext())
             {
-                return View();
+                return View(db.CareerInformation.Where(a=>a.Id==id).FirstOrDefault());             
             }
 
         }
@@ -904,7 +904,9 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db = new TouchContext())
             {
-                db.CareerInformation.Add(career);
+                //db.CareerInformation.Add(career);
+                var obj = db.CareerInformation.Where(a => a.Id == career.Id).FirstOrDefault();
+                db.Entry(obj).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("JobApplication");
             }
@@ -929,7 +931,6 @@ namespace WebApplication.Controllers
                     var del = touch.JobApplication.FirstOrDefault(a => a.Id == id);
                     touch.JobApplication.Remove(del);
                     touch.SaveChanges();
-
                 }
             }
             catch (Exception)
