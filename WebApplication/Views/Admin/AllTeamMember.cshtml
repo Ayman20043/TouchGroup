@@ -185,7 +185,7 @@
         $(document).on("click", ".view-pdf", function (e) {
             $("#pdfmodal").modal("show");
             var action = $(this).attr('data-path');
-            var fileName = "/File/" + action;
+            var fileName = "/File/MemberCv/" + action;
             $("#dialog").dialog();
             $('iframe').attr("src", fileName);
         });

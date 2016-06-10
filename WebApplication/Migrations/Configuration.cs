@@ -81,6 +81,13 @@ namespace WebApplication.Migrations
                          Subject = "Arch Job"
                      }
                 );
+
+            context.CareerInformation.AddOrUpdate(
+                new Models.CareerInfo {
+                    Id=1,
+                    Content=string.Empty
+                }
+                );
         }
     }
 }

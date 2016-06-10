@@ -125,7 +125,7 @@ namespace WebApplication.Controllers
                         Server.MapPath("~/Images/Profile/") + Arr[0] + Date + "_L." + Arr[1]);
                     if (Arry[1] == "pdf")
                     {
-                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName );
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/MemberCv/") + Input.CvPath.FileName );
                     }
                     Bitmap b = new Bitmap(Input.PicturePath.InputStream);
                     var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(b, 100, 100);
@@ -202,7 +202,7 @@ namespace WebApplication.Controllers
                     }
                     if (Input.CvPath != null)
                     {
-                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/") + Input.CvPath.FileName);
+                        Input.CvPath.SaveAs(HttpContext.Server.MapPath("~/File/MemberCv/") + Input.CvPath.FileName);
                         obj.CvPath = Input.CvPath.FileName;
                     }
                     touch.Entry(obj).State = EntityState.Modified;
@@ -871,5 +871,73 @@ namespace WebApplication.Controllers
 
         }
 
+        #region JobApplication
+        public ActionResult JobApplication()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return View(db.JobApplication.ToList());
+            }
+
+        }
+
+        public ActionResult JobrPartial()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return PartialView("_JobPartial", db.JobApplication.ToList());
+            }
+
+        }
+
+        public ActionResult AddCareer()
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                return View();
+            }
+
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult AddCareer(CareerInfo career)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                db.CareerInformation.Add(career);
+                db.SaveChanges();
+                return RedirectToAction("JobApplication");
+            }
+
+        }
+        public JsonResult GetJob(int id)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var obj = db.JobApplication.Where(a => a.Id == id).FirstOrDefault();
+                return Json(obj,JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult DeleteJob(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var del = touch.JobApplication.FirstOrDefault(a => a.Id == id);
+                    touch.JobApplication.Remove(del);
+                    touch.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }
