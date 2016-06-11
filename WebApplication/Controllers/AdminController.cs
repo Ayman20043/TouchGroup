@@ -452,7 +452,7 @@ namespace WebApplication.Controllers
         }
         [HttpPost]
         public ActionResult AsycnImageUpload()
-        {
+         {
           //  var r = new List<ViewDataUploadFilesResult>();
 
             foreach (string file in Request.Files)
@@ -998,8 +998,8 @@ namespace WebApplication.Controllers
             using (TouchContext db = new TouchContext())
             {
                 //db.CareerInformation.Add(career);
-                var obj = db.CareerInformation.Where(a => a.Id == career.Id).FirstOrDefault();
-                db.Entry(obj).State = EntityState.Modified;
+                //var obj = db.CareerInformation.Where(a => a.Id == career.Id).FirstOrDefault();
+                db.Entry(career).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("JobApplication");
             }

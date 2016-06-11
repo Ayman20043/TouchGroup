@@ -20,10 +20,14 @@ namespace WebApplication.Models
         public string Location { get; set; }
         public int Area { get; set; }
         public string Client { get; set; }
+        [Display(Name = "Logo")]
+
         public string LogoPath { get; set; }
         public int CategoryId { get; set; }
         public int? SubCategoryId { get; set; }
         public Category Category { get; set; }
+        [Display(Name = "Sub Category")]
+
         public SubCategory SubCategory { get; set; }
         public Boolean IsActive { get; set; }
         public List<ProjectImage> ProjectImages { get; set; }
