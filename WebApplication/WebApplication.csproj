@@ -489,7 +489,9 @@
     <Content Include="Images\LOGO TO GO.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\userM.png" />
+    <Content Include="Scripts\Admin\JQScripts\career.js" />
     <Content Include="Scripts\Admin\JQScripts\HomeImage.js" />
+    <Content Include="Scripts\Admin\JQScripts\JobApplication.js" />
     <Content Include="Scripts\Admin\JQScripts\NewTeamMember.js" />
     <Content Include="Scripts\Admin\JQScripts\ProjectForm.js" />
     <Content Include="Scripts\Admin\JQScripts\Team.js" />
@@ -1071,6 +1073,8 @@
     <Content Include="Views\Admin\HomeImage.cshtml" />
     <Content Include="Views\Admin\ContactUsMessage.cshtml" />
     <Content Include="Views\Admin\AllTeamMember.cshtml" />
+    <Content Include="Views\Admin\JobApplication.cshtml" />
+    <Content Include="Views\Admin\AddCareer.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
     <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
@@ -1078,10 +1082,12 @@
     <Content Include="Views\Admin\_TeamPartial.cshtml" />
     <Content Include="Views\Shared\_InsideHomeLayout.cshtml" />
     <Content Include="Views\Admin\_MessagePartial.cshtml" />
+    <Content Include="Views\Admin\_JobPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="File\" />
+    <Folder Include="File\JobCv\" />
+    <Folder Include="File\MemberCv\" />
     <Folder Include="Images\backgrounds\SmallBackGround\" />
     <Folder Include="Images\Logo\" />
     <Folder Include="Images\Profile\Display\" />

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication.Models.JobApplication>
+
+<div id="jobpartial">
+    <div class="x_panel" style="height:600px;">
+        <div class="clearfix"></div>
+        <div class="x_title">
+            <h2>Job Application</h2>
+            <div class="clearfix"></div>
+        </div>
+        <table class="table table-striped responsive-utilities jambo_table bulk_action">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        <a id="ViewDetails" data-id="@item.Id" class="btn btn-primary  ViewDetails"><i class="fa fa-fire"></i> Details </a>
+                        <a id="viewCv" data-id="@item.Id" class="btn btn-info edite viewCv"><i class="fa fa-pencil "></i> View CV </a>
+                        <a id="DeleteClick" data-id="@item.Id" class="btn btn-danger  clickdelete"><i class="fa fa-trash-o"></i> Delete </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
