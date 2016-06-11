@@ -470,6 +470,7 @@
     <Content Include="Content\Home\assets\plugins\video-js\video.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fonts\css\fileinput.css" />
     <Content Include="fonts\fonts\css\font-awesome.css" />
     <Content Include="fonts\fonts\css\font-awesome.min.css" />
     <Content Include="fonts\fonts\fonts\fontawesome-webfont.svg" />

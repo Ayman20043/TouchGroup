@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,7 +21,7 @@ namespace WebApplication.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("CompanyProfile");
         }
 
         #region//ContactUs
@@ -316,17 +317,96 @@ namespace WebApplication.Controllers
 
         public ActionResult ProjectForm(int? id)
         {
+            var model = new ProjectViewModel();
             using (TouchContext db = new TouchContext())
             {
-                var obj = db.Projects.FirstOrDefault(a => a.Id == id);
+                if (id!=null && id >0)
+                {
+                    var obj = db.Projects.Include("ProjectImages").FirstOrDefault(a => a.Id == id);
+                    model=new ProjectViewModel(obj);
+                }
                 List<Category> cat = new List<Category>(db.Categories.ToList());
                 SelectList CatList = new SelectList(cat, "Id", "Name");
                 ViewBag.CategoryList = CatList;
-                return View(obj);
             }
+            return View(model);
         }
         [HttpPost]
-        public ActionResult ProjectForm(ProjectViewModel input)
+        public ActionResult ProjectForm(ProjectViewModel input,string imagesNames)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var Date = DateTime.Now.ToFileTimeUtc();
+                string[] arr = input.LogoPath?.FileName.Split('.');
+                Project project;
+                if (input.Id == 0)
+                {
+                    project = new Project()
+                    {
+                        Area = input.Area,
+                        Client = input.Client,
+                        Location = input.Location,
+                        Name = input.Name,
+                        IsActive = input.IsActive,
+                        CategoryId = input.CategoryId,
+                        SubCategoryId = input.SubCategoryId,
+                        //LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
+                    };
+                   
+                    if (arr != null)
+                        project.LogoPath = arr[0] + Date + "." + arr[1];
+                    db.Projects.Add(project);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    project = db.Projects.Single(e => e.Id == input.Id);
+                    project.Area = input.Area;
+                    project.Client = input.Client;
+                    project.Location = input.Location;
+                    project.Name = input.Name;
+                    project.IsActive = input.IsActive;
+                    project.CategoryId = input.CategoryId;
+                    project.SubCategoryId = input.SubCategoryId;
+                    if (input.LogoPath != null)
+                     project.LogoPath = project.LogoPath = arr[0] + Date + "." + arr[1];
+                }
+                if (input.LogoPath != null)
+                {
+                    var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(new Bitmap(input.LogoPath.InputStream), 100, 100);
+                    resizedImage.Save(HttpContext.Server.MapPath("~/Images/logo/") + arr[0] + Date + "." + arr[1]);
+                }
+                var selectedImagesNames = imagesNames.Split(',');
+                if (selectedImagesNames.Length > 0)
+                {
+                    List<ProjectImage> images = new List<ProjectImage>();
+                    foreach (var item in selectedImagesNames)
+                    {
+                        if (System.IO.File.Exists(Path.Combine(Server.MapPath("~/Images/Projects/Temp"), item)))
+                        {
+                            var file = item.Split('.').First() + Date + "." + item.Split('.').Last();
+                            System.IO.File.Copy(Path.Combine(Server.MapPath("~/Images/Projects/Temp"), item), Path.Combine(Server.MapPath("~/Images/Projects/"), file));
+                            System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images/Projects/Temp"), item));
+                            images.Add(new ProjectImage() { FileName = file, ProjectId = project.Id });
+                        }
+                    }
+                    db.ProjectsImages.AddRange(images);
+                    db.SaveChanges();
+                }
+                System.IO.DirectoryInfo di = new DirectoryInfo(Server.MapPath("~/Images/Projects/Temp"));
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+                List<Category> cat = new List<Category>(db.Categories.ToList());
+                SelectList CatList = new SelectList(cat, "Id", "Name");
+                ViewBag.CategoryList = CatList;
+                return Redirect("~/Admin/Projects");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteImage()
         {
             foreach (string file in Request.Files)
             {
@@ -344,57 +424,8 @@ namespace WebApplication.Controllers
                 //    Type = hpf.ContentType
                 //});
             }
-            using (TouchContext db = new TouchContext())
-            {
-                var Date = DateTime.Now.ToFileTimeUtc();
-                string[] arr = input.LogoPath.FileName.Split('.');
-                Project project;
-                if (input.Id == 0)
-                {
-                    project = new Project()
-                    {
-                        Area = input.Area,
-                        Client = input.Client,
-                        Location = input.Location,
-                        Name = input.Name,
-                        IsActive = input.IsActive,
-                        CategoryId = input.CategoryId,
-                        SubCategoryId = input.SubCategoryId,
-                        LogoPath = arr[0] + Date + "." + arr[1]
-                        //LogoPath = input.LogoPath.FileName.Split('.').First() + Date+"."+ input.LogoPath.FileName.Split('.').Last()
-                    };
-                    db.Projects.Add(project);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    project = db.Projects.Single(e => e.Id == input.Id);
-                }
 
-                if (input.LogoPath != null)
-                {
-                    var resizedImage = Helpers.ImageResizeHelper.ResizeBitmap(new Bitmap(input.LogoPath.InputStream), 100, 100);
-                    resizedImage.Save(HttpContext.
-                        Server.MapPath("~/Images/logo/") + arr[0] + Date + "." + arr[1]);
-                }
-                if (input.ProjectImages.Any())
-                {
-                    List<ProjectImage> images = new List<ProjectImage>();
-                    foreach (var image in input.ProjectImages)
-                    {
-                        var file = image.FileName.Split('.').First() + Date + "." + image.FileName.Split('.').Last();
-                        image.SaveAs((HttpContext.Server.MapPath("~/Images/Projects/") + file));
-                        images.Add(new ProjectImage() { FileName = file, ProjectId = project.Id });
-                    }
-                    db.ProjectsImages.AddRange(images);
-                    db.SaveChanges();
-                }
-
-                List<Category> cat = new List<Category>(db.Categories.ToList());
-                SelectList CatList = new SelectList(cat, "Id", "Name");
-                ViewBag.CategoryList = CatList;
-                return Redirect("~/Admin/Projects");
-            }
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult AsycnImageUpload()
@@ -406,10 +437,8 @@ namespace WebApplication.Controllers
                 HttpPostedFileBase hpf = Request.Files[file] as HttpPostedFileBase;
                 if (hpf.ContentLength == 0)
                     continue;
-
-               // string savedFileName = Path.Combine(Server.MapPath("~/App_Data"), Path.GetFileName(hpf.FileName));
-              /*  hpf.SaveAs(savedFileName);*/ // Save the file
-
+                string savedFileName = Path.Combine(Server.MapPath("~/Images/Projects/Temp"), Path.GetFileName(hpf.FileName));
+                hpf.SaveAs(savedFileName); // Save the file
                 //r.Add(new ViewDataUploadFilesResult()
                 //{
                 //    Name = hpf.FileName,

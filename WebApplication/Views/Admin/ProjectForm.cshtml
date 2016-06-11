@@ -1,4 +1,4 @@
-﻿@model WebApplication.Models.Project
+﻿@model WebApplication.Models.ProjectViewModel
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                <input type="file" id="LogoPath" class="form-control file-loading" required="required" accept="image/*" name="LogoPath" />               
+                <input type="file" id="LogoPath" class="form-control file-loading" accept="image/*" name="LogoPath" />               
             </div>
         </div>
 
@@ -60,24 +60,27 @@
         <div class="form-group collapse" id="subDropDownDiv">
             @Html.LabelFor(model => model.SubCategory, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-7 ">
-                <select id="SubCategoryId" name="SubCategoryId" required="required" data-val="true" class="form-control"></select>
+                <select id="SubCategoryId" name="SubCategoryId"  data-val="true" class="form-control"></select>
             </div>
             <div class="col-md-1">
                 <a class="btn btn-success" id="AddsubCat"><i class="glyphicon glyphicon-plus"></i>Add</a>
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-7">
-                <label class="control-label">Select File</label>
-                <input id="ProjectImages" name="ProjectImages" required="required" type="file" accept="image/*" multiple class="file-loading">
+                @*<label class="control-label">Select File</label>*@
+                <input id="ProjectImages" name="ProjectImages" type="file" accept="image/*" multiple class="file-loading">
+                @Html.HiddenFor(x => x.imagesNames)
             </div>
         </div>
+     
         <div class="form-group">
             @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6 col-sm-6 col-xs-12 col-lg-offset-0">
                 @Html.CheckBox("IsActive", new { @class = " form-control " })
             </div>
+            
         </div>
 
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -160,8 +163,47 @@
 
 @section links{
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+   
+<script>
+        $(document).on('ready', function() {
+            $("#ProjectImages").fileinput({
+                initialPreviewAsData: false,
+                overwriteInitial: true,
+                initialCaption: "",
+                uploadAsync: true,
+                uploadUrl: '/Admin/AsycnImageUpload',
+                deleteUrl: "/Admin/DeleteImage",
+                dataType: 'json',
+                @if (Model.ProjectImages != null && Model.ProjectImages.Any())
+                {
+                    @:initialPreview: [
+                    foreach (var item in Model.ProjectImages)
+                    {
+                        @:'/Images/Projects/@item.FileName',
+                    }
+                    @:],
+                    @: initialPreviewAsData: true,
 
-    <link href="~/Content/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
-    <script src="~/Scripts/fileinput.min.js"></script>
+                }
+            autoUpload: true,
+                showUpload:false,
+            showCaption:true,
+            showRemove:false,
+                showClose:false,
+                maxFilePreviewSize:10240
+        }).on("filebatchselected", function(event, files) {
+            // trigger upload method immediately after files are selected
+            $("#ProjectImages").fileinput("upload");
+        });
+
+        $('#ProjectImages').on('filepredelete', function(event, key) {
+
+            alert("sdaas");
+        });
+
+      
+    });
+</script>
+
 }
 <script src="~/Scripts/Admin/JQScripts/ProjectForm.js"></script>

@@ -44,19 +44,26 @@ $(document).on('ready', function () {
         $('#CategoryModel').modal('show');
     });
 
-    $("#ProjectImages").fileinput({
-        uploadAsync: true,
-        uploadUrl: '/Admin/AsycnImageUpload',
-        dataType: 'json',
-        autoUpload: true,
-        showUpload: false,
-        showCaption: true,
-        showRemove: false,
-        showClose: false,
-        maxFilePreviewSize: 10240
-    });
+//    $("#ProjectImages").fileinput({
+//        uploadAsync: true,
+//        uploadUrl: '/Admin/AsycnImageUpload',
+//        deleteUrl: "/Admin/DeleteImage",
+//        dataType: 'json',
+//        autoUpload: true,
+//        showUpload: false,
+//        showCaption: true,
+//        showRemove: false,
+//        showClose: false,
+//        maxFilePreviewSize: 10240
+//    }).on("filebatchselected", function (event, files) {
+//        // trigger upload method immediately after files are selected
+//        $("#ProjectImages").fileinput("upload");
+//    });
+//});
+//$('#ProjectImages').on('filepredelete', function (event, key) {
+//    console.log('Key = ' + key);
+//    alert("sdaas");
 });
-
 
 $(document).on('ready', function () {
     $('#AddsubCat').click(function () {
@@ -69,11 +76,17 @@ $(document).on('ready', function () {
 $(document).on("click", "#btnSubmit", function (event) {
     var form = $('#CategoryForm')[0];
     var dataString = new FormData(form);
+    var selectedImages = [];
+    $(".file-footer-caption").each(function() {
+        selectedImages.push($(this).text());
+    });
+    $("#imagesNames").val(selectedImages);
+
     $.ajax({
         url: "/Admin/addCategory",
         type: "POST",
         async: true,
-        data: dataString,
+        data: { input: dataString, imagesNames:selectedImages },
         contentType: false,
         processData: false,
         cache: false,
