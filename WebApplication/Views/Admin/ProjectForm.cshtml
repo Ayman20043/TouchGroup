@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.LogoPath, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-8">
-                <input type="file" id="LogoPath" class="form-control file-loading" accept="image/*" name="LogoPath" />               
+                <input type="file" id="LogoPath" class="form-control file-loading" accept="image/*" name="LogoPath" />
             </div>
         </div>
 
@@ -51,7 +51,7 @@
             <div class="col-md-7">
                 @*<input type="text" id="Category" name="Category" class="form-control col-md-7 col-xs-12">*@
                 @Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryList,
-                    "  -----Select Catrgory-----  ", new { @class = "form-control col-md-3 col-xs-12",@id="addCategorys", @required = "required" })
+                    "  -----Select Catrgory-----  ", new { @class = "form-control col-md-3 col-xs-12", @id = "addCategorys", @required = "required" })
             </div>
             <div class="col-md-1">
                 <a class="btn btn-success AddCat" id="AddCat"><i class="glyphicon glyphicon-plus"></i>Add</a>
@@ -60,32 +60,32 @@
         <div class="form-group collapse" id="subDropDownDiv">
             @Html.LabelFor(model => model.SubCategory, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-7 ">
-                <select id="SubCategoryId" name="SubCategoryId"  data-val="true" class="form-control"></select>
+                <select id="SubCategoryId" name="SubCategoryId" data-val="true" class="form-control"></select>
             </div>
             <div class="col-md-1">
                 <a class="btn btn-success" id="AddsubCat"><i class="glyphicon glyphicon-plus"></i>Add</a>
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new {@class = "control-label col-md-2"})
+            @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-7">
                 @*<label class="control-label">Select File</label>*@
                 <input id="ProjectImages" name="ProjectImages" type="file" accept="image/*" multiple class="file-loading">
                 @Html.HiddenFor(x => x.imagesNames)
             </div>
         </div>
-     
+
         <div class="form-group">
             @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-6 col-sm-6 col-xs-12 col-lg-offset-0">
                 @Html.CheckBox("IsActive", new { @class = " form-control " })
             </div>
-            
+
         </div>
 
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
             <button type="submit" id="btnSubmit" class="btn btn-primary">Save</button>
-            @Html.ActionLink("Back", "Projects","Admin",new {@class="btn btn-danger" })
+            @Html.ActionLink("Back", "Projects", "Admin", new { @class = "btn btn-danger" })
         </div>
     </div>
 
@@ -163,12 +163,11 @@
 
 @section links{
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
-   
-<script>
-        $(document).on('ready', function() {
+
+    <script>
+        $(document).on('ready', function () {
             $("#ProjectImages").fileinput({
-                initialPreviewAsData: false,
-                overwriteInitial: true,
+                overwriteInitial: false,
                 initialCaption: "",
                 uploadAsync: true,
                 uploadUrl: '/Admin/AsycnImageUpload',
@@ -179,31 +178,91 @@
                     @:initialPreview: [
                     foreach (var item in Model.ProjectImages)
                     {
-                        @:'/Images/Projects/@item.FileName',
+                        @: "<img src='/Images/Projects/@item.FileName' class='file-preview-image' alt='@item.FileName' title='@item.FileName'>",
                     }
                     @:],
-                    @: initialPreviewAsData: true,
+                                   @: initialPreviewAsData: true,
+                                   @: initialPreviewConfig: [
+                                   foreach (var item in Model.ProjectImages)
+                    {
+                        @:  { caption: "@item.FileName.Split('.').First()", size: 930321, width: "120px", key: @item.Id, showDelete: true },
+                                    }
 
+                  @:],
+                                 }
+                autoUpload: true,
+                initialPreviewShowDelete:true,
+                showUpload: false,
+                showCaption: true,
+                showRemove: false,
+                showClose: false,
+                maxFilePreviewSize: 100240
+            }).on("filebatchselected", function (event, files) {
+                // trigger upload method immediately after files are selected
+                $("#ProjectImages").fileinput("upload");
+            });
+
+            $('#ProjectImages').on('filepredelete', function (event, key) {
+                $.ajax({
+                    url: "/Admin/DeleteProjectImage/" + key,
+                    dataType: "json",
+                    type: "GET",
+                    contentType: 'application/json; charset=utf-8',
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: function (data) {
+                        if (data == Boolean("true"))
+                            alert(data);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+
+
+        });
+
+        $("#LogoPath").fileinput({
+            overwriteInitial: true,
+            @if (Model.Id>0)
+            {
+              @:  initialPreview: [
+              @:  "<img src='/Images/Logo/@Model.LogoPathString' class='file-preview-image' alt='@Model.LogoPathString' title='@Model.LogoPathString'>"
+              @:  ],
+            }
+          
+            showUpload: false,
+            showCaption: true,
+            showRemove: false,
+            showClose: false,
+            browseClass: "btn btn-primary btn-md",
+            fileType: "Image",
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            previewSettings: { image: { width: "auto", height: "160px" } }
+        });
+        if ($('#addCategorys').val() !== "") {
+            var CatId = $('#addCategorys').val();
+            $("#subDropDownDiv").show();
+            $.ajax({
+                url: '/Admin/Fill',
+                type: "GET",
+                dataType: "JSON",
+                data: { id: CatId },
+                success: function (subCategory) {
+                    // alert(JSON.stringify(subCategory));
+                    $("#SubCategoryId").html(""); // clear before appending new list 
+                    $("#SubCategoryId").append('<option>  -----Select Sub Catrgory-----  </option>');
+                    $.each(subCategory, function (i, subCategory) {
+                        $("#SubCategoryId").append('<option value="' + subCategory.Id + '">' + subCategory.Name + '</option>');
+                    });
+                    $("#SubCategoryId").val(@Model.SubCategoryId);
+                    $("#SubCategoryId").change();
                 }
-            autoUpload: true,
-                showUpload:false,
-            showCaption:true,
-            showRemove:false,
-                showClose:false,
-                maxFilePreviewSize:10240
-        }).on("filebatchselected", function(event, files) {
-            // trigger upload method immediately after files are selected
-            $("#ProjectImages").fileinput("upload");
-        });
-
-        $('#ProjectImages').on('filepredelete', function(event, key) {
-
-            alert("sdaas");
-        });
-
-      
-    });
-</script>
+            });
+        }
+    </script>
 
 }
 <script src="~/Scripts/Admin/JQScripts/ProjectForm.js"></script>

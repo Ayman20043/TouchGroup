@@ -25,18 +25,7 @@
 
 });
 
-$(document).on('ready', function () {
-    $("#LogoPath").fileinput({
-        showUpload: false,
-        showCaption: true,
-        showRemove: false,
-        showClose: false,
-        browseClass: "btn btn-primary btn-md",
-        fileType: "Image",
-        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-        previewSettings: { image: { width: "auto", height: "160px" } }
-    });
-});
+
 
 $(document).on('ready', function () {
     $('.AddCat').click(function () {

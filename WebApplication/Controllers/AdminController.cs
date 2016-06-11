@@ -331,6 +331,29 @@ namespace WebApplication.Controllers
             }
             return View(model);
         }
+
+        public ActionResult DeleteProjectImage(int id)
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    var image = db.ProjectsImages.Single(e => e.Id == id);
+                    db.ProjectsImages.Remove(image);
+                    System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images/Projects/Temp"), image.FileName));
+                    db.SaveChanges();
+
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception)
+            {
+
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [HttpPost]
         public ActionResult ProjectForm(ProjectViewModel input,string imagesNames)
         {
