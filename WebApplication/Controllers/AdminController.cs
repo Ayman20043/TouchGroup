@@ -16,6 +16,7 @@ using WebApplication.Helpers;
 namespace WebApplication.Controllers
 {
     [HandleError(View = "Error")]
+    [Authorize]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -240,6 +241,7 @@ namespace WebApplication.Controllers
         #endregion
 
         #region //Project 
+        [Authorize]
         public ActionResult Projects()
         {
             try
@@ -260,7 +262,7 @@ namespace WebApplication.Controllers
             }
 
         }
-
+        [Authorize]
         public JsonResult GetProject(int id)
         {
             try
@@ -278,7 +280,7 @@ namespace WebApplication.Controllers
             }
 
         }
-
+        [Authorize]
         public ActionResult AddProject(ProjectViewModel Input)
         {
             try
@@ -314,7 +316,7 @@ namespace WebApplication.Controllers
             }
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize]
         public ActionResult ProjectForm(int? id)
         {
             var model = new ProjectViewModel();
@@ -355,6 +357,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult ProjectForm(ProjectViewModel input,string imagesNames)
         {
             using (TouchContext db = new TouchContext())

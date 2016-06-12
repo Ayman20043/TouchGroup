@@ -16,7 +16,7 @@ namespace WebApplication.Controllers
             }
         }
 
-        public ActionResult About()
+        public ActionResult About(string id)
         {
             ViewBag.Message = "Your application description page.";
 

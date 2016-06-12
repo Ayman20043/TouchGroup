@@ -121,7 +121,7 @@
             dataType: "JSON",
             data: { id: CatId },
             success: function (subCategory) {
-                alert(JSON.stringify(subCategory));
+                //alert(JSON.stringify(subCategory));
                 $("#subDropDown").show();
                 $("#subDropDown").html(""); // clear before appending new list
                 $.each(subCategory, function (i, subCategory) {

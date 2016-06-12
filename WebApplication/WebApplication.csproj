@@ -169,6 +169,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1075,6 +1076,7 @@
     <Content Include="Views\Admin\AllTeamMember.cshtml" />
     <Content Include="Views\Admin\JobApplication.cshtml" />
     <Content Include="Views\Admin\AddCareer.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
     <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
@@ -1083,6 +1085,7 @@
     <Content Include="Views\Shared\_InsideHomeLayout.cshtml" />
     <Content Include="Views\Admin\_MessagePartial.cshtml" />
     <Content Include="Views\Admin\_JobPartial.cshtml" />
+    <Content Include="Views\Shared\_AboutUsLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

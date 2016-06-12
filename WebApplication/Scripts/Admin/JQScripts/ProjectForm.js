@@ -96,7 +96,7 @@ $(document).on("click", "#btnSubmitSub", function (event) {
     $(".subcatdata :selected").text();
     var value = $("#addCategorys :selected").val();
     $("#SubForm #CategoryId").val(value);
-    alert($("#SubForm #CategoryId").val());
+    //alert($("#SubForm #CategoryId").val());
     var form = $('#SubForm')[0];
     var dataString = new FormData(form);
     $.ajax({
@@ -108,7 +108,7 @@ $(document).on("click", "#btnSubmitSub", function (event) {
         processData: false,
         cache: false,
         success: function (data) {
-            alert(JSON.stringify(data));
+            //alert(JSON.stringify(data));
             $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
             $("#CategoryModel").modal("hide");
             $.get("/Admin/ProjectForm", function (data2) {

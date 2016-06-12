@@ -70,7 +70,7 @@
         $("#btnsubmit").click(function (e) {
             e.preventDefault();
             tinyMCE.triggerSave();
-            alert($("#mytextarea").val());
+            //alert($("#mytextarea").val());
             //$("#mytextarea").val("asdasdasdasada");
             $.post("/Admin/Introduction", $('#EditForm').serialize(), function (data, textStatus, jqxhr) {
 
