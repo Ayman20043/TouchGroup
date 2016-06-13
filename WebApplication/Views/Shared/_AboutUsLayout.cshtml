@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 
-    <title>Home | Mental - Retina Responsive HTML5 Photgraphy Template</title>
+    <title>@ViewBag.title | Touch Group</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -95,17 +95,26 @@
         </div>
 
         <div id="main">
-            <div id="header-mobile" class="visible-xs">
-                <header>
-                    <div class="m-header-body">
-                        <img src="~/Images/Logo.png" class="logo" alt="Logo">
-                        <p class="m-site-descr">Touch Group</p>
+            <div class="sections-group text-dark">
+                <div class="st-video-background2">
+                    <img src="/Images/backgrounds/abstraction_passage_light_black_blue_413_1366x768131088472365699405_L.jpg" />
+                </div>
+                <div class="section">
+
+                    <div class="container">
+                        <div id="header-mobile" class="visible-xs">
+                            <header>
+                                <div class="m-header-body">
+                                    <img src="~/Images/Logo.png" class="logo" alt="Logo">
+                                    <p class="m-site-descr">Touch Group</p>
+                                </div>
+                            </header>
+                        </div>
+
+                        @RenderBody()
                     </div>
-                </header>
+                </div>
             </div>
-            
-                    @RenderBody()
-             
         </div>
 
 
@@ -135,12 +144,12 @@
     @RenderSection("links", required: false)
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
-    // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    // function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    // e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    // e.src='//www.google-analytics.com/analytics.js';
-    // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    // ga('create','UA-XXXXX-X');ga('send','pageview');
+        // (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        // function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        // e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        // e.src='//www.google-analytics.com/analytics.js';
+        // r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        // ga('create','UA-XXXXX-X');ga('send','pageview');
 
 
     </script>
