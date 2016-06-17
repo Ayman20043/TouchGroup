@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="~/Scripts/Home/style.css">
     <script src="~/Content/Home/assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
-<body class="menu-bar-opened black-body">
+<body class="menu-bar-opened menu-bar-ontop black-body">
     <script type="text/javascript">
         // Open page with hidden menu-bar on mobile screen less than 700px
         if (window.innerWidth < 738) {
@@ -48,13 +48,10 @@
                         <nav>
                             <ul id="mb-main-menu">
                                 <li class="menu-item-has-children">
-                                    <a class="homemenu-toggler" href="#" >Home</a>
+                                    <a class="homemenu-toggler" href="#" >About Us</a>
                                     <a class="submenu-toggler" href="#"><i class="fa fa-plus"></i></a>
                                     <ul>
-                                        <li><a href="home.html">Introduction </a></li>
-                                        <li><a href="top-menu-onepage.html">Home </a></li>
-                                        <li><a href="top-menu-home-1.html">Home </a></li>
-                                        <li><a href="top-menu-home-2.html">Home</a></li>
+                                    @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
                                     </ul>
                                 </li>
                                 <li class="menu-item-has-children">
@@ -95,21 +92,8 @@
         </div>
 
         <div id="main">
-            <div id="header-mobile" class="visible-xs">
-                <header>
-                    <div class="m-header-body">
-                        <img src="~/Images/Logo.png" class="logo" alt="Logo">
-                        <p class="m-site-descr">Touch Group</p>
-                    </div>
-                </header>
-            </div>
-
-            <!-- section -->
-            <div class="section st-no-padding">
-                <section>
-                    @RenderBody()
-                </section>
-            </div><!-- wrapper -->
+            @RenderBody()
+           
         </div>
      
     

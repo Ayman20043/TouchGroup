@@ -1,0 +1,6 @@
+﻿@model List<WebApplication.Models.CompanyProfile>
+
+@foreach (var item in @Model)
+{
+    <li><a href="/About/@item.SectionName">@item.SectionName </a></li>
+}

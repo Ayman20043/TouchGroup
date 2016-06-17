@@ -16,14 +16,14 @@ namespace WebApplication.Controllers
             }
         }
 
-        public ActionResult About(string id)
+        private ActionResult About(string id)
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        private ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 

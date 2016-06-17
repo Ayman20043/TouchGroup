@@ -729,6 +729,7 @@ pre code { padding: 0; font-size: inherit; color: inherit; white-space: pre-wrap
 .pre-scrollable { max-height: 340px; overflow-y: scroll; }
 
 .container { margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px; }
+.Aboutcontainer { margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px;min-height: 500px;}
 .container:before, .container:after { content: " "; display: table; }
 .container:after { clear: both; }
 @media (min-width: 768px) { .container { width: 738px; } }
@@ -4377,7 +4378,7 @@ img { max-width: 100%; }
 
 /* ======================== Sections ======================== */
 .section { margin: 0px 0; padding: 50px 0 50px; }
-.Aboutsection { margin: 0px 0; }
+.Aboutsection { margin: 0px 0;padding: 20px 0 50px; }
 .section.st-no-padding { padding: 0; }
 .section.st-padding-xs { padding-top: 10px; padding-bottom: 10px; }
 .section.st-padding-sm { padding-top: 30px; padding-bottom: 30px; }
