@@ -1,0 +1,29 @@
+﻿@model WebApplication.Models.CompanyProfile
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_AboutUsLayout.cshtml";
+}
+
+<div id="Aboutheader">
+    <header>
+        <h1 class="AboutHeader">About Us</h1>
+    </header>
+</div>
+<div class="">
+    <section>
+        <div class="Aboutcontainer">
+            <div class="row">
+
+                <div class="col-sm-12" data-animate="fadeInDown">
+                    <h4 class="AboutHeader">@Model.SectionName</h4>
+                    <p  data-animate="flipInX">
+                        <div class="AboutContent">
+                            @Html.Raw(@Model.Content)
+                        </div></p>
+                </div>
+               
+            </div>
+
+        </div>
+    </section>
+</div> <!-- section -->

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="~/Content/Home/assets/plugins/layerslider/css/layerslider.css">
     <link rel="stylesheet" href="~/Scripts/Home/style.css">
     <script src="~/Content/Home/assets/js/vendor/modernizr-2.6.2.min.js"></script>
+    @RenderSection("head",false)
 </head>
 <body class="menu-bar-opened menu-bar-ontop black-body">
     <script type="text/javascript">
@@ -54,7 +55,7 @@
                                     @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children"><a href="@Url.Action("Index","Portfolio")">Gallery</a></li>
+                                <li class="menu-item-has-children"><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
                                 <li><a href="about-us.html">About Us</a></li>
                                 <li><a href="services.html">Services</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>

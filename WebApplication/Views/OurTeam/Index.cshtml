@@ -1,0 +1,127 @@
+﻿@model List<WebApplication.Models.TeamMember>
+@{
+    Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
+}
+
+
+<div id="aboutus" class="section st-bg-grey-lighter">
+    <section>
+        <div class="section-title">
+            <h2 data-animate="fadeInLeftBig" style="color: #D98417;">Our Team</h2>
+            <p class="section-descr2" data-animate="flipInX">
+                TOUCH Experienced Engineering Excellence in the World, with more than 50 resident engineer in all disciplines and 9 years of experience.<brs />
+                TOUCH’s team of passionate professionals offers innovative and sustainable solutions to meet the challenge at hand.
+            </p>
+        </div>
+        <div class="creative-minds">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    if (i > 0 && i < Model.Count - 1)
+                    {
+                        @Html.Raw("</div>")
+                    }
+                    @Html.Raw(" <div class=\"row-cm\">")
+                }
+
+                <div class="col-cm">
+                    <a class="iframe-popup" href="~/File/MemberCv/@Model[i].CvPath">
+                        <figure class="cm-item">
+                            <img src='~/Images/Profile/@(string.Format("{0}_L.{1}", Model[i].PicturePath, Model[i].Extention))' alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                    </a>
+                    <h4 class="cm-title" data-animate="fadeInDown">@Model[i].Name</h4>
+                    <p class="cm-descr">@Model[i].Position</p>
+                </div>
+
+            }
+            @*<div class="row-cm">
+                    <div class="col-cm">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">John Doe</h4>
+                        <p class="cm-descr">Graphic Designer</p>
+                    </div>
+                    <div class="col-cm active">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">MICHAEL DJONSON</h4>
+                        <p class="cm-descr">Creative photographer</p>
+                    </div>
+                    <div class="col-cm">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">Mariana Trench</h4>
+                        <p class="cm-descr">3D Animator</p>
+                    </div>
+
+                </div>
+                <div class="row-cm">
+                    <div class="col-cm">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">Mariana Trench</h4>
+                        <p class="cm-descr">3D Animator</p>
+                    </div>
+                    <div class="col-cm">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">Mariana Trench</h4>
+                        <p class="cm-descr">3D Animator</p>
+                    </div>
+                    <div class="col-cm">
+                        <figure class="cm-item">
+                            <img src="http://placehold.it/700x471" alt="">
+                            <figcaption></figcaption>
+                        </figure>
+                        <h4 class="cm-title" data-animate="fadeInDown">Mariana Trench</h4>
+                        <p class="cm-descr">3D Animator</p>
+                    </div>
+                </div>*@
+            <div class="container container-800 text-center">
+                <div class="social-block">
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                    <a href=""><i class="fa fa-instagram"></i></a>
+                    <a href=""><i class="fa fa-pinterest"></i></a>
+                    <a href=""><i class="fa fa-tumblr"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div> <!-- section -->
+@section head{
+    <link rel="stylesheet" href="/Content/Home/assets/Magnific-Popup/magnific-popup.css">
+}
+@section links{
+    <script src="/Content/Home/assets/Magnific-Popup/jquery.magnific-popup.js"></script>
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('.iframe-popup').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                fixedContentPos: false
+            });
+        });
+    </script>
+    
+}

@@ -218,6 +218,7 @@ body .container.body .right_col {
 body.nav-md .container.body .right_col {
     padding: 10px 20px 0;
     margin-left: 230px;
+    min-height: 690px;
 }
 
 .nav_title {
@@ -1112,8 +1113,9 @@ legend {
         }
 
     .well.profile_view .right {
-        margin-top: 0px;
+           margin-top: -7px;
         padding: 10px;
+            margin-left: 21px;
     }
 
     .well.profile_view .img-circle {

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
+    <Compile Include="Controllers\OurTeamController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="DAL\TouchContext.cs" />
     <Compile Include="DAL\TouchInitializer.cs" />
@@ -397,6 +398,9 @@
     <Content Include="Content\Home\assets\js\vendor\modernizr-2.6.2.min.js" />
     <Content Include="Content\Home\assets\js\vendor\perfect-scrollbar.js" />
     <Content Include="Content\Home\assets\js\vendor\perfect-scrollbar.min.js" />
+    <Content Include="Content\Home\assets\Magnific-Popup\jquery.magnific-popup.js" />
+    <Content Include="Content\Home\assets\Magnific-Popup\jquery.magnific-popup.min.js" />
+    <Content Include="Content\Home\assets\Magnific-Popup\magnific-popup.css" />
     <Content Include="Content\Home\assets\plugins\layerslider\css\blank.gif" />
     <Content Include="Content\Home\assets\plugins\layerslider\css\layerslider.css" />
     <Content Include="Content\Home\assets\plugins\layerslider\js\greensock.js" />
@@ -1096,6 +1100,7 @@
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Shared\_PortfolopLayout.cshtml" />
     <Content Include="Views\Portfolio\Project.cshtml" />
+    <Content Include="Views\OurTeam\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
