@@ -4143,7 +4143,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .mtmenu > li > a { margin: 0 15px; padding: 5px 0; text-decoration: none; display: inline-block; }
 
 /* DROPDOWN */
-.mtmenu ul.dropdown, .mtmenu ul.dropdown li ul.dropdown { list-style: none; margin: 0; padding: 15px 0; display: none; position: absolute; z-index: 99; min-width: 134px; background: white; box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4); }
+.mtmenu ul.dropdown, .mtmenu ul.dropdown li ul.dropdown { list-style: none;margin-left: 30px; padding: 15px 0; display: none; position: absolute; z-index: 99; min-width: 134px; background: #1a1a1a; box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4); }
 
 .mtmenu ul.dropdown { top: 50px; }
 
@@ -4153,7 +4153,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .mtmenu ul.dropdown li a { width: 100%; padding: 6px 24px 6px; display: inline-block; float: left; clear: both; text-decoration: none; color: #444649; }
 
-.mtmenu ul.dropdown li:hover > a { color: #76d898; }
+.mtmenu ul.dropdown li:hover > a { color: #D98417; }
 
 /* dropdowns to left side */
 .mtmenu ul.dropdown li ul.dropdown.left { left: auto; right: 100%; }
@@ -4725,10 +4725,14 @@ blockquote footer { font-size: 12px; }
 .ls-mental-scrollunder:before { content: "\f107"; }
 .ls-mental-scrollunder:hover { color: black; text-decoration: none; background-color: white; }
 
-.ls-mental-bottombar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; height: 60px; line-height: 60px; padding: 0 10px 0 30px; background-color: rgba(0, 0, 0, 0.7); }
-.ls-mental-bottombar #lsmb-title { font-size: 18px; text-transform: uppercase; }
-.ls-mental-bottombar .mb-social { float: right; margin: 15px 0; }
-.ls-mental-bottombar .mb-social p { float: left; margin: 0 20px 0 0; line-height: 2.3; font-size: 16px; }
+.ls-mental-bottombar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; height:60px; line-height: 10px; padding: 0 10px 0 30px; background-color: rgba(0, 0, 0, 0.7); }
+.ls-mental-bottombar #lsmb-title { font-size: 18px; margin-top: 10px; }
+.ls-mental-bottombar .project { font-size: 18px;float: left; margin: 10px 5px 0 0;  }
+.ls-mental-bottombar #lsmb-title2 { font-size: 15px;  float: left; margin: 0 30px 0 0; }
+.ls-mental-bottombar .mb-social { float: right;  margin: 15px 0; }
+.ls-mental-bottombar .mb-social .logo { float: right;  margin: 15px 0; }
+.ls-mental-bottombar .mb-social div { float: left; margin: 0 20px 0 0; line-height: 2.3; font-size: 16px; }
+.ls-mental-bottombar p { color: #D98417;}
 
 .ls-mental-bottombar2 { position: absolute; bottom: 0; right: 0; z-index: 3; height: 50px; line-height: 50px; padding: 0 9px 0 20px; background-color: rgba(0, 0, 0, 0.7); }
 .ls-mental-bottombar2 .mb-social { float: right; margin: 9px 0; }

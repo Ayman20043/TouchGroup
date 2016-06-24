@@ -257,6 +257,8 @@
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Models\ViewModel\HomeImageViewModel.cs" />
+    <Compile Include="Models\ViewModel\HomeProjectViewModel.cs" />
+    <Compile Include="Models\ViewModel\PortfolioViewModel.cs" />
     <Compile Include="Models\ViewModel\ProjectViewModel.cs" />
     <Compile Include="Models\ViewModel\TeamMemberViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1092,6 +1094,8 @@
     <Content Include="Views\Shared\_AboutUsLayout.cshtml" />
     <None Include="Views\Navigation\AboutUsLinks.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
+    <Content Include="Views\Shared\_PortfolopLayout.cshtml" />
+    <Content Include="Views\Portfolio\Project.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

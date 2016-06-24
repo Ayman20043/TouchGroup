@@ -1,8 +1,66 @@
-﻿@model List<WebApplication.Models.Project>
+﻿@using System.Text
+@model WebApplication.Models.PortfolioViewModel
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div id="header" class="hd-filters">
+    <header>
+        <ul class="gallety-filters mtmenu">
+            <li class="active"><a data-filter="*" href="#">All</a></li>
+           @foreach (var item in Model.Categories)
+           {
+               <li class="@(item.Subcategories.Any()?"menu-item-has-children":"")">
+                   <a data-filter="@item.Name"  href="#">@item.Name</a>
+                   @if (item.Subcategories.Any())
+                   {
+                    <ul class="gallety-filters dropdown">
+                      @foreach (var subCat in item.Subcategories)
+                      {
+                        <li><a data-filter="@subCat.Name" href="#">@subCat.Name </a></li>
+                      }
+                    </ul>
+                   }
+               </li>
+           }
+        
+            <li class="gf-underline"></li>
+        </ul>
+    </header>
+</div>
 
+<div class="section no-padding">
+    <section>
+        <ul id="gallery" class="gallery gl-cols-3">
+            @foreach (var project in Model.Projects)
+            {
+
+                <li class="gl-item gl-loading" data-category="@project.Category  @project.SubCategory">
+                    <a href="@Url.Action("Project", new {id=@project.Id})">
+                        <figure>
+                            <img src="/Images/Projects/@project.FileName" style="height: 247px; padding: 3px" alt="">
+                           
+                            <figcaption>
+                                <div class="middle">
+                                    <div class="middle-inner">
+                                        <p class="gl-item-title">@project.Name</p>
+                                        <p class="gl-item-category">@project.Category</p>
+                                        <p class="gl-item-category">@project.SubCategory</p>
+                                        @*@(project.SubCategory != null ? "< p class=\"gl-item-category\"> project.SubCategory.Name</p>": "")*@
+                                       
+                                    </div>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+            }
+          
+
+        </ul> <!-- gallery -->
+    </section>
+</div> <!-- section -->
+
+@section links{
+    <script src="~/Content/Home/assets/js/vendor/jquery.mtmenu.js"></script>
+}

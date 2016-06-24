@@ -181,6 +181,7 @@
 }
 
 #ls-global * .ls-container img{min-width: 100% !important}
+#ls-global * .ls-container .ls-mental-bottombar img{min-width: initial !important}
 
 .ls-mental .ls-thumbnail {
 	top: 10px;
