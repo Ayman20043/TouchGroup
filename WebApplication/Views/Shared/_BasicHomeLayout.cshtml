@@ -55,16 +55,16 @@
                                     @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children"><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="services.html">Services</a></li>
-                                <li><a href="contact.html">Contact Us</a></li>
+                                <li><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
+                                <li><a href="@Url.Action("Index", "OurTeam")">Our Team</a></li>
+                                <li><a href="services.html">Careers</a></li>
+                                <li><a href="@Url.Action("Index","Contact")">Contact Us</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="mb-footer">
                         <h4>About us</h4>
-                        <p>We are team of creative photographers. We passionate with photography and other creative things.</p>
+                        <p>We are team of passionate professionals offers innovative and sustainable solutions to meet the challenge at hand.</p>
                         <div class="mb-social">
                             <a href=""><i class="fa fa-facebook"></i></a>
                             <a href=""><i class="fa fa-google-plus"></i></a>

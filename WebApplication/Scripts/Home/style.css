@@ -4449,7 +4449,7 @@ img { max-width: 100%; }
 .menu-bar-opened.menu-bar-ontop #main { margin-left: 30px; }
 
 /* ======================== Menu bar menu ======================== */
-ul#mb-main-menu { list-style-type: none; padding: 0; margin: 40px 0; font-size: 14px; text-transform: uppercase; }
+ul#mb-main-menu { list-style-type: none; padding: 0; /*margin: 40px 0;*/ font-size: 14px; text-transform: uppercase; }
 ul#mb-main-menu li.menu-item-has-children { position: relative; }
 ul#mb-main-menu li.menu-item-has-children > a { padding-right: 43px; }
 ul#mb-main-menu li a { display: block; position: relative; padding: 10px 25px 10px 0; color: #444649; }

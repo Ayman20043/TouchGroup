@@ -951,7 +951,7 @@ function init_ajax_forms()
 
       $.ajax({
          type: "POST",
-         url: 'formmail.php',
+         url: '/Contact/Index',
          data: $this.serialize(), // serializes the form's elements.
          success: function(data){
             $this.find('input[type=text], input[type=email], textarea').val(''); // Clear form

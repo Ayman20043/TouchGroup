@@ -14,7 +14,8 @@ namespace WebApplication.Models
         public string AddressEgy { get; set; }
         [Display(Name = "Egypt Telephone")]
         public string TelephoneEgy { get; set; }
-        public string PhoneEgy { get; set; }
+        [Display(Name = "Egypt Mail")]
+        public string MailEGY { get; set; }
         [Display(Name = "Egypt Fax")]
         public string FaxEgy { get; set; }
         [Display(Name = "Egypt Mobile")]
@@ -28,8 +29,8 @@ namespace WebApplication.Models
         [Display(Name = "UAE Telephone")]
 
         public string TelephoneUAE { get; set; }
-
-        public string PhoneUAE { get; set; }
+        [Display(Name = "UAE Mail")]
+        public string MailUAE { get; set; }
         [Display(Name = "UAE Fax")]
 
         public string FaxUAE { get; set; }
