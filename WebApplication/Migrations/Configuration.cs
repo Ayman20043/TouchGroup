@@ -28,6 +28,10 @@ namespace WebApplication.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.CareerInformation.AddOrUpdate(
+             p=>p.Id,
+             new CareerInfo() { Id=1,Content = " "}
+            );
 
             //context.ContactUsMessages.AddOrUpdate(
             //    new Models.ContactUsMessage

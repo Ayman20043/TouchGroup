@@ -60,7 +60,7 @@ $(document).on("click", ".ViewDetails", function (e) {
 $(document).on("click", ".viewCv", function (e) {
     $("#pdfmodal").modal("show");
     var action = $(this).attr('data-path');
-    var fileName = "/File/JobCv" + action;
+    var fileName = "/File/JobCv/" + action;
     $("#dialog").dialog();
     $('iframe').attr("src", fileName);
 });

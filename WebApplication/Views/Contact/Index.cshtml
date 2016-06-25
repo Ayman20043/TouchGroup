@@ -1,9 +1,7 @@
 ﻿@model WebApplication.Models.ContactViewModel
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
 }
-
 
 <div id="header">
     <header>
@@ -20,15 +18,15 @@
                     @using (Ajax.BeginForm("Index", new { }, new AjaxOptions(), htmlAttributes: new { @class = "contact-form validation-engine ajax-send" }))
                     {
                         <div class="row">
-                            <div class="col-sm-4 form-group">
+                            <div class="col-sm-12 form-group">
                                 <label class="sr-only" for="Message.Name">Name *</label>
                                 <input type="text" name="Message.Name" class="form-control validate[required]" id="Message.Name" placeholder="Name *">
                             </div>
-                            <div class="col-sm-4 form-group">
+                            <div class="col-sm-12 form-group">
                                 <label class="sr-only" for="Message.From">Email *</label>
                                 <input type="email" name="Message.From" class="form-control validate[required,custom[email]]" id="Message.From" placeholder="Email *">
                             </div>
-                            <div class="col-sm-4 form-group">
+                            <div class="col-sm-12 form-group">
                                 <label class="sr-only" for="Message.Subject">Subject</label>
                                 <input type="text" name="Message.Subject" class="form-control" id="Message.Subject" placeholder="Subject">
                             </div>
@@ -82,7 +80,14 @@
         </div> <!-- container -->
     </section>
 </div> <!-- section -->
-
+<div id="footer" class="are-you-ready-type">
+    <footer>
+        <h2 data-animate="lightSpeedIn">ARE YOU READY TO WORK WITH US?</h2>
+        <div class="text-center">
+            <a href="@Url.Action("Index","Careers")" class="btn btn-primary btn-wide">Join Us</a>
+        </div>
+    </footer>
+</div>
 @section links{
     <script src="~/Content/Home/assets/js/vendor/jquery.validationEngine.js"></script>
     <script src="~/Content/Home/assets/js/vendor/jquery.validationEngine-en.js"></script>

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CareersController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Models\SocialLink.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="Models\TeamMember.cs" />
+    <Compile Include="Models\ViewModel\CareersViewModel.cs" />
     <Compile Include="Models\ViewModel\ContactViewModel.cs" />
     <Compile Include="Models\ViewModel\HomeImageViewModel.cs" />
     <Compile Include="Models\ViewModel\HomeProjectViewModel.cs" />
@@ -1103,6 +1105,7 @@
     <Content Include="Views\Admin\_JobPartial.cshtml" />
     <Content Include="Views\Shared\_AboutUsLayout.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Careers\Index.cshtml" />
     <None Include="Views\Navigation\AboutUsLinks.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Shared\_PortfolopLayout.cshtml" />

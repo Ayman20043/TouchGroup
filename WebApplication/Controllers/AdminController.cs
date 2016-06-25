@@ -253,7 +253,7 @@ namespace WebApplication.Controllers
                     SelectList CatList = new SelectList(cat, "Id", "Name");
                     ViewBag.CategoryList = CatList;
 
-                    return View(db.Projects.ToList());
+                    return View(db.Projects.Include("SubCategory").ToList());
                 }
             }
             catch (Exception ex)
@@ -990,7 +990,7 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db = new TouchContext())
             {
-                return View(db.CareerInformation.Where(a=>a.Id==id).FirstOrDefault());             
+                return View(db.CareerInformation.FirstOrDefault(a => a.Id==id));             
             }
 
         }

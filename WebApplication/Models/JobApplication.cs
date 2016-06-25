@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,6 +17,8 @@ namespace WebApplication.Models
         [Display(Name = "Cv")]
 
         public string CvPath { get; set; }
+        [NotMapped]
+        public HttpPostedFile Cv { get; set; }
         public bool IsViewed { get; set; }
     }
 }

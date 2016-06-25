@@ -226,7 +226,7 @@
 
         $("#LogoPath").fileinput({
             overwriteInitial: true,
-            @if (Model.Id>0)
+            @if (Model.Id>0 && !string.IsNullOrEmpty(Model.LogoPathString))
             {
               @:  initialPreview: [
               @:  "<img src='/Images/Logo/@Model.LogoPathString' class='file-preview-image' alt='@Model.LogoPathString' title='@Model.LogoPathString'>"

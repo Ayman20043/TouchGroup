@@ -1,0 +1,84 @@
+﻿@model WebApplication.Models.CareersViewModel
+@{
+
+    Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
+}
+
+
+<div id="header">
+    <header>
+        <h1>Careers</h1>
+    </header>
+</div>
+<div class="section">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="margin-btm-md">Apply for a vacancy</h4>
+                    @*<form role="form" action="@Url.Action("Index")" class="contact-form validation-engine ajax-send">*@
+                    @using (Ajax.BeginForm("Index", new { }, new AjaxOptions(), htmlAttributes: new { @class = "contact-form validation-engine ajax-send2" , enctype = "multipart/form-data" }))
+                    {
+                        <div class="row">
+                            @if(Model.IsSent){
+                            <div class="alert alert-success">Your Application was Submitted Successfully !</div>
+                            }
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only" for="Application.FullName">FullName *</label>
+                                <input type="text" name="Application.FullName" class="form-control validate[required]" id="Application.FullName" placeholder="Full Name *">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only" for="Application.Phone">Phone *</label>
+                                <input type="number" name="Application.Phone" class="form-control validate[required]" style="-webkit-appearance: none;" id="Application.Phone" placeholder="Phone *">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only" for="Application.From">Email *</label>
+                                <input type="email" name="Application.From" class="form-control validate[required,custom[email]]" id="Application.From" placeholder="Email *">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only" for="Application.Position">Position</label>
+                                <input type="text" name="Application.Position" class="form-control validate[required]" id="Application.Position" placeholder="Position">
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="sr-only" for="Application.Cv">CV</label>
+                                <input type="text" id="cvPath" class="form-control  col-md-10 validate[required]" style="width: 80%" disabled placeholder="CV is required in PDF format">
+                                @*<input type="file" class="btn btn-primary btn-md" value="Upload">*@
+                                <label class="btn btn-primary btn-md btn-file">
+                                    Browse <input name="Application.Cv" type="file" class="form-control  col-md-10 validate[required]" accept=".pdf" id="Application.Cv" style="display: none;">
+
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default btn-wide">Apply</button>
+                            <span class="loading-spinner" style="display: none;"></span>
+                        </div>
+                    }
+
+                    @*</form>*@
+
+                </div>
+                <div class="col-md-6">
+                    <h4 class="margin-btm-md">Join Us</h4>
+                    @Html.Raw(Model.Info.Content)
+                </div>
+            </div>
+        </div> <!-- container -->
+    </section>
+</div> <!-- section -->
+@section links{
+    <script src="~/Content/Home/assets/js/vendor/jquery.validationEngine.js"></script>
+    <script src="~/Content/Home/assets/js/vendor/jquery.validationEngine-en.js"></script>
+}
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            $("input:file").change(function () {
+                var fileName = $(this).val();
+                //alert(fileName);
+                $('#cvPath').attr("placeholder", fileName.substr(fileName.lastIndexOf("\\")+1));
+                // $(".filename").html(fileName);
+            });
+        });
+    </script>
+}

@@ -2094,7 +2094,10 @@ fieldset[disabled] .btn-default.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
-
+.btn-file {
+     position: relative;
+    overflow: hidden;
+}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,

@@ -1177,20 +1177,20 @@ textarea.input-lg, .input-group-lg > textarea.form-control, .input-group-lg > te
 .btn:active, .btn.active { outline: 0; background-image: none; -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn { cursor: not-allowed; pointer-events: none; opacity: 0.65; filter: alpha(opacity=65); -webkit-box-shadow: none; box-shadow: none; }
 
-.btn-default { color: #76d898; background-color: white; border-color: #d5d8dd; }
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle { color: #76d898; background-color: #e6e6e6; border-color: #b3b9c2; }
+.btn-default { color: #D98417; background-color: white; border-color: #d5d8dd; }
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle { color: #D98417; background-color: #e6e6e6; border-color: #b3b9c2; }
 .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle { background-image: none; }
 .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default.disabled.active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled]:active, .btn-default[disabled].active, fieldset[disabled] .btn-default, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default.active { background-color: white; border-color: #d5d8dd; }
 .btn-default .badge { color: white; background-color: #76d898; }
 
-.btn-primary { color: #76d898; background-color: #444649; border-color: #38393c; }
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle { color: #76d898; background-color: #2b2d2f; border-color: #1a1b1c; }
+.btn-primary { color: #D98417; background-color: #444649; border-color: #38393c; }
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle { color: #D98417; background-color: #2b2d2f; border-color: #1a1b1c; }
 .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle { background-image: none; }
 .btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active { background-color: #444649; border-color: #38393c; }
 .btn-primary .badge { color: #444649; background-color: #76d898; }
 
 .btn-success { color: white; background-color: #5cb85c; border-color: #4cae4c; }
-.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle { color: white; background-color: #449d44; border-color: #398439; }
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle { color: white; background-color: #D98417; border-color: #398439; }
 .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle { background-image: none; }
 .btn-success.disabled, .btn-success.disabled:hover, .btn-success.disabled:focus, .btn-success.disabled:active, .btn-success.disabled.active, .btn-success[disabled], .btn-success[disabled]:hover, .btn-success[disabled]:focus, .btn-success[disabled]:active, .btn-success[disabled].active, fieldset[disabled] .btn-success, fieldset[disabled] .btn-success:hover, fieldset[disabled] .btn-success:focus, fieldset[disabled] .btn-success:active, fieldset[disabled] .btn-success.active { background-color: #5cb85c; border-color: #4cae4c; }
 .btn-success .badge { color: #5cb85c; background-color: white; }
@@ -4350,7 +4350,7 @@ img { max-width: 100%; }
 #Aboutheader { padding: 50px 20px; color: #d98417; /*margin-left: 41%;*/}
 #header:before, #header:after { content: " "; display: table; }
 #header:after { clear: both; }
-#header h1 { margin: 0; font-size: 30px; color: #8e9095; text-align: center; text-transform: uppercase; }
+#header h1 { margin: 0; font-size: 30px; color: #D98417; text-align: center; text-transform: uppercase; }
 #Aboutheader h1 { margin: 0; font-size: 30px; color: #d98417; text-align: center; text-transform: uppercase; }
 #header.top-menu { padding: 0; background-color: white; color: #444649; }
 #header.top-menu h1 { color: #444649; }
@@ -4368,7 +4368,7 @@ img { max-width: 100%; }
 #footer.are-you-ready-type { padding: 78px 20px; }
 #footer.widget-footer { padding: 60px 0 0 0; }
 #footer.ft-single-post { padding: 20px 0; }
-#footer h2 { margin: 0 0 20px; font-size: 27px; color: #8e9095; text-align: center; text-transform: uppercase; }
+#footer h2 { margin: 0 0 20px; font-size: 27px; color: #D98417; text-align: center; text-transform: uppercase; }
 #footer .btn { border: 2px solid #8e9095; background-color: #1a1a1a; }
 #footer .btn:hover { background-color: #272727; }
 #footer .ft-copyright { padding: 35px 0; margin-top: 50px; background-color: #161616; }
@@ -4429,7 +4429,7 @@ img { max-width: 100%; }
 #menu-bar h3.mb-site-title { margin: 0 0 5px 0; color: #D98417; font-size: 22px; text-transform: uppercase; }
 #menu-bar h3.mb-site-title img { margin-top: -4px; }
 #menu-bar h3.mb-site-title span { display: inline-block; margin-left: 15px; }
-#menu-bar h4 { margin: 0; padding: 0 0 10px; color: #8e9095; font-size: 15px; text-transform: uppercase; }
+#menu-bar h4 { margin: 0; padding: 0 0 10px; color: #D98417; font-size: 15px; text-transform: uppercase; }
 #menu-bar .mb-site-descr { font-size: 12px; }
 #menu-bar .mb-footer { font-size: 14px; line-height: 22px; }
 #menu-bar .mb-footer p { color: #444649; }
@@ -4938,3 +4938,11 @@ a.img-zoom-hover:hover > img { transform: scale(1.3); -ms-transform: scale(1.3);
 @media (min-width: 992px) { .col-md-5cols { width: 20%; } }
 .AboutHeader{color: #d98417;}
 .AboutContent{ font-weight: bold;}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}

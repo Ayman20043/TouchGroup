@@ -966,6 +966,38 @@ function init_ajax_forms()
       });
 
    });
+
+   $('.ajax-send3').submit(function (e) {
+       e.preventDefault();
+       var $this = $(this);
+       var action = $this.attr('action');
+
+       if (!$this.validationEngine('validate')) return false;
+
+       var $spinner = $this.find('.loading-spinner').show();
+       var form = $('#form0')[0];
+       var dataString = new FormData(form);
+       $.ajax({
+           type: "POST",
+           url: '/Careers/Index',
+           data: { input: dataString }, // serializes the form's elements.
+           
+               processData: false,
+               contentType: false,
+           success: function (data) {
+               $this.find('input[type=text], input[type=email],input[type=file], textarea').val(''); // Clear form
+               $this.prepend('<div class="alert alert-success">Your message was sent!</div>'); // Show success message
+           },
+           complete: function (jqXHR, textStatus) {
+               $spinner.hide();
+           },
+           error: function (jqXHR, textStatus, errorMessage) {
+               console.log(errorMessage);
+           }
+       });
+
+   });
+
 }
 
 
