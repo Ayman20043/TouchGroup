@@ -1,0 +1,69 @@
+﻿@model List<WebApplication.Models.CompanyProfile>
+@{
+    Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
+}
+
+<div id="header">
+    <header>
+        <h1>About</h1>
+    </header>
+</div>
+<div class="section">
+    <section style="    min-height: 580px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" data-animate="fadeInUp">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            @*<li @(i == 0 ? "class=\"active\"" : "")><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>*@
+                            if (i == 0)
+                            {
+                        <li class="active"><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>
+                            }
+                            else
+                            {
+                                <li ><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>
+                            }
+                        }
+                        @*<li class="active"><a href="#tab1" data-toggle="tab">IMPRESSIVE TEMPLATE</a></li>
+                            <li><a href="#tab2" data-toggle="tab">FLEXIBLE</a></li>
+                            <li class="highlight"><a href="#tab3" data-toggle="tab">RESPONSIVE</a></li>*@
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+
+                            if (i == 0)
+                            {
+                                <div class="tab-pane fade in active" id="@Model[i].SectionName">
+                                    @Html.Raw(@Model[i].Content)
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade" id="@Model[i].SectionName">
+                                    @Html.Raw(@Model[i].Content)
+                                </div>
+                            }
+
+                        }
+                        @*<div class="tab-pane fade in active" id="tab1">
+                                    <p>We are team of creative photographers. We passionate with photography and other creative things. If you are looking professional photography theme with endless possibilities, you come in right place. This template consist of well-organized layers. Tons of features waiting for you. </p>
+                                    <p>We are team of creative photographers. We passionate with photography and other creative things. If you are looking professional photography theme with endless possibilities, you come in right place.</p>
+                                </div>
+                                <div class="tab-pane fade" id="tab2">
+                                    <p>We are team of creative photographers. We passionate with photography and other creative things. If you are looking professional photography theme with endless possibilities, you come in right place. This template consist of well-organized layers. Tons of features waiting for you. </p>
+                                </div>
+                                <div class="tab-pane fade" id="tab3">
+                                    <p>We are team of creative photographers. We passionate with photography and other creative things. If you are looking professional photography theme with endless possibilities, you come in right place. This template consist of well-organized layers. Tons of features waiting for you. </p>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> <!-- section -->

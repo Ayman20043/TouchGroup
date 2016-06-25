@@ -49,12 +49,13 @@
                         <nav>
                             <ul id="mb-main-menu">
                                 <li class="menu-item-has-children">
-                                    <a class="homemenu-toggler" href="#" >About Us</a>
+                                    <a class="homemenu-toggler" href="#">About Us</a>
                                     <a class="submenu-toggler" href="#"><i class="fa fa-plus"></i></a>
                                     <ul>
-                                    @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
+                                        @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
                                     </ul>
                                 </li>
+                                <li><a href="@Url.Action("Index","AboutUs")">About Touch Group</a></li>
                                 <li><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
                                 <li><a href="@Url.Action("Index", "OurTeam")">Our Team</a></li>
                                 <li><a href="@Url.Action("Index","Careers")">Careers</a></li>
@@ -65,13 +66,14 @@
                     <div class="mb-footer">
                         <h4>About us</h4>
                         <p>We are team of passionate professionals offers innovative and sustainable solutions to meet the challenge at hand.</p>
-                        <div class="mb-social">
+                        @{ Html.RenderAction("SocialLinks", "Navigation"); }
+                        @*<div class="mb-social">
                             <a href=""><i class="fa fa-facebook"></i></a>
                             <a href=""><i class="fa fa-google-plus"></i></a>
                             <a href=""><i class="fa fa-instagram"></i></a>
                             <a href=""><i class="fa fa-tumblr"></i></a>
                             <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
+                        </div>*@
                         <div class="mb-copyright">                           
                         </div>
                     </div>

@@ -22,5 +22,14 @@ namespace WebApplication.Controllers
                 return PartialView(db.CompanyProfiles.ToList()); 
             }
         }
+        public ActionResult SocialLinks()
+        {
+
+            using (TouchContext db = new TouchContext())
+            {
+                return PartialView(db.SocialLinks.FirstOrDefault());
+            }
+        }
+
     }
 }
