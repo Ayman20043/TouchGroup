@@ -186,65 +186,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageResizeHelper.cs" />
-    <Compile Include="Migrations\201604232017113_Initial Migration .cs" />
-    <Compile Include="Migrations\201604232017113_Initial Migration .Designer.cs">
-      <DependentUpon>201604232017113_Initial Migration .cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604251610049_seed.cs" />
-    <Compile Include="Migrations\201604251610049_seed.Designer.cs">
-      <DependentUpon>201604251610049_seed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605022316434_TouchContext.cs" />
-    <Compile Include="Migrations\201605022316434_TouchContext.Designer.cs">
-      <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605061519336_Subcategory2.cs" />
-    <Compile Include="Migrations\201605061519336_Subcategory2.Designer.cs">
-      <DependentUpon>201605061519336_Subcategory2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605061525303_Subcategory3.cs" />
-    <Compile Include="Migrations\201605061525303_Subcategory3.Designer.cs">
-      <DependentUpon>201605061525303_Subcategory3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605061530162_Subcategory4.cs" />
-    <Compile Include="Migrations\201605061530162_Subcategory4.Designer.cs">
-      <DependentUpon>201605061530162_Subcategory4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605061538441_projects.cs" />
-    <Compile Include="Migrations\201605061538441_projects.Designer.cs">
-      <DependentUpon>201605061538441_projects.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605201849495_ProjectImagesAdded.cs" />
-    <Compile Include="Migrations\201605201849495_ProjectImagesAdded.Designer.cs">
-      <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605210955504_home.cs" />
-    <Compile Include="Migrations\201605210955504_home.Designer.cs">
-      <DependentUpon>201605210955504_home.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605231910317_HomeImage.cs" />
-    <Compile Include="Migrations\201605231910317_HomeImage.Designer.cs">
-      <DependentUpon>201605231910317_HomeImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605231942560_HomeImage1.cs" />
-    <Compile Include="Migrations\201605231942560_HomeImage1.Designer.cs">
-      <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605271823352_linkat.cs" />
-    <Compile Include="Migrations\201605271823352_linkat.Designer.cs">
-      <DependentUpon>201605271823352_linkat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605271908082_ContactUsMessage.cs" />
-    <Compile Include="Migrations\201605271908082_ContactUsMessage.Designer.cs">
-      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605281215138_TeamMemberEditModel.cs" />
-    <Compile Include="Migrations\201605281215138_TeamMemberEditModel.Designer.cs">
-      <DependentUpon>201605281215138_TeamMemberEditModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606250148095_ContactusUpdated.cs" />
-    <Compile Include="Migrations\201606250148095_ContactusUpdated.Designer.cs">
-      <DependentUpon>201606250148095_ContactusUpdated.cs</DependentUpon>
+    <Compile Include="Migrations\201606250856523_Recreate.cs" />
+    <Compile Include="Migrations\201606250856523_Recreate.Designer.cs">
+      <DependentUpon>201606250856523_Recreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -816,6 +760,16 @@
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\PdfStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Migrations\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Migrations\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Migrations\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Properties\PublishProfiles\Ayman.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fileinput.js" />
     <Content Include="Scripts\fileinput.min.js" />
@@ -1132,50 +1086,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604232017113_Initial Migration .resx">
-      <DependentUpon>201604232017113_Initial Migration .cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604251610049_seed.resx">
-      <DependentUpon>201604251610049_seed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605022316434_TouchContext.resx">
-      <DependentUpon>201605022316434_TouchContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605061519336_Subcategory2.resx">
-      <DependentUpon>201605061519336_Subcategory2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605061525303_Subcategory3.resx">
-      <DependentUpon>201605061525303_Subcategory3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605061530162_Subcategory4.resx">
-      <DependentUpon>201605061530162_Subcategory4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605061538441_projects.resx">
-      <DependentUpon>201605061538441_projects.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605201849495_ProjectImagesAdded.resx">
-      <DependentUpon>201605201849495_ProjectImagesAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605210955504_home.resx">
-      <DependentUpon>201605210955504_home.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605231910317_HomeImage.resx">
-      <DependentUpon>201605231910317_HomeImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605231942560_HomeImage1.resx">
-      <DependentUpon>201605231942560_HomeImage1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605271823352_linkat.resx">
-      <DependentUpon>201605271823352_linkat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605271908082_ContactUsMessage.resx">
-      <DependentUpon>201605271908082_ContactUsMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605281215138_TeamMemberEditModel.resx">
-      <DependentUpon>201605281215138_TeamMemberEditModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606250148095_ContactusUpdated.resx">
-      <DependentUpon>201606250148095_ContactusUpdated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606250856523_Recreate.resx">
+      <DependentUpon>201606250856523_Recreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>
