@@ -11,7 +11,7 @@ namespace WebApplication
     public class TouchContext : DbContext
     {
         public TouchContext()
-            : base("DefaultConnection")
+            : base("TouchGroupContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
