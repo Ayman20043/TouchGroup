@@ -70,7 +70,6 @@ $(document).on("click", "#btnSubmit", function (event) {
         selectedImages.push($(this).text());
     });
     $("#imagesNames").val(selectedImages);
-
     $.ajax({
         url: "/Admin/addCategory",
         type: "POST",
@@ -81,6 +80,7 @@ $(document).on("click", "#btnSubmit", function (event) {
         cache: false,
         success: function (data) {
             $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
+            
             $("#CategoryModel").modal("hide");
             $.get("/Admin/ProjectForm", function (data2) {
             });
@@ -109,8 +109,8 @@ $(document).on("click", "#btnSubmitSub", function (event) {
         cache: false,
         success: function (data) {
             //alert(JSON.stringify(data));
-            $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
-            $("#CategoryModel").modal("hide");
+            $("#SubCategoryId").append('<option value="' + data.Id + '">' + data.Name + '</option>');            
+            $("#SubCatModal").modal("hide");
             $.get("/Admin/ProjectForm", function (data2) {
             });
         },
@@ -118,4 +118,37 @@ $(document).on("click", "#btnSubmitSub", function (event) {
             alert('error');
         }
     });
+});
+
+
+$(document).on("click", "#btnaddcategory", function (event) {
+    var form = $('#CategoryForm')[0];
+    var dataString = new FormData(form);
+    $.ajax({
+        url: "/Admin/addCategory",
+        type: "POST",
+        async: true,
+        data: dataString,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (data) {
+            $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');           
+            $("#CategoryModel").modal("hide");
+            $.get("/Admin/ProjectForm", function (data2) {
+            });
+
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+});
+
+$('#CategoryModel').on('hidden.bs.modal', function () {
+    $("#CatName").val("");
+});
+
+$('#SubCatModal').on('hidden.bs.modal', function () {
+    $("#SSubCatName").val("");
 });
