@@ -539,8 +539,11 @@ namespace WebApplication.Controllers
         {
             using (TouchContext db = new TouchContext())
             {
-                db.Categories.Add(input);
-                db.SaveChanges();
+                if (!string.IsNullOrEmpty(input.Name))
+                {
+                    db.Categories.Add(input);
+                    db.SaveChanges();
+                }
             }
             return Json(input, JsonRequestBehavior.AllowGet);
         }
