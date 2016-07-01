@@ -577,18 +577,27 @@ namespace WebApplication.Controllers
             {
                 var del = db.SubCategories.FirstOrDefault(a => a.Id == id);
                 db.SubCategories.Remove(del);
-                db.SaveChanges();
+                db.SaveChanges();            
                 var list = db.SubCategories.ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
         }
 
-        public ActionResult FillCate()
+        public ActionResult ChecProjectCat(int id)
         {
-            using (TouchContext touch = new TouchContext())
+            using (TouchContext db = new TouchContext())
             {
-                var list = touch.SubCategories.ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
+                var ptoj = db.Projects.Where(a=>a.CategoryId==id).Count();                
+                return Json(ptoj, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult ChecProjectSubCat(int id)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var ptoj = db.Projects.Where(a => a.SubCategoryId == id).Count();
+                return Json(ptoj, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion

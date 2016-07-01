@@ -171,10 +171,10 @@ $(document).on("change", "#SubCategoryId", function (event) {
     else { $(".Subclass").hide(); }
 })
 
-$(document).on("click", ".DelCat", function (event) {
-    var Id = $("#addCategorys").val();
+$(document).on("click", "#deleteCategory", function (event) {
+    var Id = $("#addCategorys").val();   
     $.ajax({
-        url: "/Admin/DeleteCategory/"+Id,
+        url: "/Admin/DeleteCategory/" + Id,
         type: "GET",
         async: true,
         data: Id,
@@ -189,6 +189,7 @@ $(document).on("click", ".DelCat", function (event) {
                 $("#addCategorys").append('<option value="' + list.Id + '">' + list.Name + '</option>');
             });
             $("#addCategorys").change();
+            $("#DeleteCatModal").modal("hide");
         },
         error: function (xhr) {
             alert('error');
@@ -197,9 +198,8 @@ $(document).on("click", ".DelCat", function (event) {
 });
 
 
-$(document).on("click", ".DelSubCat", function (event) {
-    var Id = $("#SubCategoryId").val();
-    alert(Id);
+$(document).on("click", "#deleteSubCategory", function (event) {
+    var Id = $("#SubCategoryId").val();  
     $.ajax({
         url: "/Admin/DeleteSubCategory/"+Id,
         type: "GET",
@@ -215,9 +215,70 @@ $(document).on("click", ".DelSubCat", function (event) {
                 $("#SubCategoryId").append('<option value="' + list.Id + '">' + list.Name + '</option>');
             });
             $("#SubCategoryId").change();
+            $("#DeleteSuCatModal").modal("hide");
         },
         error: function (xhr) {
             alert('error');
         }
     });
+});
+
+$(document).on("click", ".DelCatModel", function (e) {
+    var Id = $("#addCategorys").val();
+    var text = $("#addCategorys :selected ").text();
+    //alert(Id);
+    //alert(text);
+    $(".DelCat").attr(Id);
+    $(".catnametext").text("Are You Sure You Want To Delete " + text);
+
+    $.ajax({
+        url: "/Admin/ChecProjectCat/" + Id,
+        type: "GET",
+        async: true,
+        data: Id,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (ptoj) {
+            if (ptoj > 0) {
+                alert("You Can`t Delete This Category Because It Has " + ptoj + " Project Related ");
+            }
+            else { 
+                $("#DeleteCatModal").modal("show");
+            }
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+   
+});
+
+
+
+$(document).on("click", ".DelSubCatModel", function (e) {
+    var Id = $("#SubCategoryId").val();
+    var text = $("#SubCategoryId :selected ").text();
+    $(".Subcatnametext").text("Are You Sure You Want To Delete " + text);
+    $.ajax({
+        url: "/Admin/ChecProjectSubCat/" + Id,
+        type: "GET",
+        async: true,
+        data: Id,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (ptoj) {
+            if (ptoj > 0) {
+                alert("You Can`t Delete This Sub Category Because It Has " + ptoj + " Project Related ");
+            }
+            else {
+                $("#DeleteSuCatModal").modal("show");
+            }
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+
 });
