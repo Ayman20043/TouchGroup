@@ -173,7 +173,6 @@ $(document).on("change", "#SubCategoryId", function (event) {
 
 $(document).on("click", ".DelCat", function (event) {
     var Id = $("#addCategorys").val();
-    alert(Id);
     $.ajax({
         url: "/Admin/DeleteCategory/"+Id,
         type: "GET",
@@ -185,7 +184,7 @@ $(document).on("click", ".DelCat", function (event) {
         success: function (list) {
             // alert(JSON.stringify(subCategory));
             $("#addCategorys").html(""); // clear before appending new list 
-            $("#addCategorys").append('<option>  -----SelectCatrgory-----  </option>');
+            $("#addCategorys").append('<option>  -----Select Catrgory-----  </option>');
             $.each(list, function (i, list) {
                 $("#addCategorys").append('<option value="' + list.Id + '">' + list.Name + '</option>');
             });
@@ -198,6 +197,27 @@ $(document).on("click", ".DelCat", function (event) {
 });
 
 
-$(document).on("change","#SubCategoryId", function (event) {
+$(document).on("click", ".DelSubCat", function (event) {
     var Id = $("#SubCategoryId").val();
+    alert(Id);
+    $.ajax({
+        url: "/Admin/DeleteSubCategory/"+Id,
+        type: "GET",
+        async: true,
+        data: Id,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (list) {
+            $("#SubCategoryId").html(""); // clear before appending new list 
+            $("#SubCategoryId").append('<option>  -----Select Sub Catrgory-----  </option>');
+            $.each(list, function (i, list) {
+                $("#SubCategoryId").append('<option value="' + list.Id + '">' + list.Name + '</option>');
+            });
+            $("#SubCategoryId").change();
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
 });
