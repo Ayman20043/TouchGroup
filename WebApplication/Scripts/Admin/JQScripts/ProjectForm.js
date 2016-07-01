@@ -152,3 +152,52 @@ $('#CategoryModel').on('hidden.bs.modal', function () {
 $('#SubCatModal').on('hidden.bs.modal', function () {
     $("#SSubCatName").val("");
 });
+
+$(document).on("change", "#addCategorys", function (event) {
+    //var Id = $("#addCategorys").val();
+    //alert(Id);
+    if ($("#addCategorys").val() != "") {
+        $(".catclass").show();
+    }
+    else { $(".catclass").hide(); }
+})
+
+$(document).on("change", "#SubCategoryId", function (event) {
+    //var Id = $("#addCategorys").val();
+    //alert(Id);
+    if ($("#SubCategoryId").val() != "") {
+        $(".Subclass").show();
+    }
+    else { $(".Subclass").hide(); }
+})
+
+$(document).on("click", ".DelCat", function (event) {
+    var Id = $("#addCategorys").val();
+    alert(Id);
+    $.ajax({
+        url: "/Admin/DeleteCategory/"+Id,
+        type: "GET",
+        async: true,
+        data: Id,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success: function (list) {
+            // alert(JSON.stringify(subCategory));
+            $("#addCategorys").html(""); // clear before appending new list 
+            $("#addCategorys").append('<option>  -----SelectCatrgory-----  </option>');
+            $.each(list, function (i, list) {
+                $("#addCategorys").append('<option value="' + list.Id + '">' + list.Name + '</option>');
+            });
+            $("#addCategorys").change();
+        },
+        error: function (xhr) {
+            alert('error');
+        }
+    });
+});
+
+
+$(document).on("change","#SubCategoryId", function (event) {
+    var Id = $("#SubCategoryId").val();
+});
