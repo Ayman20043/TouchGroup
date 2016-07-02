@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2 id="title">New Project </h2>
-@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data",id="ProjectForm" }))
 {
     <div class="form-horizontal">
         @Html.HiddenFor(e => Model.Id)
@@ -48,29 +48,31 @@
         <div class="form-group ">
             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
 
-            <div class="col-md-5">
+            <div class="col-md-7">
                 @*<input type="text" id="Category" name="Category" class="form-control col-md-7 col-xs-12">*@
                 @Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryList,
-                    "  -----Select Catrgory-----  ", new { @class = "form-control col-md-3 col-xs-12", @id = "addCategorys", @required = "required" })
+                    "  -----Select Catrgory-----  ", new { @class = "form-control", @id = "addCategorys", @required = "required" })
             </div>
-            <div class="col-md-1">
-                <a class="btn btn-success AddCat" id="AddCat"><i class="glyphicon glyphicon-plus"></i>Add</a>
+            <div class="input-group-btn">
+                <a class="btn btn-success AddCat" id="AddCat"><i class="glyphicon glyphicon-plus"></i> Add</a>
+                <a class="btn btn-danger catclass collapse DelCatModel" id="DelCat" data-id="@Model.CategoryId"><i class="glyphicon glyphicon-trash"></i> Delete</a>
             </div>
-            <div class="col-md-1 catclass collapse">
-                <a class="btn btn-danger DelCatModel" id="DelCat" data-id="@Model.CategoryId">Delete</a>
-            </div>
+                @*<div class="input-group-btn catclass collapse">
+                    <a class="btn btn-danger DelCatModel" id="DelCat" data-id="@Model.CategoryId">Delete</a>
+                </div>*@
         </div>
         <div class="form-group collapse" id="subDropDownDiv">
             @Html.LabelFor(model => model.SubCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-5 ">
+            <div class="col-md-7 ">
                 <select id="SubCategoryId" name="SubCategoryId" data-val="true" class="form-control"></select>
             </div>
-            <div class="col-md-1">
+            <div class="input-group-btn">
                 <a class="btn btn-success" id="AddsubCat"><i class="glyphicon glyphicon-plus"></i>Add</a>
+                <a class="btn btn-danger DelSubCatModel Subclass collapse" id="DelSubCatModel"><i class="glyphicon glyphicon-trash"></i> Delete</a>
             </div>
-            <div class="col-md-1 Subclass collapse">
-                <a class="btn btn-danger DelSubCatModel" id="DelSubCatModel">Delete</a>
-            </div>
+            @*<div class="col-md-1 Subclass collapse">
+               
+            </div>*@
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectImages, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -173,12 +175,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title catnametext"></h4>
+                <h4 class="modal-title"> Are you sure</h4>
             </div>
             <div class="modal-body">                
                 <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
                     <div class="form-group">
-                        <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        <label class="control-label col-md-8 col-sm-3 col-xs-12 catnametext" for="Position">
                             Are You Sure Want To Delete 
                         </label>
 
@@ -201,12 +203,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title Subcatnametext"></h4>
+                <h4 class="modal-title "> Are you sure</h4>
             </div>
             <div class="modal-body">
                 <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
                     <div class="form-group">
-                        <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        <label class="control-label col-md-8 col-sm-3 col-xs-12 Subcatnametext" for="Position">
                             Are You Sure Want To Delete
                         </label>
 

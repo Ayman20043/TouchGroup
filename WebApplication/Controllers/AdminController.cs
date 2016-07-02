@@ -576,9 +576,10 @@ namespace WebApplication.Controllers
             using (TouchContext db = new TouchContext())
             {
                 var del = db.SubCategories.FirstOrDefault(a => a.Id == id);
+                int catId = del.CategoryId;
                 db.SubCategories.Remove(del);
-                db.SaveChanges();            
-                var list = db.SubCategories.ToList();
+                db.SaveChanges();
+                var list = db.SubCategories.Where(e => e.CategoryId == catId).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
         }

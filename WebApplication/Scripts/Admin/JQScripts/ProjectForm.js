@@ -11,7 +11,7 @@
             success: function (subCategory) {
                 // alert(JSON.stringify(subCategory));
                 $("#SubCategoryId").html(""); // clear before appending new list 
-                $("#SubCategoryId").append('<option>  -----Select Sub Catrgory-----  </option>');
+                $("#SubCategoryId").append('<option value="">  -----Select Sub Catrgory-----  </option>');
                 $.each(subCategory, function (i, subCategory) {
                     $("#SubCategoryId").append('<option value="' + subCategory.Id + '">' + subCategory.Name + '</option>');
                 });
@@ -63,34 +63,33 @@ $(document).on('ready', function () {
 });
 
 $(document).on("click", "#btnSubmit", function (event) {
-    event.preventDefault();
-    var form = $('#CategoryForm')[0];
+    //event.preventDefault();
+    var form = $('#ProjectForm')[0];
     var dataString = new FormData(form);
     var selectedImages = [];
     $(".file-footer-caption").each(function() {
         selectedImages.push($(this).text());
     });
     $("#imagesNames").val(selectedImages);
-    $.ajax({
-        url: "/Admin/addCategory",
-        type: "POST",
-        async: true,
-        data: { input: dataString, imagesNames:selectedImages },
-        contentType: false,
-        processData: false,
-        cache: false,
-        success: function (data) {
-            $("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
-            
-            $("#CategoryModel").modal("hide");
-            $.get("/Admin/ProjectForm", function (data2) {
-            });
+    //$.ajax({
+    //    url: "/Admin/ProjectForm",
+    //    type: "POST",
+    //    async: true,
+    //    data: { input: $('#ProjectForm').serialize(), imagesNames: selectedImages },
+    //    contentType: false,
+    //    processData: false,
+    //    cache: false,
+    //    success: function (data) {
+    //        //$("#addCategorys").append('<option value="' + data.Id + '">' + data.Name + '</option>');
+    //        //$("#CategoryModel").modal("hide");
+    //        //$.get("/Admin/ProjectForm", function (data2) {
+    //        //});
 
-        },
-        error: function (xhr) {
-            alert('error');
-        }
-    });
+    //    },
+    //    error: function (xhr) {
+    //        alert('error');
+    //    }
+    //});
 });
 
 $(document).on("click", "#btnSubmitSub", function (event) {
@@ -154,23 +153,27 @@ $('#SubCatModal').on('hidden.bs.modal', function () {
     $("#SSubCatName").val("");
 });
 
-$(document).on("change", "#addCategorys", function (event) {
+$(document).on("change", "#addCategorys", function(event) {
     //var Id = $("#addCategorys").val();
     //alert(Id);
+    //alert($(this).val());
     if ($("#addCategorys").val() != "") {
         $(".catclass").show();
+    } else {
+        $(".catclass").hide();
     }
-    else { $(".catclass").hide(); }
-})
+});
 
-$(document).on("change", "#SubCategoryId", function (event) {
+$(document).on("change", "#SubCategoryId", function(event) {
     //var Id = $("#addCategorys").val();
-    //alert(Id);
+    ////alert(Id);
+    //alert($(this).val());
     if ($("#SubCategoryId").val() != "") {
         $(".Subclass").show();
+    } else {
+        $(".Subclass").hide();
     }
-    else { $(".Subclass").hide(); }
-})
+});
 
 $(document).on("click", "#deleteCategory", function (event) {
     var Id = $("#addCategorys").val();   
@@ -230,7 +233,8 @@ $(document).on("click", ".DelCatModel", function (e) {
     //alert(Id);
     //alert(text);
     $(".DelCat").attr(Id);
-    $(".catnametext").text("Are You Sure You Want To Delete " + text);
+    $(".catnametext").empty();
+    $(".catnametext").append("Are You Sure You Want To Delete: " + text);
 
     $.ajax({
         url: "/Admin/ChecProjectCat/" + Id,
@@ -260,7 +264,8 @@ $(document).on("click", ".DelCatModel", function (e) {
 $(document).on("click", ".DelSubCatModel", function (e) {
     var Id = $("#SubCategoryId").val();
     var text = $("#SubCategoryId :selected ").text();
-    $(".Subcatnametext").text("Are You Sure You Want To Delete " + text);
+    $(".Subcatnametext").empty();
+    $(".Subcatnametext").append("Are you sure you want to delete: " + text);
     $.ajax({
         url: "/Admin/ChecProjectSubCat/" + Id,
         type: "GET",
