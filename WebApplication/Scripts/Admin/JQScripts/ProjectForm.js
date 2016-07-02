@@ -63,6 +63,7 @@ $(document).on('ready', function () {
 });
 
 $(document).on("click", "#btnSubmit", function (event) {
+    event.preventDefault();
     var form = $('#CategoryForm')[0];
     var dataString = new FormData(form);
     var selectedImages = [];

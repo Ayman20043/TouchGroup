@@ -4327,7 +4327,7 @@ h3, h4 { line-height: 30px; margin: 20px 0 10px; }
 
 h5, h6 { line-height: 26px; margin: 20px 0 10px; }
 
-p { color: #8e9095; }
+/*p { color: #8e9095; }*/
 
 img { max-width: 100%; }
 
@@ -4377,7 +4377,7 @@ img { max-width: 100%; }
 #footer .ft-copyright p span { color: #8e9095; }
 
 /* ======================== Sections ======================== */
-.section { margin: 0px 0; padding: 50px 0 50px; }
+.section { margin: 0px 0; padding: 50px 0 95px; }
 .Aboutsection { margin: 0px 0;padding: 20px 0 50px; }
 .section.st-no-padding { padding: 0; }
 .section.st-padding-xs { padding-top: 10px; padding-bottom: 10px; }
@@ -4392,7 +4392,7 @@ img { max-width: 100%; }
 .section.st-bg-grey-lighter { background-color: #edeef0; }
 .section.st-black { background-color: black; }
 
-.section-title { text-align: center; margin-bottom: 40px; }
+.section-title { text-align: center; margin-bottom: 40px; color: #375E7F }
 .section-title h1, .section-title h2, .section-title h3 { margin-top: 0; }
 
 .section-descr { max-width: 800px; margin-left: auto; margin-right: auto;  }
@@ -4742,7 +4742,9 @@ blockquote footer { font-size: 12px; }
 .ls-mental-back2gallery { position: absolute; top: 0; right: 0; z-index: 3; width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.7); }
 .ls-mental-back2gallery a { display: block; color: #76d898; text-align: center; line-height: 40px; font-size: 18px; }
 .ls-mental-back2gallery a:hover { text-decoration: none; }
-
+@media (min-width:1000px) {
+    .ls-mental-nav { position: absolute; top: 90%; left: 75%; z-index: 3; width: 100%; }
+}
 .ls-mental-nav { position: absolute; top: 90%; left: 80%; z-index: 3; width: 100%; }
 .ls-mental-nav .ls-mental-nav-container { width: 1170px; margin: 0 auto; }
 .ls-mental-nav .ls-mn-counter { display: none; height: 45px; line-height: 45px; background-color: rgba(0, 0, 0, 0.9); padding: 0 30px; margin-right: 2px; color: #444649; font-size: 18px; vertical-align: middle; }
@@ -4930,7 +4932,7 @@ a.img-zoom-hover:hover > img { transform: scale(1.3); -ms-transform: scale(1.3);
 
 .parallax { background-position: center; }
 
-@media (min-width: 1200px) { .parallax { background-size: 100%; } }
+ 
 .full-width-height { width: 100%; height: 100%; }
 
 .pie-label { display: block; margin-top: -18px; margin-bottom: 10px; font-size: 15px; text-transform: uppercase; }
