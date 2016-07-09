@@ -762,6 +762,34 @@ namespace WebApplication.Controllers
         #endregion
 
 
+        #region Background Images
+        public ActionResult BackgroundImage()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    return View(db.BackgroundImages.ToList());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult GetBackroundImage(int id)
+        {
+            using (TouchContext db=new TouchContext())
+            {
+                return Json(db.BackgroundImages.Single(e => e.Id == id),JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        #endregion
+
+
         #region //Home Images
 
         public ActionResult HomeImage()
