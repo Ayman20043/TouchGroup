@@ -534,15 +534,16 @@ namespace WebApplication.Controllers
                 return Json(subCat, JsonRequestBehavior.AllowGet);
             }
         }
-
+      
         public ActionResult addCategory(Category input)
         {
             using (TouchContext db = new TouchContext())
             {
-              
+                if (!string.IsNullOrEmpty(input.Name))
+                {
                     db.Categories.Add(input);
                     db.SaveChanges();
-                
+                }
             }
             return Json(input, JsonRequestBehavior.AllowGet);
         }
@@ -555,51 +556,6 @@ namespace WebApplication.Controllers
                 db.SaveChanges();
             }
             return Json(input, JsonRequestBehavior.AllowGet);
-        }
-
-
-        public ActionResult DeleteCategory(int id)
-        {
-            using (TouchContext db = new TouchContext())
-            {
-                var del = db.Categories.FirstOrDefault(a=>a.Id==id);
-                db.Categories.Remove(del);
-                db.SaveChanges();
-                var list = db.Categories.ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }           
-        }
-
-
-        public ActionResult DeleteSubCategory(int id)
-        {
-            using (TouchContext db = new TouchContext())
-            {
-                var del = db.SubCategories.FirstOrDefault(a => a.Id == id);
-                int catId = del.CategoryId;
-                db.SubCategories.Remove(del);
-                db.SaveChanges();
-                var list = db.SubCategories.Where(e => e.CategoryId == catId).ToList();
-                return Json(list, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public ActionResult ChecProjectCat(int id)
-        {
-            using (TouchContext db = new TouchContext())
-            {
-                var ptoj = db.Projects.Where(a=>a.CategoryId==id).Count();                
-                return Json(ptoj, JsonRequestBehavior.AllowGet);
-            }
-        }
-
-        public ActionResult ChecProjectSubCat(int id)
-        {
-            using (TouchContext db = new TouchContext())
-            {
-                var ptoj = db.Projects.Where(a => a.SubCategoryId == id).Count();
-                return Json(ptoj, JsonRequestBehavior.AllowGet);
-            }
         }
         #endregion
 

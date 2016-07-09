@@ -48,14 +48,7 @@
                     <div class="mb-content">
                         <nav>
                             <ul id="mb-main-menu">
-                                <li class="menu-item-has-children">
-                                    <a class="homemenu-toggler" href="#">About Us</a>
-                                    <a class="submenu-toggler" href="#"><i class="fa fa-plus"></i></a>
-                                    <ul>
-                                        @{ Html.RenderAction("AboutUsLinks", "Navigation"); }
-                                    </ul>
-                                </li>
-                                <li><a href="@Url.Action("Index","AboutUs")">About Touch Group</a></li>
+                                <li><a href="@Url.Action("Index","AboutUs")">About Us</a></li>
                                 <li><a href="@Url.Action("Index","Portfolio")">Portfolio</a></li>
                                 <li><a href="@Url.Action("Index", "OurTeam")">Our Team</a></li>
                                 <li><a href="@Url.Action("Index","Careers")">Careers</a></li>

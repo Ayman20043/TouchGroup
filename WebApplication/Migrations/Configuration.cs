@@ -32,7 +32,12 @@ namespace WebApplication.Migrations
              p=>p.Id,
              new CareerInfo() { Id=1,Content = " "}
             );
-
+            context.BackgroundImages.AddOrUpdate(
+         g=> g.Id,
+         new BackgroundImage() { Id = 1 },
+          new BackgroundImage() { Id = 2 },
+           new BackgroundImage() { Id = 3 }
+        );
             //context.ContactUsMessages.AddOrUpdate(
             //    new Models.ContactUsMessage
             //    {
