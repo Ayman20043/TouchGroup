@@ -2,23 +2,27 @@
 @{
     Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
 }
+<div id="header">
+    <header>
+        <h1>Our Team</h1>
+    </header>
+</div>
 
-
-<div id="aboutus" class="section st-bg-grey-lighter">
+<div id="aboutus" class="section st-bg-grey-lighterparallax"  data-stellar-background-ratio="0.5"  data-stellar-vertical-offset="-150" style="background-image: url('/Images/backgrounds/bg-img-3.jpg')/*opacity: 0.5*/;/*height: 100vh;*/">
     <section>
-        <div class="section-title">
+        @*<div class="section-title">
             <h2 data-animate="fadeInLeftBig" style="color: #D98417;">Our Team</h2>
             <p class="section-descr2" data-animate="flipInX">
-                TOUCH Experienced Engineering Excellence in the World, with more than 50 resident engineer in all disciplines and 9 years of experience.<brs />
+                TOUCH Experienced Engineering Excellence in the World, with more than 50 resident engineer in all disciplines and 9 years of experience.<br />
                 TOUCH’s team of passionate professionals offers innovative and sustainable solutions to meet the challenge at hand.
             </p>
-        </div>
-        <div class="creative-minds">
+        </div>*@
+        <div class="creative-minds ">
             @for (int i = 0; i < Model.Count; i++)
             {
-                if (i % 3 == 0)
+                if (i % 4 == 0)
                 {
-                    if (i > 0 && i < Model.Count - 1)
+                    if (i > 0 && i <= Model.Count - 1)
                     {
                         @Html.Raw("</div>")
                     }
