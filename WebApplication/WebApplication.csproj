@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201607090154325_BackgroundImagesAdded1.Designer.cs">
       <DependentUpon>201607090154325_BackgroundImagesAdded1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607021247217_BackgroundImagesAdded.cs" />
+    <Compile Include="Migrations\201607021247217_BackgroundImagesAdded.Designer.cs">
+      <DependentUpon>201607021247217_BackgroundImagesAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BackgroundImage.cs" />
@@ -1099,6 +1103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201607090154325_BackgroundImagesAdded1.resx">
       <DependentUpon>201607090154325_BackgroundImagesAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607021247217_BackgroundImagesAdded.resx">
+      <DependentUpon>201607021247217_BackgroundImagesAdded.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>
