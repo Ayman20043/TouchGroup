@@ -22,11 +22,11 @@
                             @*<li @(i == 0 ? "class=\"active\"" : "")><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>*@
                             if (i == 0)
                             {
-                                <li class="active"><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>
+                                <li class="active"><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
                             }
                             else
                             {
-                                <li ><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>
+                                <li ><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
                             }
                         }
                         @*<li class="active"><a href="#tab1" data-toggle="tab">IMPRESSIVE TEMPLATE</a></li>
@@ -40,13 +40,13 @@
 
                             if (i == 0)
                             {
-                                <div class="tab-pane fade in active" id="@Model[i].SectionName">
+                                <div class="tab-pane fade in active" id="@Model[i].SectionName.Replace(" ","")">
                                     @Html.Raw(@Model[i].Content)
                                 </div>
                             }
                             else
                             {
-                                <div class="tab-pane fade" id="@Model[i].SectionName">
+                                <div class="tab-pane fade" id="@Model[i].SectionName.Replace(" ","")">
                                     @Html.Raw(@Model[i].Content)
                                 </div>
                             }

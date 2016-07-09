@@ -194,6 +194,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageResizeHelper.cs" />
+    <Compile Include="Migrations\201607090329340_reCreateDB.cs" />
+    <Compile Include="Migrations\201607090329340_reCreateDB.Designer.cs">
+      <DependentUpon>201607090329340_reCreateDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BackgroundImage.cs" />
@@ -1086,6 +1090,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201607090329340_reCreateDB.resx">
+      <DependentUpon>201607090329340_reCreateDB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>
     </EmbeddedResource>
