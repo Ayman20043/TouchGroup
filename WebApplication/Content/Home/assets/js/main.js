@@ -986,6 +986,7 @@ function init_ajax_forms()
                contentType: false,
            success: function (data) {
                $this.find('input[type=text], input[type=email],input[type=file], textarea').val(''); // Clear form
+               form.trigger('reset');
                $this.prepend('<div class="alert alert-success">Your message was sent!</div>'); // Show success message
            },
            complete: function (jqXHR, textStatus) {

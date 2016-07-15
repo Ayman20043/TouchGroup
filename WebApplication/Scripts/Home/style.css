@@ -4742,7 +4742,7 @@ blockquote footer { font-size: 12px; }
 .ls-mental-back2gallery { position: absolute; top: 0; right: 0; z-index: 3; width: 40px; height: 40px; background-color: rgba(0, 0, 0, 0.7); }
 .ls-mental-back2gallery a { display: block; color: #76d898; text-align: center; line-height: 40px; font-size: 18px; }
 .ls-mental-back2gallery a:hover { text-decoration: none; }
-@media (min-width:1000px) {
+@media (min-width:980px) {
     .ls-mental-nav { position: absolute; top: 90%; left: 75%; z-index: 3; width: 100%; }
 }
 .ls-mental-nav { position: absolute; top: 90%; left: 80%; z-index: 3; width: 100%; }
