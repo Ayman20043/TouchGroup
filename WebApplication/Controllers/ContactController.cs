@@ -27,8 +27,9 @@ namespace WebApplication.Controllers
                 input.Message.IsRead = false;
                 db.ContactUsMessages.Add(input.Message);
                 db.SaveChanges();
+                var result = new ContactViewModel() { ContactUs = db.ContactUs.FirstOrDefault() };
+                return View(result);
             }
-            return View();
         }
     }
 }
