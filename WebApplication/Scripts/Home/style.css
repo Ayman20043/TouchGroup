@@ -4743,9 +4743,9 @@ blockquote footer { font-size: 12px; }
 .ls-mental-back2gallery a { display: block; color: #76d898; text-align: center; line-height: 40px; font-size: 18px; }
 .ls-mental-back2gallery a:hover { text-decoration: none; }
 @media (min-width:980px) {
-    .ls-mental-nav { position: absolute; top: 90%; left: 75%; z-index: 3; width: 100%; }
+    .ls-mental-nav { position: absolute; top: 90%; /*left: 75%;*/ z-index: 3; width: 100%; }
 }
-.ls-mental-nav { position: absolute; top: 90%; left: 80%; z-index: 3; width: 100%; }
+.ls-mental-nav { position: absolute; top: 90%; /*left: 80%;*/ z-index: 3; width: 100%; }
 .ls-mental-nav .ls-mental-nav-container { width: 1170px; margin: 0 auto; }
 .ls-mental-nav .ls-mn-counter { display: none; height: 45px; line-height: 45px; background-color: rgba(0, 0, 0, 0.9); padding: 0 30px; margin-right: 2px; color: #444649; font-size: 18px; vertical-align: middle; }
 .ls-mental-nav .ls-mn-counter em { font-style: normal; color: #8e9095; }
