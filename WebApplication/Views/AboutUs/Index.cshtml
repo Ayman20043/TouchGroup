@@ -9,8 +9,10 @@
     </header>
 </div>
 
-<div class="section parallax"  data-stellar-background-ratio="0.5"  data-stellar-vertical-offset="-150" style="background-image: url('/Images/backgrounds/bg-img-1.jpg');opacity: 0.8;/*height: 100vh;*/">
-    <section style="min-height: 580px;">
+@*<div class="section parallax"  data-stellar-background-ratio="0.5"  data-stellar-vertical-offset="-150" style="background-image: url('/Images/backgrounds/bg-img-1.jpg');opacity: 0.8;/*height: 100vh;*/">*@
+<div class="section parallax" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="-150" style="background: url('/Images/backgrounds/bg-img-1.jpg') no-repeat center center ;opacity: 0.8;/*height: 100vh;*/">
+
+    <section class="AboutUsSection" style="min-height: 580px;">
         <div class="container">
             @*<h2 class="section-title" data-animate="rollIn" style="color: black;">About Us</h2>*@
             <div class="row">
@@ -20,13 +22,13 @@
                         @for (int i = 0; i < Model.Count; i++)
                         {
                             @*<li @(i == 0 ? "class=\"active\"" : "")><a href="#@Model[i].SectionName" data-toggle="tab">@Model[i].SectionName</a></li>*@
-                            if (i == 0)
-                            {
-                                <li class="active"><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
-                            }
-                            else
-                            {
-                                <li ><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
+                        if (i == 0)
+                        {
+                            <li class="active"><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
                             }
                         }
                         @*<li class="active"><a href="#tab1" data-toggle="tab">IMPRESSIVE TEMPLATE</a></li>

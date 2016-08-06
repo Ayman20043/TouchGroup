@@ -255,7 +255,7 @@ function init_layer_slider()
       showBarTimer        : true,
       showCircleTimer     : false,
       pauseOnHover: false,
-      autoStart: false,
+      autoStart: true,
       cbAnimStart: function(data){
          $('.ls-mn-counter').html('<em>'+pad(data.nextLayerIndex, 2)+'</em>/'+pad(data.layersNum, 2));
       }
