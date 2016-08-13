@@ -7,9 +7,9 @@
                 <th>Location</th>
                 <th>Area</th>
                 <th>Client</th>
-                <th>Logo</th>
+                @*<th>Logo</th>*@
                 <th>Category</th>
-                <th>SubCategory</th>
+                @*<th>SubCategory</th>*@
                 <th>Action</th>
             </tr>
         <tbody>
@@ -19,21 +19,21 @@
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.Location)</td>
                     <td>@Html.DisplayFor(modelItem => item.Area)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Client)</td>
+                    <td  style="width: 250px;">@Html.DisplayFor(modelItem => item.Client)</td>
 
-                    <td>@if (!string.IsNullOrEmpty(item.LogoPath))
+                    @*<td>@if (!string.IsNullOrEmpty(item.LogoPath))
                     {
                         <img src='~/Images/Logo/@item.LogoPath'>
                     }
-                    </td>
+                    </td>*@
                     <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
-                    <td>
+                    @*<td>
                         @if (item.SubCategoryId != null && item.SubCategoryId > 0)
 
                         {
                             @Html.DisplayFor(modelItem => item.SubCategory.Name)
                         }
-                    </td>
+                    </td>*@
                     <td>
                         @*<a id="ViewClick" data-id="@item.Id" class="btn btn-primary  clickview"><i class="fa fa-fire"></i> Details </a>*@
                         <a id="EditeClick" data-id="@item.Id" class="btn btn-info edite clickedit"><i class="fa fa-pencil "></i> Edit </a>

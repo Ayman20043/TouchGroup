@@ -557,9 +557,61 @@ namespace WebApplication.Controllers
             }
             return Json(input, JsonRequestBehavior.AllowGet);
         }
+
         #endregion
+        public ActionResult ChecProjectCat(int id)
+        {
+            using (TouchContext touch = new TouchContext())
+            using (TouchContext db = new TouchContext())
+            {
+                var list = touch.SubCategories.ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+                var ptoj = db.Projects.Where(a => a.CategoryId == id).Count();
+                return Json(ptoj, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult ChecProjectSubCat(int id)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var ptoj = db.Projects.Where(a => a.SubCategoryId == id).Count();
+                return Json(ptoj, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult DeleteCategory(int id)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var del = db.Categories.FirstOrDefault(a => a.Id == id);
+                db.Categories.Remove(del);
+                db.SaveChanges();
+                var list = db.Categories.ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+        }
 
 
+        public ActionResult DeleteSubCategory(int id)
+        {
+            using (TouchContext db = new TouchContext())
+            {
+                var del = db.SubCategories.FirstOrDefault(a => a.Id == id);
+                db.SubCategories.Remove(del);
+                db.SaveChanges();
+                var list = db.SubCategories.ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult FillCate()
+        {
+            using (TouchContext touch = new TouchContext())
+            {
+                var list = touch.SubCategories.ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+        }
         #region//Social Links
         public ActionResult SocialLink()
         {
