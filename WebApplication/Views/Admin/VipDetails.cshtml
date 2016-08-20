@@ -1,0 +1,37 @@
+﻿@model WebApplication.Models.VipService
+
+@{
+    //ViewBag.Title = "ProfileDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>ProfileDetails</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @{
+            }
+            @Html.Raw(Model.Content)
+
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Editvip", new { id = Model.Id }) |
+    @Html.ActionLink("Back", "/vip")
+</p>

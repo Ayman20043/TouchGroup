@@ -30,6 +30,7 @@ namespace WebApplication
         public DbSet<Project> Projects  { get; set; }
         public DbSet<ProjectImage> ProjectsImages { get; set; }
         public DbSet<CompanyProfile> CompanyProfiles  { get; set; }
+        public DbSet<VipService> VipServices { get; set; }
         public DbSet<ContactUs> ContactUs  { get; set; }
         public DbSet<JobApplication> JobApplication  { get; set; }
         public DbSet<License> Licenses  { get; set; }

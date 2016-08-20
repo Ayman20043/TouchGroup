@@ -557,8 +557,6 @@ namespace WebApplication.Controllers
             }
             return Json(input, JsonRequestBehavior.AllowGet);
         }
-
-        #endregion
         public ActionResult ChecProjectCat(int id)
         {
             using (TouchContext touch = new TouchContext())
@@ -612,6 +610,8 @@ namespace WebApplication.Controllers
                 return Json(list, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
+
         #region//Social Links
         public ActionResult SocialLink()
         {
@@ -664,6 +664,151 @@ namespace WebApplication.Controllers
         }
         #endregion
 
+        #region VIP Services
+        public ActionResult vip()
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View(touch.VipServices.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public ActionResult GetVipPartial()
+        {
+            try
+            {
+                using (TouchContext db = new TouchContext())
+                {
+                    return PartialView("_VipPartial", db.VipServices.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Editvip(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var find = touch.VipServices.FirstOrDefault(a => a.Id == id);
+                    return View(find);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Editvip(VipService input)
+        {
+            try
+            {
+
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.Entry(input).State = EntityState.Modified;
+                    touch.SaveChanges();
+                    return RedirectToAction("vip");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult DeleteVip(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    var del = touch.VipServices.FirstOrDefault(a => a.Id == id);
+                    touch.VipServices.Remove(del);
+                    touch.SaveChanges();
+
+                }
+            }
+            catch (Exception)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult VipDetails(int id)
+        {
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View(touch.VipServices.FirstOrDefault(a => a.Id == id));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public ActionResult AddVip()
+        {
+            //throw new Exception();
+            try
+            {
+                using (TouchContext touch = new TouchContext())
+                {
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult AddVip(VipService Add)
+        {
+            try
+            {
+
+                using (TouchContext touch = new TouchContext())
+                {
+                    touch.VipServices.Add(Add);
+                    touch.SaveChanges();
+                    return RedirectToAction("vip");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        #endregion
 
         #region //Company Profile
 
@@ -911,7 +1056,7 @@ namespace WebApplication.Controllers
                 {
                     var obj = touch.HomeImages.Where(a => a.Id == Input.Id).FirstOrDefault();
                     obj.Title = Input.Title;
-                    obj.Description = Input.Title;
+                    obj.Description = Input.Description;
                     obj.IsActive = Input.IsActive;
                     if (Input.PicturePath != null)
                     {

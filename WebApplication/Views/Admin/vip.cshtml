@@ -1,0 +1,103 @@
+﻿@model IEnumerable<WebApplication.Models.VipService>
+@{
+    ViewBag.Title = "vip";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h4>VIP Services</h4>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <span>
+                    <button type="button" id="Add" class="btn btn-success btn-sm add"><i class="fa fa-plus"></i> Add New Content</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Teampartial">
+    @{Html.RenderPartial("_VipPartial", Model); }
+</div>
+
+<div id="DeleteModel" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Section Dtails</h4>
+            </div>
+            <form id="Delete " data-parsley-validate class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <label class="control-label col-md-8 col-sm-3 col-xs-12" for="Position">
+                        Are You Sure Want To Delete ?<span class="required"></span>
+                    </label>
+
+                </div>
+            </form>
+            <div class="modal-footer">
+                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button type="submit" id="btncancel" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="Del" data-id="" class="btn btn-warning btndel" data-dismiss="modal">Delete</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#Add").click(function () {
+            document.location = '@Url.Action("AddVip", "Admin")';
+        });
+    });
+
+    $(document).ready(function () {
+        $(".btnedite").click(function () {
+            var action = $(this).attr('data-id');
+            document.location = '@Url.Action("Editvip", "Admin")?id=' + action;
+        });
+    });
+
+    $(document).ready(function () {
+        $(".btndetails").click(function () {
+            var action = $(this).attr('data-id');
+            document.location = '@Url.Action("VipDetails", "Admin")?id=' + action;
+        });
+    });
+
+
+    $(document).on("click", ".btndel", function (e) {
+        var action = $(this).attr('data-id');
+        $.ajax({
+            url: "/Admin/DeleteVip?id=" + action,
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                $("#DeleteModel").modal("hide");
+                $.get("/Admin/GetVipPartial", function (data2) {
+                    $("#companyprofile").html(data2);
+                });            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+        $(document).on("click", ".clickdelete", function (e) {
+            var action = $(this).attr('data-id');
+            $(".btndel").attr('data-id', action);
+            $("#DeleteModel").modal("show");
+        });
+    });
+
+</script>

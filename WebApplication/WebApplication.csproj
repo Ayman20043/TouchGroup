@@ -188,6 +188,7 @@
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\OurTeamController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
+    <Compile Include="Controllers\VIPServicesController.cs" />
     <Compile Include="DAL\TouchContext.cs" />
     <Compile Include="DAL\TouchInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +198,10 @@
     <Compile Include="Migrations\201607090329340_reCreateDB.cs" />
     <Compile Include="Migrations\201607090329340_reCreateDB.Designer.cs">
       <DependentUpon>201607090329340_reCreateDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608201156021_AddVipServices.cs" />
+    <Compile Include="Migrations\201608201156021_AddVipServices.Designer.cs">
+      <DependentUpon>201608201156021_AddVipServices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -224,6 +229,7 @@
     <Compile Include="Models\ViewModel\PortfolioViewModel.cs" />
     <Compile Include="Models\ViewModel\ProjectViewModel.cs" />
     <Compile Include="Models\ViewModel\TeamMemberViewModel.cs" />
+    <Compile Include="Models\VipService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserDataContextMigrations\201605061557299_Initial.cs" />
@@ -771,6 +777,7 @@
     <Content Include="Content\Admin\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\PdfStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\Ayman.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fileinput.js" />
@@ -804,6 +811,9 @@
     <Content Include="Scripts\fileinput_locale_uk.js" />
     <Content Include="Scripts\fileinput_locale_zh-TW.js" />
     <Content Include="Scripts\fileinput_locale_zh.js" />
+    <Content Include="Scripts\Home\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1054,6 +1064,8 @@
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\AboutUs\Index.cshtml" />
     <Content Include="Views\Admin\BackgroundImage.cshtml" />
+    <Content Include="Views\Admin\Editvip.cshtml" />
+    <Content Include="Views\Admin\AddVip.cshtml" />
     <None Include="Views\Admin\ProjectForm.cshtml" />
     <Content Include="Views\Shared\_HomeIndexLayout.cshtml" />
     <Content Include="Views\Admin\_HomeImagePartial.cshtml" />
@@ -1066,12 +1078,16 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Careers\Index.cshtml" />
     <Content Include="Views\Admin\_BackgroundImagesPartial.cshtml" />
+    <Content Include="Views\Admin\vip.cshtml" />
+    <Content Include="Views\Admin\_VipPartial.cshtml" />
+    <Content Include="Views\Admin\VipDetails.cshtml" />
     <None Include="Views\Navigation\AboutUsLinks.cshtml" />
     <Content Include="Views\Portfolio\Index.cshtml" />
     <Content Include="Views\Shared\_PortfolopLayout.cshtml" />
     <Content Include="Views\Portfolio\Project.cshtml" />
     <Content Include="Views\OurTeam\Index.cshtml" />
     <Content Include="Views\Navigation\SocialLinks.cshtml" />
+    <Content Include="Views\VIPServices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1093,6 +1109,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201607090329340_reCreateDB.resx">
       <DependentUpon>201607090329340_reCreateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608201156021_AddVipServices.resx">
+      <DependentUpon>201608201156021_AddVipServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserDataContextMigrations\201605061557299_Initial.resx">
       <DependentUpon>201605061557299_Initial.cs</DependentUpon>

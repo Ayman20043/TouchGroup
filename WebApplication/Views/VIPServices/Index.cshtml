@@ -1,0 +1,70 @@
+﻿@model List<WebApplication.Models.VipService>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BasicHomeLayout.cshtml";
+}
+
+<div id="header">
+    <header>
+        <h1>VIP Services</h1>
+    </header>
+</div>
+
+
+<div class="section parallax" data-stellar-background-ratio="0.5" data-stellar-vertical-offset="-150" style="background: url('/Images/backgrounds/bg-img-1.jpg') no-repeat center center ;opacity: 0.8;/*height: 100vh;*/">
+
+    <section class="AboutUsSection" style="min-height: 580px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" data-animate="fadeInUp">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <li class="active"><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#@Model[i].SectionName.Replace(" ","")" data-toggle="tab">@Model[i].SectionName</a></li>
+                            }
+                        }
+                       
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+
+                            if (i == 0)
+                            {
+                                <div class="tab-pane fade in active" id="@Model[i].SectionName.Replace(" ","")">
+                                    @Html.Raw(@Model[i].Content)
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade" id="@Model[i].SectionName.Replace(" ","")">
+                                    @Html.Raw(@Model[i].Content)
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> <!-- section -->
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#main').css("background-color", "transparent");
+        });
+
+
+    </script>
+}
