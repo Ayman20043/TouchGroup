@@ -778,6 +778,7 @@
     <Content Include="Content\PdfStyle.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="bundleconfig.json" />
+    <Content Include="File\Portfolio\TCG-PRE COALIFICATION-v9-small.pdf" />
     <None Include="Properties\PublishProfiles\Ayman.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\fileinput.js" />
